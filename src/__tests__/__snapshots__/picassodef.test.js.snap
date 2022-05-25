@@ -1,0 +1,367 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Treemap picassodef render should render ok 1`] = `
+Object {
+  "collections": Array [
+    Object {
+      "data": Object {
+        "hierarchy": Object {
+          "label": [Function],
+          "props": Object {
+            "color": Object {
+              "field": "qMeasureInfo/0",
+            },
+            "expressionColor": undefined,
+            "expressionColorText": undefined,
+            "select": Object {
+              "field": "qDimensionInfo/0",
+            },
+          },
+          "value": [Function],
+        },
+      },
+      "key": "hierarchy",
+    },
+  ],
+  "components": Array [
+    Object {
+      "brush": Object {
+        "consume": Array [
+          Object {
+            "context": "dataContext",
+            "data": Array [
+              "select",
+            ],
+            "filter": [Function],
+            "style": Object {
+              "active": Object {
+                "opacity": [Function],
+                "stroke": "black",
+                "strokeWidth": [Function],
+              },
+              "inactive": Object {
+                "opacity": [Function],
+              },
+            },
+          },
+          Object {
+            "context": "lassoContext",
+            "data": Array [
+              "select",
+            ],
+            "filter": [Function],
+            "style": Object {
+              "active": Object {
+                "opacity": [Function],
+                "stroke": "black",
+                "strokeWidth": [Function],
+              },
+              "inactive": Object {
+                "opacity": [Function],
+              },
+            },
+          },
+        ],
+        "trigger": Array [
+          Object {
+            "contexts": Array [
+              "dataContext",
+            ],
+            "data": Array [
+              "select",
+            ],
+            "on": "tap",
+          },
+        ],
+      },
+      "data": Object {
+        "collection": Object {
+          "key": "hierarchy",
+        },
+      },
+      "key": "treemap",
+      "settings": Object {
+        "color": Object {
+          "mode": "byMeasure",
+        },
+        "formatter": Array [
+          NumDateTimeFormatter {
+            "_dateFormatter": DateFormatter {
+              "localeInfo": Object {
+                "qCalendarStrings": Object {
+                  "qDayNames": Array [
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun",
+                  ],
+                  "qLongDayNames": Array [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday",
+                  ],
+                  "qLongMonthNames": Array [
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December",
+                  ],
+                  "qMonthNames": Array [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec",
+                  ],
+                },
+              },
+              "locale_days": Array [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+              ],
+              "locale_days_abbr": Array [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat",
+                "Sun",
+              ],
+              "locale_months": Array [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+              ],
+              "locale_months_abbr": Array [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+              ],
+              "pattern": "0.##A",
+            },
+            "_numberFormatter": NumberFormatter {
+              "_prepared": Object {
+                "negative": false,
+                "positive": Object {
+                  "abbreviate": true,
+                  "d": ".",
+                  "decTemp": ".",
+                  "groupTemp": "",
+                  "isFunctional": false,
+                  "maxPrecision": 2,
+                  "numericPattern": "0.##",
+                  "numericRegex": /,\\|\\\\\\./g,
+                  "pattern": "0.##",
+                  "percentage": false,
+                  "postfix": "",
+                  "prefix": "",
+                  "t": ",",
+                  "temp": 2,
+                },
+              },
+              "abbreviations": Object {
+                "-12": "p",
+                "-15": "f",
+                "-18": "a",
+                "-21": "z",
+                "-24": "y",
+                "-3": "m",
+                "-6": "μ",
+                "-9": "n",
+                "12": "T",
+                "15": "P",
+                "18": "E",
+                "21": "Z",
+                "24": "Y",
+                "3": "k",
+                "6": "M",
+                "9": "G",
+              },
+              "decimalDelimiter": ".",
+              "localeInfo": "",
+              "pattern": "0.##A",
+              "thousandDelimiter": "",
+              "type": "U",
+            },
+            "_prepared": Object {
+              "d": undefined,
+              "pattern": "0.##A",
+              "t": undefined,
+            },
+            "decimalDelimiter": ".",
+            "localeInfo": Object {},
+            "pattern": "0.##A",
+            "thousandDelimiter": "",
+            "type": "U",
+            "values": Object {
+              "max": 79336,
+              "min": 6422,
+              "range": 72914,
+            },
+          },
+        ],
+        "getContrastingColorTo": [Function],
+        "headerColor": "#F2F2F2",
+        "labels": Object {
+          "auto": true,
+          "headers": true,
+          "leaves": true,
+          "overlay": true,
+          "values": true,
+        },
+        "level": 0,
+        "showHeaders": false,
+      },
+      "type": "treemap",
+    },
+    Object {
+      "key": "overlay",
+      "layout": Object {
+        "displayOrder": 10,
+      },
+      "settings": Object {
+        "sources": Array [
+          Object {
+            "component": "treemap",
+            "selector": "rect",
+            "strategy": Object {
+              "settings": Object {
+                "align": 0.5,
+                "fontFamily": "arial",
+                "fontSize": 24,
+                "justify": 0.5,
+                "labels": Array [
+                  Object {
+                    "fill": [Function],
+                    "label": [Function],
+                    "wordBreak": "break-word",
+                  },
+                ],
+                "padding": 8,
+              },
+              "type": "rows",
+            },
+          },
+        ],
+      },
+      "type": "labels",
+    },
+    Object {
+      "key": "tooltip",
+      "settings": Object {
+        "content": [Function],
+        "duration": 2500,
+        "extract": [Function],
+        "placement": Object {
+          "area": "target",
+          "type": "bounds",
+        },
+      },
+      "type": "tooltip",
+    },
+    Object {
+      "key": "lasso",
+      "settings": Object {
+        "brush": Object {
+          "components": Array [
+            Object {
+              "action": "add",
+              "contexts": Array [
+                "lassoContext",
+              ],
+              "data": Array [
+                "select",
+              ],
+              "key": "treemap",
+            },
+          ],
+        },
+      },
+      "type": "brush-lasso",
+    },
+  ],
+  "interactions": Array [
+    Object {
+      "events": Object {
+        "mouseleave": [Function],
+        "mousemove": [Function],
+      },
+      "key": "native",
+      "type": "native",
+    },
+    Object {
+      "gestures": Array [
+        Object {
+          "events": Object {
+            "pan": [Function],
+            "panend": [Function],
+            "panstart": [Function],
+          },
+          "type": "Pan",
+        },
+      ],
+      "key": "hammer",
+      "type": "hammer",
+    },
+  ],
+  "scales": Object {
+    "color": Object {
+      "data": Object {
+        "extract": Object {
+          "field": "qMeasureInfo/0",
+        },
+      },
+      "range": Array [
+        "#c4cfda",
+      ],
+      "type": "color",
+    },
+  },
+}
+`;

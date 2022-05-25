@@ -1,0 +1,409 @@
+{
+  "qLayout": [
+  {
+    "op": "add",
+    "path": "/",
+    "value": {
+      "qInfo": {
+        "qId": "07afc668-a260-44d3-aec9-affab7aec713",
+        "qType": "treemap"
+      },
+      "qMeta": {
+        "privileges": [
+          "read",
+          "update",
+          "delete"
+        ]
+      },
+      "qSelectionInfo": {},
+      "qHyperCube": {
+        "qSize": {
+          "qcx": 1,
+          "qcy": 6
+        },
+        "qDimensionInfo": [
+          {
+            "qFallbackTitle": "Dim2",
+            "qApprMaxGlyphCount": 1,
+            "qCardinal": 6,
+            "qSortIndicator": "A",
+            "qGroupFallbackTitles": [
+              "Dim2"
+            ],
+            "qGroupPos": 0,
+            "qStateCounts": {
+              "qLocked": 0,
+              "qSelected": 0,
+              "qOption": 6,
+              "qDeselected": 0,
+              "qAlternative": 0,
+              "qExcluded": 0,
+              "qSelectedExcluded": 0,
+              "qLockedExcluded": 0
+            },
+            "qTags": [
+              "$ascii",
+              "$text"
+            ],
+            "qDimensionType": "D",
+            "qGrouping": "N",
+            "qNumFormat": {
+              "qType": "U",
+              "qnDec": 0,
+              "qUseThou": 0
+            },
+            "qIsAutoFormat": true,
+            "qGroupFieldDefs": [
+              "Dim2"
+            ],
+            "qMin": "NaN",
+            "qMax": "NaN",
+            "qAttrExprInfo": [
+              {
+                "qMin": 6422,
+                "qMax": 79336,
+                "qFallbackTitle": "Sum(Expression1)",
+                "qMinText": "6422",
+                "qMaxText": "79336",
+                "qNumFormat": {
+                  "qType": "I",
+                  "qnDec": 0,
+                  "qUseThou": 1,
+                  "qFmt": "###0",
+                  "qDec": "."
+                },
+                "qIsAutoFormat": true,
+                "id": "colorByAlternative",
+                "label": "Sum(Expression1)"
+              }
+            ],
+            "qAttrDimInfo": [],
+            "qCardinalities": {
+              "qCardinal": 6,
+              "qHypercubeCardinal": 6,
+              "qAllValuesCardinal": -1
+            },
+            "autoSort": true,
+            "cId": "mEJSAH",
+            "othersLabel": "Others"
+          }
+        ],
+        "qMeasureInfo": [
+          {
+            "qFallbackTitle": "Sum(Expression1)",
+            "qApprMaxGlyphCount": 5,
+            "qCardinal": 0,
+            "qSortIndicator": "D",
+            "qNumFormat": {
+              "qType": "I",
+              "qnDec": 0,
+              "qUseThou": 1,
+              "qFmt": "###0",
+              "qDec": "."
+            },
+            "qMin": 6422,
+            "qMax": 79336,
+            "qIsAutoFormat": true,
+            "qAttrExprInfo": [],
+            "qAttrDimInfo": [],
+            "qTrendLines": [],
+            "autoSort": true,
+            "cId": "cmVSG",
+            "numFormatFromTemplate": true
+          }
+        ],
+        "qEffectiveInterColumnSortOrder": [
+          0
+        ],
+        "qGrandTotalRow": [],
+        "qDataPages": [],
+        "qPivotDataPages": [],
+        "qStackedDataPages": [
+          {
+            "qData": [
+              {
+                "qElemNo": 0,
+                "qValue": 0,
+                "qType": "R",
+                "qMaxPos": 247487,
+                "qMinNeg": 0,
+                "qUp": 0,
+                "qDown": 0,
+                "qRow": 0,
+                "qSubNodes": [
+                  {
+                    "qText": "f",
+                    "qElemNo": 4,
+                    "qValue": "NaN",
+                    "qType": "N",
+                    "qMaxPos": 79336,
+                    "qMinNeg": 0,
+                    "qUp": 0,
+                    "qDown": 0,
+                    "qRow": 0,
+                    "qSubNodes": [
+                      {
+                        "qText": "79336",
+                        "qElemNo": 0,
+                        "qValue": 79336,
+                        "qType": "V",
+                        "qMaxPos": 0,
+                        "qMinNeg": 0,
+                        "qUp": 0,
+                        "qDown": 0,
+                        "qRow": 0,
+                        "qSubNodes": []
+                      }
+                    ],
+                    "qAttrExps": {
+                      "qValues": [
+                        {
+                          "qText": "79336",
+                          "qNum": 79336
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "qText": "e",
+                    "qElemNo": 2,
+                    "qValue": "NaN",
+                    "qType": "N",
+                    "qMaxPos": 55917,
+                    "qMinNeg": 0,
+                    "qUp": 0,
+                    "qDown": 0,
+                    "qRow": 1,
+                    "qSubNodes": [
+                      {
+                        "qText": "55917",
+                        "qElemNo": 0,
+                        "qValue": 55917,
+                        "qType": "V",
+                        "qMaxPos": 0,
+                        "qMinNeg": 0,
+                        "qUp": 0,
+                        "qDown": 0,
+                        "qRow": 1,
+                        "qSubNodes": []
+                      }
+                    ],
+                    "qAttrExps": {
+                      "qValues": [
+                        {
+                          "qText": "55917",
+                          "qNum": 55917
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "qText": "d",
+                    "qElemNo": 0,
+                    "qValue": "NaN",
+                    "qType": "N",
+                    "qMaxPos": 50434,
+                    "qMinNeg": 0,
+                    "qUp": 0,
+                    "qDown": 0,
+                    "qRow": 2,
+                    "qSubNodes": [
+                      {
+                        "qText": "50434",
+                        "qElemNo": 0,
+                        "qValue": 50434,
+                        "qType": "V",
+                        "qMaxPos": 0,
+                        "qMinNeg": 0,
+                        "qUp": 0,
+                        "qDown": 0,
+                        "qRow": 2,
+                        "qSubNodes": []
+                      }
+                    ],
+                    "qAttrExps": {
+                      "qValues": [
+                        {
+                          "qText": "50434",
+                          "qNum": 50434
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "qText": "c",
+                    "qElemNo": 1,
+                    "qValue": "NaN",
+                    "qType": "N",
+                    "qMaxPos": 34963,
+                    "qMinNeg": 0,
+                    "qUp": 0,
+                    "qDown": 0,
+                    "qRow": 3,
+                    "qSubNodes": [
+                      {
+                        "qText": "34963",
+                        "qElemNo": 0,
+                        "qValue": 34963,
+                        "qType": "V",
+                        "qMaxPos": 0,
+                        "qMinNeg": 0,
+                        "qUp": 0,
+                        "qDown": 0,
+                        "qRow": 3,
+                        "qSubNodes": []
+                      }
+                    ],
+                    "qAttrExps": {
+                      "qValues": [
+                        {
+                          "qText": "34963",
+                          "qNum": 34963
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "qText": "b",
+                    "qElemNo": 5,
+                    "qValue": "NaN",
+                    "qType": "N",
+                    "qMaxPos": 20415,
+                    "qMinNeg": 0,
+                    "qUp": 0,
+                    "qDown": 0,
+                    "qRow": 4,
+                    "qSubNodes": [
+                      {
+                        "qText": "20415",
+                        "qElemNo": 0,
+                        "qValue": 20415,
+                        "qType": "V",
+                        "qMaxPos": 0,
+                        "qMinNeg": 0,
+                        "qUp": 0,
+                        "qDown": 0,
+                        "qRow": 4,
+                        "qSubNodes": []
+                      }
+                    ],
+                    "qAttrExps": {
+                      "qValues": [
+                        {
+                          "qText": "20415",
+                          "qNum": 20415
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "qText": "a",
+                    "qElemNo": 3,
+                    "qValue": "NaN",
+                    "qType": "N",
+                    "qMaxPos": 6422,
+                    "qMinNeg": 0,
+                    "qUp": 0,
+                    "qDown": 0,
+                    "qRow": 5,
+                    "qSubNodes": [
+                      {
+                        "qText": "6422",
+                        "qElemNo": 0,
+                        "qValue": 6422,
+                        "qType": "V",
+                        "qMaxPos": 0,
+                        "qMinNeg": 0,
+                        "qUp": 0,
+                        "qDown": 0,
+                        "qRow": 5,
+                        "qSubNodes": []
+                      }
+                    ],
+                    "qAttrExps": {
+                      "qValues": [
+                        {
+                          "qText": "6422",
+                          "qNum": 6422
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ],
+            "qArea": {
+              "qLeft": 0,
+              "qTop": 0,
+              "qWidth": 1,
+              "qHeight": 6
+            }
+          }
+        ],
+        "qMode": "K",
+        "qNoOfLeftDims": 1,
+        "qIndentMode": true,
+        "qTreeNodesOnDim": [],
+        "qColumnOrder": []
+      },
+      "showTitles": true,
+      "title": "",
+      "subtitle": "",
+      "footnote": "",
+      "disableNavMenu": false,
+      "showDetails": false,
+      "showDisclaimer": true,
+      "labels": {
+        "auto": true,
+        "headers": true,
+        "overlay": true,
+        "leaves": true,
+        "values": true
+      },
+      "color": {
+        "auto": false,
+        "mode": "byMeasure",
+        "formatting": {
+          "numFormatFromTemplate": true
+        },
+        "useBaseColors": "off",
+        "paletteColor": {
+          "index": 6
+        },
+        "useDimColVal": true,
+        "useMeasureGradient": true,
+        "persistent": false,
+        "expressionIsColor": true,
+        "expressionLabel": "",
+        "measureScheme": "dc",
+        "reverseScheme": false,
+        "dimensionScheme": "12",
+        "autoMinMax": true,
+        "measureMin": 0,
+        "measureMax": 10,
+        "altLabel": "Sum(Expression1)",
+        "byDimDef": {
+          "label": "Dim2",
+          "key": "Dim2",
+          "type": "expression"
+        },
+        "byMeasureDef": {
+          "label": "Sum(Expression1)",
+          "key": "Sum(Expression1)",
+          "type": "expression"
+        }
+      },
+      "legend": {
+        "show": false,
+        "dock": "auto",
+        "showTitle": true
+      },
+      "tooltip": {
+        "auto": true,
+        "hideBasic": false
+      },
+      "visualization": "treemap"
+    }
+  }
+  ]
+}
