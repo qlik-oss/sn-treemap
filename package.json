@@ -1,6 +1,6 @@
 {
   "name": "@qlik/sn-treemap",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Treemap supernova that is DOM independent",
   "main": "src/index.js",
   "author": "Qlik",

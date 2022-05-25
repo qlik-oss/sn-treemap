@@ -1,3 +1,10 @@
+# [1.0.0-alpha.2](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2022-05-25)
+
+
+### Bug Fixes
+
+* remove [@qlik-trial](https://github.com/qlik-trial) ([e810785](https://github.com/qlik-oss/sn-treemap/commit/e810785c62d9c074e6e6b1d83f5c3d282af1529d))
+
 # 1.0.0-alpha.1 (2022-05-25)
 
 
