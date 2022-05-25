@@ -1317,11 +1317,6 @@
   resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-1.7.0.tgz#475d8e3bd4e55cb074aeb7e374e5569a309ad105"
   integrity sha512-d+KE2IKoLud27BZQ4eTJtFbPRLq2JqQmz8uZaQ/BYWA9CxmntlTxiDDcaJlzBgk3YFUxUpvz2yvBHWP/YmPpyg==
 
-"@qlik-trial/sense-themes-default@^1.13.0":
-  version "1.15.0"
-  resolved "https://npm.pkg.github.com/download/@qlik-trial/sense-themes-default/1.15.0/af1f2136b608b933333bea50829492cafa5e8178d6c7ad73ce4070c3060a77f0#0dc5a4499068d5242507bfea9b1bbc51eb71975b"
-  integrity sha512-lapi1S7utm7SHZeqJP/jEykQQWtqA8ML9u/g0KAfTVyiP4RT1zram2KuPFOqonpQC/1JzbUUWVZ3/Af7oxsdsg==
-
 "@semantic-release/changelog@^6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-6.0.1.tgz#8dd0334fd8c7d50cda747d2591e4f18f816b3c9c"
@@ -3382,11 +3377,6 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
-lodash.deburr@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/lodash.deburr/-/lodash.deburr-4.1.0.tgz#ddb1bbb3ef07458c0177ba07de14422cb033ff9b"
-  integrity sha1-3bG7s+8HRYwBd7oH3hRCLLAz/5s=
-
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
@@ -4130,13 +4120,6 @@ string-length@^4.0.1:
   dependencies:
     char-regex "^1.0.2"
     strip-ansi "^6.0.0"
-
-string-pixel-width@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/string-pixel-width/-/string-pixel-width-1.10.0.tgz#aff215aaa7a65627f937d70fcc88d83ae1bc5657"
-  integrity sha512-cOMpkH+CpxWAnrPsWUvPWhZxh25CzUukweT+6WF+Kwx6+G2ksg8flvELZusLyWiZzfFCjj1+QRRGwcPWZlwVYA==
-  dependencies:
-    lodash.deburr "^4.1.0"
 
 string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
   version "4.2.3"
