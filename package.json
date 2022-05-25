@@ -19,7 +19,7 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
-    "url": "git://git@github.com:qlik-trial/carbon.git"
+    "url": "git@github.com:qlik-oss/sn-treemap.git"
   },
   "gitHead": "9aa7e3c03c63da7ed8f9e0ae6a568a5b7c9b33c4",
   "devDependencies": {
