@@ -1,3 +1,10 @@
+# [1.0.0-alpha.3](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2022-06-01)
+
+
+### Bug Fixes
+
+* invalid layout references ([b394519](https://github.com/qlik-oss/sn-treemap/commit/b3945199e682432040b8d832cf913214aaf54f6f))
+
 # [1.0.0-alpha.2](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2022-05-25)
 
 
