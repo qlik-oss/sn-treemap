@@ -49,13 +49,13 @@ const supernova = (env) => {
       }, [element, chart]);
 
       useEffect(() => {
-        if(chart) {
+        if(chart && layout?.qHyperCube) {
           chart.update();
         }
       }, [rect.width, rect.height, chart])
 
       useEffect(() => {
-        if (!mounted && selections !== undefined) {
+        if (!mounted && selections !== undefined && layout.qHyperCube) {
           mounted = true;
           const settings = picassoDef({
             layout,
