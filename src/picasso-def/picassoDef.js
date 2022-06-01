@@ -2,8 +2,8 @@ import {colorScale} from './scales';
 import {getLevel, getNextSelecteDim} from './getLevel';
 import ChartFormatting from './formatting/chart-formatting';
 import {legend} from './legend';
-import {lassoBrush} from '@qlik-trial/sn-treemap/src/picasso-def/lassoBrush';
-import {lassoInteraction} from '@qlik-trial/sn-treemap/src/picasso-def/lassoInteraction';
+import {lassoBrush} from '@qlik/sn-treemap/src/picasso-def/lassoBrush';
+import {lassoInteraction} from '@qlik/sn-treemap/src/picasso-def/lassoInteraction';
 import {tooltip, tooltipInteraction} from './tooltip';
 import {active, inactive} from './brushStyles';
 const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {

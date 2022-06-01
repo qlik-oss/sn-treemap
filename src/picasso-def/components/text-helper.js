@@ -5,14 +5,13 @@
  * @param {String} font
  * @returns {{text: String, rest: String}}
  */
-function truncate(text, width, measureText) {
-  let updated = text;
-  if(measureText(text).width > width) {
-    let newWidth = parseInt(width, 10) ;
-    while(measureText(updated + '...').width > newWidth) {
-      updated = updated.slice(0, -1);
-    }
-    return updated + '...';
+function truncate(text, width, renderer, fontSize, fontFamily) {
+  const approximation = renderer.measureText({text: 'W', fontSize, fontFamily});
+  const charWidth = width / approximation.width
+  // const actual =  renderer.measureText({text, fontSize, fontFamilay});
+  const textWidth = approximation.width * text.length;
+  if(textWidth > width) {
+    return `${text.slice(0,  charWidth)}...`;
   }
   return text;
 }
@@ -58,14 +57,14 @@ function getLines(text, width, measureText) {
 
 
 
-function cram(text, rect, measureText) {
+function cram(text, rect, measureText, renderer, fontSize, fontFamily) {
   const lines = getLines(text, rect.width, measureText);
   // truncate last line
   if(lines.length > 1) {
-    lines[lines.length - 1] = truncate(lines[lines.length - 1], rect.width, measureText);
+    lines[lines.length - 1] = truncate(lines[lines.length - 1], rect.width, renderer, fontSize, fontFamily);
     return lines.join('\n');
   }
-  return truncate(text, rect.width, measureText);
+  return truncate(text, rect.width, renderer, fontSize, fontFamily);
 }
 
 

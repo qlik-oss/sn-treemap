@@ -73,7 +73,7 @@ export const createTextLabels = ({
             fontFamily,
           });
 
-        text = cram(text, {width: width - 8, height}, (val) => renderer.measureText({text: val, fontFamily,fontSize: TREEMAP_VALUE_FONTSIZE, }));
+        text = cram(text, {width: width - 8, height}, (val) => renderer.measureText({text: val, fontFamily,fontSize: TREEMAP_VALUE_FONTSIZE, }), renderer, TREEMAP_VALUE_FONTSIZE, fontFamily);
         if (valueSize.width < width - verticalPadding && valueSize.height + maxheight < height - 8) {
           text += `\n${leafValue}`;
         }
@@ -115,11 +115,7 @@ const headerText = ({
     return;
   }
   if(textSize.width > width - 8) {
-    text = truncate(text, width - 10, (val) => renderer.measureText({
-      text: val,
-      fontSize: TREEMAP_LABEL_FONTSIZE,
-      fontFamily,
-    }));
+    text = truncate(text, width - 10, renderer, TREEMAP_LABEL_FONTSIZE, fontFamily);
   }
   valueLables.push({
     type: 'text',
