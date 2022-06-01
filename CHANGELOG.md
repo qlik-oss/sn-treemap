@@ -1,3 +1,10 @@
+# [1.0.0-alpha.4](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2022-06-01)
+
+
+### Bug Fixes
+
+* slow truncation ([c4013a3](https://github.com/qlik-oss/sn-treemap/commit/c4013a33e94a8a4b37520f65ce506275e47e1134))
+
 # [1.0.0-alpha.3](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2022-06-01)
 
 
