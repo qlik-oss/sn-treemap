@@ -166,16 +166,31 @@ export const createOverlayLabel = ({node, avgColor, width, height, renderer, get
   const x = node.x0 + (width - textSize.width) / 2;
   const y = node.y0 + 18 + (height - textSize.height) / 2;
 
-  return {
-    type: 'text',
-    text,
-    fontFamily,
-    fontSize: 24,
-    x,
-    y,
-    fill: getContrastingColorTo(avgColor),
-    baseline: 'center',
-    opacity: 0.5,
-    data: {...node.data, depth: node.depth},
+  if(textSize.width > width - 8) {
+    text = truncate(text, width - 10, renderer, TREEMAP_LABEL_FONTSIZE, fontFamily);
   }
+
+  textSize = renderer.measureText({
+    text,
+    fontSize: 24,
+    fontFamily,
+  });
+
+  const fitWidth = width - 8;
+  if(textSize.width < fitWidth && textSize.height < height) {
+
+    return {
+      type: 'text',
+      text,
+      fontFamily,
+      fontSize: 24,
+      x,
+      y,
+      fill: getContrastingColorTo(avgColor),
+      baseline: 'center',
+      opacity: 0.7,
+      data: {...node.data, depth: node.depth},
+    }
+  }
+  return undefined;
 }

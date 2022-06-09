@@ -232,15 +232,18 @@ export const treemap = () => ({
       visit(node, index);
     });
 
-    const overlayLabels = overlayNodes.map((node) => {
+    const overlayLabels = [];
+    overlayNodes.forEach((node) => {
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
       const avgColor = getAverageColor(node);
-      return createOverlayLabel({node, avgColor, width, height, renderer: this.renderer, getContrastingColorTo})
+      const label = createOverlayLabel({node, avgColor, width, height, renderer: this.renderer, getContrastingColorTo});
+      if(label) {
+        overlayLabels.push(label);
+      }
     });
 
-    // this is needed for the border selections
-    const overlayRects = overlayNodes.map((node) => {
+     const overlayRects = overlayNodes.map((node) => {
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
       const avgColor = getAverageColor(node);
