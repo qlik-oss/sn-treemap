@@ -1,3 +1,10 @@
+# [1.0.0-alpha.5](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-09)
+
+
+### Bug Fixes
+
+* overlay labels ([bae2581](https://github.com/qlik-oss/sn-treemap/commit/bae258169336272533bbde5217b32c56bb9ecaf0))
+
 # [1.0.0-alpha.4](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2022-06-01)
 
 
