@@ -16,6 +16,21 @@ function toColor(num) {
   return 'rgba(' + [r, g, b, a].join(',') + ')';
 }
 
+const buildPath = (root, node) => {
+  const par = root.path(node);
+  let path = '';// `${node.data.select.source.field}/${node.data.select.value}`;
+  par.forEach((p) => {
+    if(p.data.source) {
+      path = `${path}/${p.data.source.field}`
+    } else {
+      path = `${path}/${p.data.select.label}`
+    }
+  });
+  console.log(node);
+  path = `${path}/${node.data.select.value}`;
+  return path;
+}
+
 const getNodeColor = (
   node,
   colorScale,
@@ -195,7 +210,8 @@ export const treemap = () => ({
               renderer: this.renderer,
             });
           }
-          const path = `${node.data.select.source.field}/${node.data.select.value}`;
+
+          const path = buildPath(root, node);
           rects.push({
             type: 'rect',
             width,
@@ -247,7 +263,8 @@ export const treemap = () => ({
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
       const avgColor = getAverageColor(node);
-      const path = `${node.data.select.source.field}/${node.data.select.value}`;
+
+      const path = buildPath(root, node);
       return {
         type: 'rect',
         width,
