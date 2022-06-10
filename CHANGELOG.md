@@ -1,3 +1,10 @@
+# [1.0.0-alpha.7](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2022-06-10)
+
+
+### Bug Fixes
+
+* selections tree ([be87c9c](https://github.com/qlik-oss/sn-treemap/commit/be87c9c30bb32f6f17374c36c1e3ced067615da2))
+
 # [1.0.0-alpha.6](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-06-10)
 
 
