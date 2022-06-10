@@ -26,7 +26,6 @@ const buildPath = (root, node) => {
       path = `${path}/${p.data.select.label}`
     }
   });
-  console.log(node);
   path = `${path}/${node.data.select.value}`;
   return path;
 }
