@@ -1,3 +1,10 @@
+# [1.0.0-alpha.6](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-06-10)
+
+
+### Bug Fixes
+
+* treemap rendering neg values ([113537c](https://github.com/qlik-oss/sn-treemap/commit/113537cad5060387f21ca1bcc75a33bba867098e))
+
 # [1.0.0-alpha.5](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-09)
 
 
