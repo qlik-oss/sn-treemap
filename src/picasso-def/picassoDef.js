@@ -110,6 +110,14 @@ export const picassoDef = ({
               return 'NaN';
             }
             if (datum?.qType === 'N' && datum?.qSubNodes?.length === 1) {
+              // console.log(datum);
+              let sb = datum.qSubNodes;
+              while(sb.length > 1) {
+                sb = sb.qSubNodes;
+              }
+              if(sb[0].qType !== 'V') {
+                return 0;
+              }
               return datum.qMaxPos;
             }
             if (datum.qType === 'O' && datum?.qSubNodes?.length === 1) {
