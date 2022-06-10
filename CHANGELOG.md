@@ -1,3 +1,10 @@
+# [1.0.0-alpha.8](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2022-06-10)
+
+
+### Bug Fixes
+
+* remove console.log ([38b67bb](https://github.com/qlik-oss/sn-treemap/commit/38b67bbc442f0929fca5c6373cc7a81f5fb55fa0))
+
 # [1.0.0-alpha.7](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2022-06-10)
 
 
