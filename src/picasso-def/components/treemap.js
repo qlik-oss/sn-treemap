@@ -26,7 +26,6 @@ const buildPath = (root, node) => {
       path = `${path}/${p.data.select.label}`
     }
   });
-  console.log(node);
   path = `${path}/${node.data.select.value}`;
   return path;
 }
@@ -38,9 +37,7 @@ const getNodeColor = (
   colorSettings,
   colorIndex,
 ) => {
-  if (node.header && isNaN(node?.data?.value)) {
-    if (node.showLable) {
-    }
+  if (node.header && !isNaN(node.value)) {
     return headerColor;
   }
   if (
