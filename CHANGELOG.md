@@ -1,3 +1,11 @@
+# [1.0.0-alpha.11](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2022-06-12)
+
+
+### Bug Fixes
+
+* selection brush ([8381f5d](https://github.com/qlik-oss/sn-treemap/commit/8381f5d8e6e6d60020ab20eb60ab94e877e5f0bc))
+* selection brush ([e842e94](https://github.com/qlik-oss/sn-treemap/commit/e842e940365e1282906ec3cc263e888e0d559432))
+
 # [1.0.0-alpha.10](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2022-06-12)
 
 
