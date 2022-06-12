@@ -1,3 +1,10 @@
+# [1.0.0-alpha.12](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-06-12)
+
+
+### Bug Fixes
+
+* revert back selection brush ([baabcf9](https://github.com/qlik-oss/sn-treemap/commit/baabcf941d524965a3faf435a6876609dc0dfc69))
+
 # [1.0.0-alpha.11](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2022-06-12)
 
 
