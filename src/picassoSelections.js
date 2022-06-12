@@ -12,11 +12,6 @@ export const picassoSelections = ({
         selectBrush.clear([]);
       }
     });
-    if(added.length > 1) {
-      // return second one if len > 1
-      // picasso returns the root object, so ignore it.
-      return [added[1]];
-    }
     return added.filter((t) => t.value >= 0) // do not allow selection on null or negative value
   };
 
