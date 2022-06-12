@@ -1,3 +1,10 @@
+# [1.0.0-alpha.9](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-06-12)
+
+
+### Bug Fixes
+
+* invalid access to undefined type ([a069967](https://github.com/qlik-oss/sn-treemap/commit/a069967a75b10c709dddc58c517a3079f62b26dc))
+
 # [1.0.0-alpha.8](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2022-06-10)
 
 
