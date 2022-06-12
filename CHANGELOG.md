@@ -1,3 +1,10 @@
+# [1.0.0-alpha.10](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2022-06-12)
+
+
+### Bug Fixes
+
+* header ([95f4d2b](https://github.com/qlik-oss/sn-treemap/commit/95f4d2b9d7c477f42ba9220292b6b6f4e762cead))
+
 # [1.0.0-alpha.9](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-06-12)
 
 
