@@ -7,7 +7,6 @@ export const picassoSelections = ({
   const valueInterceptor = (added) => {
     const brushes = selectBrush.brushes();
     brushes.forEach((b) => {
-      console.log(b);
       if (b.type === 'range') {
         // has range selections
         selectBrush.clear([]);
