@@ -13,7 +13,8 @@
     "!**/__mocks__",
     "!**/node_modules",
     "!jest.config.js",
-    "!babel.config.js"
+    "!babel.config.js",
+    "!example/**"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
