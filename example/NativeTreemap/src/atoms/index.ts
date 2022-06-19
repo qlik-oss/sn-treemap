@@ -9,7 +9,12 @@ import {
   storedConnectionListAtom,
 } from './connectionAtom';
 
-import {selectedAppAtom, loadableOpenAppAtom, loadableVizList} from './appAtom';
+import {
+  selectedAppAtom,
+  loadableOpenAppAtom,
+  loadableVizList,
+  currentModelAtom,
+} from './appAtom';
 
 export const appListAtom = atom(async get => {
   try {
@@ -38,4 +43,5 @@ export {
   loadableOpenAppAtom,
   loadableVizList,
   storedConnectionListAtom,
+  currentModelAtom,
 };

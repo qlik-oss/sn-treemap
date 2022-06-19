@@ -75,3 +75,5 @@ const vizList = atom(async get => {
 
 export const loadableOpenAppAtom = loadable(openAppAtom);
 export const loadableVizList = loadable(vizList);
+
+export const currentModelAtom = atom<any>(undefined);

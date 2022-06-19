@@ -3,19 +3,17 @@ import {StyleSheet} from 'react-native';
 import {Supernova} from '@qlik/react-native-carbon';
 // import your SN here
 import supernova from '@qlik/sn-treemap';
-import {Surface} from 'react-native-paper';
 import theme from './theme.json';
 import {useAtomValue} from 'jotai';
-import {loadableOpenAppAtom} from '../atoms';
+import {currentModelAtom, loadableOpenAppAtom} from '../atoms';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
-export type VisualizationProps = {
-  model: any;
-};
-
-const Visualization: React.FC<VisualizationProps> = ({model}) => {
+const Visualization = () => {
+  const model = useAtomValue(currentModelAtom);
   const openedApp = useAtomValue<any>(loadableOpenAppAtom);
+
   return (
-    <Surface style={styles.body}>
+    <SafeAreaView style={styles.body} edges={['bottom', 'left', 'right']}>
       <Supernova
         sn={supernova}
         theme={theme}
@@ -23,20 +21,18 @@ const Visualization: React.FC<VisualizationProps> = ({model}) => {
         app={openedApp.data.app}
         appLayout={openedApp.data.appLayout}
       />
-    </Surface>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   body: {
-    width: '100%',
-    height: 400,
-    marginVertical: 16,
-    borderRadius: 4,
+    flex: 1,
+    borderRadius: 8,
     backgroundColor: 'white',
-    elevation: 1,
     overflow: 'hidden',
-    padding: 4,
+    padding: 8,
+    margin: 8,
   },
 });
 

@@ -19,6 +19,13 @@ import VizList from './src/components/VizList';
 import {Appbar} from 'react-native-paper';
 import {useAtomValue} from 'jotai';
 import {loadableOpenAppAtom} from './src/atoms';
+import {SelectionsToolbar} from '@qlik/react-native-carbon';
+import {
+  supernovaStateAtom,
+  supernovaToolTipStateAtom,
+} from '@qlik/react-native-carbon/src/carbonAtoms';
+import {useResetAtom} from 'jotai/utils';
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -29,6 +36,39 @@ const App = () => {
       openedApp.data.app.clearAll();
     }
   }, [openedApp]);
+
+  const supernovaState = useAtomValue(supernovaStateAtom);
+  const resetSupernovaState = useResetAtom(supernovaStateAtom);
+  const resetTooltipState = useResetAtom(supernovaToolTipStateAtom);
+
+  const onConfirm = () => {
+    if (supernovaState) {
+      supernovaState.confirmSelection();
+    }
+    resetSupernovaState();
+    resetTooltipState();
+  };
+
+  const onCancel = () => {
+    if (supernovaState) {
+      supernovaState.cancelSelection();
+    }
+    resetSupernovaState();
+    resetTooltipState();
+  };
+
+  const onClearSelections = () => {
+    if (supernovaState) {
+      supernovaState.clear();
+    }
+    resetTooltipState();
+  };
+
+  const handleToggledLasso = val => {
+    if (supernovaState) {
+      supernovaState.toggleLasso(val);
+    }
+  };
 
   return (
     <NavigationContainer>
@@ -53,9 +93,10 @@ const App = () => {
         />
         <Stack.Screen name="AppList" component={AppList} />
         <Stack.Screen name="Connection" component={Connection} />
+        <Stack.Screen name="VizList" component={VizList} />
         <Stack.Screen
-          name="VizList"
-          component={VizList}
+          name="Canvas"
+          component={Canvas}
           options={{
             header: ({navigation, route, options, back}) => {
               const title = getHeaderTitle(options, route.name);
@@ -71,8 +112,16 @@ const App = () => {
             },
           }}
         />
-        <Stack.Screen name="Canvas" component={Canvas} />
       </Stack.Navigator>
+      <SelectionsToolbar
+        visible={supernovaState.active}
+        position={supernovaState.position}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+        onClear={onClearSelections}
+        onToggledLasso={handleToggledLasso}
+        icons={{confirm: 'check', cancel: 'close', clear: 'selection-off'}}
+      />
     </NavigationContainer>
   );
 };
