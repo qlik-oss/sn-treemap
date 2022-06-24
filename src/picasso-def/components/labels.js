@@ -141,13 +141,22 @@ export const displayInvalidMessage = ({rect, text, renderer}) => {
 
   return [
     {
+      type: 'rect',
+      x: 0,
+      y: 0,
+      width: rect.width,
+      height: rect.height,
+      fill: 'red',
+      opacity: 0.1,
+    },
+    {
       type: 'text',
       text,
       fontFamily,
       fontSize: TREEMAP_MESSAGE_SIZE,
-      x: 4,
-      y: rect.height / 2 - textSize.height / 2,
-      fill: '#404040',
+      x: (rect.width - textSize.width) / 2,
+      y: (rect.height - textSize.height) / 2,
+      fill: 'red',
       baseline: 'text-before-edge',
       maxWidth: rect.width - 8,
       wordBreak: 'break-word',

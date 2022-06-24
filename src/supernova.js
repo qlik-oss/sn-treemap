@@ -7,6 +7,7 @@ import {
   useTheme,
   useSelections,
   useRect,
+  useTranslator,
 } from '@nebula.js/stardust';
 import {createPicasso} from './picasso-def/createPicasso';
 import {picassoDef} from './picasso-def';
@@ -37,6 +38,7 @@ const supernova = (env) => {
       const layout = useLayout();
       const element = useElement();
       const selections = useSelections();
+      const translator = useTranslator();
       const rect = useRect();
       const [chart, setChart] = useState(undefined);
 
@@ -65,6 +67,7 @@ const supernova = (env) => {
             selectionsApi: selections,
             showLegend,
             invalidMessage,
+            translator,
           });
           const data = {type: 'q', data: layout.qHyperCube, key: 'qHyperCube'};
           const c = pic.chart({element, settings, data});
@@ -104,6 +107,7 @@ const supernova = (env) => {
               selectionsApi: selections,
               showLegend,
               invalidMessage,
+              translator,
             });
             const data = {type: 'q', data: layout.qHyperCube};
             chart.update({data, settings});

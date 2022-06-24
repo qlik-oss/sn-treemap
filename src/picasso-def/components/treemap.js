@@ -97,10 +97,16 @@ export const treemap = () => ({
       level,
       color,
       invalidMessage,
+      translator,
     } = this.settings.settings;
     const boundingRect = this.rect;
-    if (!data.root) {
-      return [];
+   
+    if (!data.root || data.fields.length === 0) {
+      return displayInvalidMessage({
+        rect: this.rect,
+        renderer: this.renderer,
+        text: translator.translate('InvalidVisualization'),
+      });
     }
     const dataset = data.root
       .sum((d) => (isNaN(d.value) ? 0 : d.value))

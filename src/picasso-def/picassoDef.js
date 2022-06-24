@@ -70,6 +70,7 @@ export const picassoDef = ({
   selectionsApi,
   showLegend,
   invalidMessage,
+  translator,
 }) => {
   if(!layout.qHyperCube) {
     return {};
@@ -157,6 +158,7 @@ export const picassoDef = ({
         headerColor: '#F2F2F2',
         level,
         invalidMessage,
+        translator,
       },
       brush: {
         trigger: [

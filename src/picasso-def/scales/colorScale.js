@@ -137,6 +137,16 @@ const byPrimary = ({layout, theme}) => {
 };
 
 export const colorScale = ({layout, theme, level}) => {
+  if(layout.qHyperCube.qDimensionInfo.length === 0 || layout.qHyperCube.qMeasureInfo.length === 0) {
+    return {
+      color: {
+        range,
+        type,
+      },
+      field,
+    };
+  }
+
   const {color} = layout;
   let range;
   let field = 'qDimensionInfo/0';
