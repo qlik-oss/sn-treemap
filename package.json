@@ -1,6 +1,6 @@
 {
-  "name": "@nebula.js/sn-treemap",
-  "version": "1.0.0-alpha.12",
+  "name": "@qlik/sn-treemap",
+  "version": "1.0.0-alpha.13",
   "description": "Treemap supernova that is DOM independent",
   "main": "dist/sn-treemap.js",
   "author": "Qlik",
