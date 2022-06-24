@@ -1,3 +1,11 @@
+# [1.0.0-alpha.13](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-06-24)
+
+
+### Bug Fixes
+
+* check for invalid viz ([88840a5](https://github.com/qlik-oss/sn-treemap/commit/88840a596f0592cc1a779e82ac12e11179975428))
+* tweaked example app ([d7cbb51](https://github.com/qlik-oss/sn-treemap/commit/d7cbb5166ec5c373ab1d2ad3143c78d763c0f1a6))
+
 # [1.0.0-alpha.12](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-06-12)
 
 
