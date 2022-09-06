@@ -2,7 +2,7 @@
   "name": "@qlik/sn-treemap",
   "version": "1.0.0-alpha.14",
   "description": "Treemap supernova that is DOM independent",
-  "main": "src/index.js",
+  "main": "dist/sn-treemap.js",
   "author": "Qlik",
   "license": "MIT",
   "files": [
@@ -24,23 +24,33 @@
     "url": "git@github.com:qlik-oss/sn-treemap.git"
   },
   "devDependencies": {
+    "@babel/cli": "^7.18.10",
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.18.6",
-    "@nebula.js/stardust": "^1.7.0",
-    "@qlik-trial/sense-themes-default": "^1.17.0",
+    "@nebula.js/cli": "^3.0.0-rc.2",
+    "@nebula.js/cli-build": "^3.0.0-rc.2",
+    "@nebula.js/cli-sense": "^3.0.0-rc.2",
+    "@nebula.js/cli-serve": "^3.0.0-rc.2",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "babel-jest": "^27.1.0",
     "babel-plugin-styled-components": "^2.0.7",
+    "color-parse": "1.4.2",
     "color-rgba": "^2.2.3",
+    "color-scales": "3.0.2",
     "commitlint": "^11.0.0",
+    "d3": "6.2.0",
+    "d3-hierarchy": "3.1.2",
+    "d3-interpolate": "2.0.1",
+    "d3-path": "2.0.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-prettier": "^3.1.3",
-    "extend": "^3.0.2",
+    "hammerjs": "^2.0.8",
     "husky": "^4.2.5",
     "jest": "^27.1.0",
+    "picasso-plugin-hammer": "^1.6.5",
     "picasso-plugin-q": "^1.2.1",
     "picasso.js": "^1.2.1",
     "typescript": "^4.1.3"
@@ -55,6 +65,16 @@
   },
   "scripts": {
     "test": "jest",
-    "ci:install": "yarn install --frozen-lockfile"
+    "ci:install": "yarn install --frozen-lockfile",
+    "build:watch": "node ./tools/build.js --mode development -w",
+    "build:dev": "node ./tools/build.js --mode development",
+    "start": "nebula serve --build false --type treemap"
+  },
+  "dependencies": {
+    "fs-extra": "^10.1.0",
+    "yargs": "^17.5.1"
+  },
+  "peerDependencies": {
+    "@nebula.js/stardust": ">=1.0.0"
   }
 }

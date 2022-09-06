@@ -1,3 +1,4 @@
+import Hammer from 'hammerjs'
 import picassoHammer from 'picasso-plugin-hammer';
 import picasso from 'picasso.js';
 import picassoQ from 'picasso-plugin-q';
