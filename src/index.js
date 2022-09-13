@@ -27,10 +27,6 @@ import {
       invalidMessage = env.invalidMessage;
     }
   
-    let mounted = false;
-    let selectBrush;
-    let lassoBrush;
-  
     return {
       qae,
       component() {
@@ -41,6 +37,7 @@ import {
         const translator = useTranslator();
         const rect = useRect();
         const [chart, setChart] = useState(undefined);
+        const state = useState({ mounted: false });
   
         useEffect(() => {
           return () => {
@@ -57,8 +54,8 @@ import {
         }, [rect.width, rect.height, chart])
   
         useEffect(() => {
-          if (!mounted && selections !== undefined && layout.qHyperCube) {
-            mounted = true;
+          if (!state.mounted && selections !== undefined && layout.qHyperCube) {
+            state.mounted = true;
             const settings = picassoDef({
               layout,
               theme,
@@ -72,21 +69,21 @@ import {
             const data = {type: 'q', data: layout.qHyperCube, key: 'qHyperCube'};
             const c = pic.chart({element, settings, data});
   
-            selectBrush = c.brush('dataContext');
-            lassoBrush = c.brush('lassoContext');
+            state.selectBrush = c.brush('dataContext');
+            state.lassoBrush = c.brush('lassoContext');
             selections.addListener('cleared', () => {
-              selectBrush.clear();
-              lassoBrush.clear();
+              state.selectBrush.clear();
+              state.lassoBrush.clear();
             });
   
             selections.addListener('aborted', () => {
-              selectBrush.end();
-              lassoBrush.end();
+              state.selectBrush.end();
+              state.lassoBrush.end();
             });
   
-            picassoSelections({selectBrush, picassoQ, selections});
+            picassoSelections({ selectBrush: state.selectBrush, picassoQ, selections});
             picassoSelections({
-              selectBrush: lassoBrush,
+              selectBrush: state.lassoBrush,
               picassoQ,
               selections,
               lasso: true,
@@ -111,8 +108,8 @@ import {
               });
               const data = {type: 'q', data: layout.qHyperCube};
               chart.update({data, settings});
-              selectBrush.end();
-              lassoBrush.end();
+              state.selectBrush.end();
+              state.lassoBrush.end();
             }
           }
         }, [layout, chart, theme, selections]);
