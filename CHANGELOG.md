@@ -1,3 +1,10 @@
+# [1.0.0-alpha.14](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2022-09-14)
+
+
+### Bug Fixes
+
+* wrong metrics for header ([fd88adc](https://github.com/qlik-oss/sn-treemap/commit/fd88adcb22b1e47230496a011e3ce80fba9a809c))
+
 # [1.0.0-alpha.13](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-06-24)
 
 
