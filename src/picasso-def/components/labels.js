@@ -123,10 +123,9 @@ const headerText = ({
     fontFamily,
     fontSize: TREEMAP_LABEL_FONTSIZE,
     x: node.x0 + TREEMAP_LABEL_FONTSIZE / 2,
-    y: top + TREEMAP_LABEL_FONTSIZE / 2,
+    y: top,
     fill: fill ? getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
     anchor: 'left',
-    baseline: 'centeral',
     maxWidth: width - verticalPadding,
     data: {...node.data, depth: node.depth},
   });
