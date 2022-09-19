@@ -24,9 +24,6 @@
     "import/no-extraneous-dependencies": 0,
     "camelcase": 0,
     "no-console": 0,
-    "react/jsx-filename-extension": 0,
-    "react/no-array-index-key": 0,
-    "react/jsx-closing-bracket-location": 0,
     "func-names": 0,
     "import/prefer-default-export": 0,
     "no-else-return": 0,
@@ -43,6 +40,14 @@
   },
 
   "overrides": [
+    {
+      "files": ["**/*.native.js"],
+      "rules": {
+        "react/jsx-filename-extension": 0,
+        "react/no-array-index-key": 0,
+        "react/jsx-closing-bracket-location": 0
+      }
+    },
     {
       "files": ["**/*.test.js", "**/*.test.jsx"],
       "env": {
