@@ -49,7 +49,6 @@
     "no-undef": 0,
     "import/order": 0,
     "import/first": 0,
-    "import/no-duplicates": 0,
     "consistent-return": 0,
     "operator-assignment": 0
   },

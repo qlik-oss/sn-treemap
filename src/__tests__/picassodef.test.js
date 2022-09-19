@@ -1,4 +1,3 @@
-import '../picasso-def/picassoDef';
 import { picassoDef } from '../picasso-def/picassoDef';
 import testdata from './testdata.json';
 import {__DO_NOT_USE__ as NebualInternals}  from '@nebula.js/stardust';
