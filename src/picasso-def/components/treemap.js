@@ -127,10 +127,10 @@ export const treemap = () => ({
           b: 0,
           count: 0,
         };
-        parentSumColor.r = parentSumColor.r + sumColor.r;
-        parentSumColor.g = parentSumColor.g + sumColor.g;
-        parentSumColor.b = parentSumColor.b + sumColor.b;
-        parentSumColor.count = parentSumColor.count + 1;
+        parentSumColor.r += sumColor.r;
+        parentSumColor.g += sumColor.g;
+        parentSumColor.b += sumColor.b;
+        parentSumColor.count += 1;
         parent.sumColor = parentSumColor;
       }
     };
