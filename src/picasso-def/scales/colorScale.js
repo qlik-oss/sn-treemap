@@ -39,7 +39,7 @@ const byClasses = ({layout, theme}) => {
   }
 
   const {qHyperCube} = layout;
-  let index = Math.min(
+  const index = Math.min(
     dataColors.colors.length - 1,
     qHyperCube.qDimensionInfo.length,
   );
@@ -110,7 +110,7 @@ const byDimension = ({layout, theme, level}) => {
     colors = pal.colors;
   }
 
-  let {dimIndex, field} = updateSelectionsDims({color, qDimensionInfo, level});
+  const {dimIndex, field} = updateSelectionsDims({color, qDimensionInfo, level});
   let dimColorLen = qDimensionInfo[dimIndex].qCardinal;
   if (layout.color.byDimDef) {
     if (qDimensionInfo[dimIndex]?.qAttrDimInfo[0]?.qCardinal) {
@@ -118,7 +118,7 @@ const byDimension = ({layout, theme, level}) => {
     }
   }
 
-  let index =
+  const index =
     qDimensionInfo.length === 1 && !layout.color.byDimDef
       ? 0
       : Math.min(dimColorLen - 1, colors.length - 1);

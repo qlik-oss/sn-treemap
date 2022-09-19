@@ -14,7 +14,7 @@ export const tooltip = ({level, layout}) => ({
       let label = data[0].value.label;
       if (level !== 0) {
         label = '';
-        let stack = [];
+        const stack = [];
         const recurse = (n, l) => {
           if (n) {
             stack.push(n.label);
@@ -23,7 +23,7 @@ export const tooltip = ({level, layout}) => ({
             recurse(n.next, l + 1);
           }
         };
-        let cl = 0;
+        const cl = 0;
         recurse(data[1].value, cl);
         const remove = layout.qHyperCube.qDimensionInfo.length - level - 1;
         stack.splice(0, remove);

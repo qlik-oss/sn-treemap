@@ -174,9 +174,9 @@ export const treemap = () => ({
     // and clean up data from treemap, the data is filtered so no zero area rects
     // are sent to picasso to render.
     const valueLables = [];
-    let overlayNodes = [];
-    let parentNodes = [];
-    let rects = [];
+    const overlayNodes = [];
+    const parentNodes = [];
+    const rects = [];
     const treeHeight = root.height;
     const visit = (node, index) => {
       const height = node.y1 - node.y0;
