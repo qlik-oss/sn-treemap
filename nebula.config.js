@@ -1,7 +1,7 @@
 const path = require('path');
 const crypto = require('crypto');
 
-const { name, version } = require(path.resolve(__dirname, './package.json')); // eslint-disable-line
+const { name, version } = require(path.resolve(__dirname, './package.json'));
 
 const versionHash = crypto
   .createHash('md5')

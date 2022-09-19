@@ -45,9 +45,10 @@
       }
     },
     {
-      "files": ["tools/**/*.js"],
+      "files": ["tools/**/*.js", "nebula.config.js"],
       "rules": {
-        "no-console": 0
+        "no-console": 0,
+        "import/no-dynamic-require": 0
       }
     },
     {
