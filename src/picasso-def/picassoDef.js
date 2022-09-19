@@ -131,6 +131,7 @@ export const picassoDef = ({
             select: {field: `qDimensionInfo/${selectLevel}`},
             expressionColor,
             expressionColorText,
+            isOther: { value: (d, node) => node.data.qElemNo === -3 },
           },
         },
       },

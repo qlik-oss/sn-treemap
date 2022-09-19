@@ -110,7 +110,12 @@ export const treemap = () => ({
     }
     const dataset = data.root
       .sum((d) => (isNaN(d.value) ? 0 : d.value))
-      .sort((a, b) => b.value - a.value);
+      .sort((a, b) => {
+        if (a.data.isOther.value !== b.data.isOther.value) {
+          return a.data.isOther.value ? 1 : -1;
+        }
+        return b.value - a.value;
+      });
 
     const incrementColor = (node, fill) => {
       const sumColor = d3Color(fill);
