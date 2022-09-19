@@ -18,7 +18,7 @@
     "no-bitwise": 0,
     "no-unused-expressions": 0,
     "no-nested-ternary": 0,
-    // "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
+    "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
 
     // TODO: fix or decide that they are not important and can be off
     "no-console": [2, { "allow": ["error"] }],
@@ -26,9 +26,8 @@
     "prefer-template": 0,
     "prefer-destructuring": 0,
     "no-param-reassign": 0,
-
-    "import/no-extraneous-dependencies": 0,
     "import/prefer-default-export": 0,
+
     "import/no-unresolved": 0,
     "no-restricted-globals": 0,
     "no-use-before-define": 0,
