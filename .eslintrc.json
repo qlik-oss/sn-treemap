@@ -34,7 +34,6 @@
     "no-param-reassign": 0,
     "arrow-body-style": 0,
     "no-underscore-dangle": 0,
-    "spaced-comment": 0,
     "prefer-destructuring": 0,
     "no-restricted-syntax": 0,
     "guard-for-in": 0,

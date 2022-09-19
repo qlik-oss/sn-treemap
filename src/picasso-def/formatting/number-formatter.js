@@ -552,8 +552,6 @@ function createRegExp(thousand, decimal) {
   return new RegExp(`(?:[#0]+${thousand})?[#0]+(?:${decimal}[#0]+)?`);
 }
 
-//window.NumberFormatter = NumberFormatter;
-
 NumberFormatter.getStaticFormatter = function () {
   return {
     prepare() {},
