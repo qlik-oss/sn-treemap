@@ -1,7 +1,8 @@
+import { truncate, cram } from "./text-helper";
+
 const TREEMAP_LABEL_FONTSIZE = 12;
 const TREEMAP_VALUE_FONTSIZE = 12;
 const TREEMAP_MESSAGE_SIZE = 16;
-import { truncate, cram } from "./text-helper";
 
 const fontFamily = "System";
 
