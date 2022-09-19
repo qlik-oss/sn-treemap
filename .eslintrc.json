@@ -1,0 +1,81 @@
+{
+  "root": true,
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
+  "extends": ["airbnb", "prettier", "plugin:react/recommended"],
+  "plugins": ["prettier", "react", "react-hooks"],
+  "rules": {
+    "max-len": 0,
+    "no-plusplus": 0,
+    "no-bitwise": 0,
+    "no-unused-expressions": 0,
+    "no-nested-ternary": 0,
+    // "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
+
+    // TODO: fix or decide that they are not important and can be off
+    "import/no-extraneous-dependencies": 0,
+    "camelcase": 0,
+    "no-console": 0,
+    "react/jsx-filename-extension": 0,
+    "react/no-array-index-key": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "func-names": 0,
+    "import/prefer-default-export": 0,
+    "no-else-return": 0,
+    "prefer-template": 0,
+    "no-param-reassign": 0,
+    "arrow-body-style": 0,
+    "no-underscore-dangle": 0,
+    "spaced-comment": 0,
+    "prefer-const": 0,
+    "prefer-destructuring": 0,
+    "import/newline-after-import": 0,
+    "no-restricted-syntax": 0,
+    "guard-for-in": 0,
+    "no-restricted-globals": 0,
+    "no-use-before-define": 0,
+    "no-unused-vars": 0,
+    "import/no-unresolved": 0,
+    "no-var": 0,
+    "one-var": 0,
+    "no-shadow": 0,
+    "vars-on-top": 0,
+    "no-redeclare": 0,
+    "no-undef": 0,
+    "import/order": 0,
+    "import/first": 0,
+    "import/no-duplicates": 0,
+    "consistent-return": 0,
+    "operator-assignment": 0
+  },
+
+  "overrides": [
+    {
+      "files": ["**/*.spec.js", "**/*.spec.jsx"],
+      "env": {
+        "browser": false,
+        "node": true,
+        "mocha": true
+      },
+      "globals": {
+        "chai": false,
+        "expect": false,
+        "sinon": false,
+        "aw": false,
+        "page": false
+      },
+      "plugins": ["mocha", "react"],
+      "rules": {
+        "mocha/no-exclusive-tests": "error"
+      }
+    }
+  ]
+}
