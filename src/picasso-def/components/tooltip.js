@@ -21,7 +21,7 @@ export const tooltip = () => ({
     },
   },
 
-  render({data}) {
+  render() {
     return [];
   },
 });

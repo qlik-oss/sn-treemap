@@ -9,7 +9,7 @@ export const tooltipInteraction = () => [
           tooltip.emit('show', e);
         }
       },
-      mouseleave(e) {
+      mouseleave() {
         const tooltip = this.chart.component('tooltip');
         if (tooltip) {
           tooltip.emit('hide');
