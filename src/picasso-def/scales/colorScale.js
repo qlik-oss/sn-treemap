@@ -54,6 +54,7 @@ const byClasses = ({layout, theme}) => {
   }
   if (layout.color.mode === 'byExpression') {
     if(layout.color.measureScheme === 'dc') {
+      // eslint-disable-next-line no-shadow
       const index = Math.min(qHyperCube.qMeasureInfo[0].qAttrExprInfo[0].qMax + 1, dataColors.colors.length - 1)
       return [...dataColors.colors[index]].reverse();
     }
