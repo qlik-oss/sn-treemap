@@ -20,7 +20,7 @@ export const createTextLabels = ({
   const area = width * height;
   if (area && node?.data?.label) {
     if (node.header) {
-      return headerText({
+      headerText({
         node,
         width,
         height,
@@ -30,6 +30,7 @@ export const createTextLabels = ({
         valueLables,
         labels,
       });
+      return;
     }
     let wantedText = node.data.label;
     if (labels.value) {

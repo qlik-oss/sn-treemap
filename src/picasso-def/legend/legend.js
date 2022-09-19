@@ -8,4 +8,5 @@ export const legend = ({layout, color}) => {
     }
     return seqLegend({color, layout});
   }
+  return undefined;
 };
