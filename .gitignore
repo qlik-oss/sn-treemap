@@ -14,7 +14,7 @@ node_modules
 # production
 dist/
 core/esm/
-sn-kpi-ext/
+sn-table-ext
 
 # testing
 coverage

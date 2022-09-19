@@ -3,14 +3,14 @@ const os = require('os');
 const fs = require('fs-extra');
 
 function copyExt() {
-  const targetPath = [os.homedir(), 'Qlik', 'Sense', 'Extensions', 'sn-kpi-ext'];
+  const targetPath = [os.homedir(), 'Qlik', 'Sense', 'Extensions', 'sn-treemap-ext'];
   if (os.platform() === 'win32') {
     targetPath.splice(1, 0, 'Documents');
   }
 
   const target = path.resolve(...targetPath);
 
-  fs.copySync(path.resolve(process.cwd(), 'sn-kpi-ext'), target);
+  fs.copySync(path.resolve(process.cwd(), 'sn-treemap-ext'), target);
   console.log('Copied into Extensions folder!');
 }
 
