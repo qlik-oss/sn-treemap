@@ -45,6 +45,12 @@
       }
     },
     {
+      "files": ["tools/**/*.js"],
+      "rules": {
+        "no-console": 0
+      }
+    },
+    {
       "files": ["**/*.test.js", "**/*.test.jsx"],
       "env": {
         "browser": false,

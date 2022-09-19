@@ -1,4 +1,3 @@
-/* eslint-disable no-bitwise */
 import {treemap as d3Treemap} from 'd3-hierarchy';
 import {color as d3Color} from 'd3-color';
 import {createTextLabels, displayInvalidMessage, createOverlayLabel} from './labels';
