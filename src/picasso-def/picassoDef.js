@@ -6,6 +6,7 @@ import {lassoBrush} from './lassoBrush';
 import {lassoInteraction} from './lassoInteraction';
 import {tooltip, tooltipInteraction} from './tooltip';
 import {active, inactive} from './brushStyles';
+
 const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {
   let measure;
   const chartFormatter = new ChartFormatting(localeInfo, qMeasureInfo);
