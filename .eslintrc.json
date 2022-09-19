@@ -21,9 +21,8 @@
     // "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
 
     // TODO: fix or decide that they are not important and can be off
+    "no-console": [2, { "allow": ["error"] }],
     "import/no-extraneous-dependencies": 0,
-    "camelcase": 0,
-    "no-console": 0,
     "func-names": 0,
     "import/prefer-default-export": 0,
     "no-else-return": 0,
