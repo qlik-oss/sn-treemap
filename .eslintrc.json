@@ -47,7 +47,6 @@
     "vars-on-top": 0,
     "no-redeclare": 0,
     "no-undef": 0,
-    "import/order": 0,
     "consistent-return": 0
   },
 

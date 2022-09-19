@@ -1,7 +1,7 @@
-import { picassoDef } from '../picasso-def/picassoDef';
-import testdata from './testdata.json';
 import {__DO_NOT_USE__ as NebualInternals}  from '@nebula.js/stardust';
 import theme from '@qlik-trial/sense-themes-default/dist/horizon/theme.json';
+import { picassoDef } from '../picasso-def/picassoDef';
+import testdata from './testdata.json';
 
 describe('Treemap picassodef render', () => {
   const {generator, theme: themeFn} = NebualInternals;
