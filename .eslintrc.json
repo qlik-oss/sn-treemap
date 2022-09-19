@@ -62,9 +62,9 @@
         "aw": false,
         "page": false
       },
-      "plugins": ["mocha", "react"],
+      "plugins": ["jest", "react"],
       "rules": {
-        "mocha/no-exclusive-tests": "error"
+        "jest/no-disabled-tests": 2
       }
     }
   ]
