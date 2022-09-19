@@ -102,9 +102,7 @@ const byDimension = ({layout, theme, level}) => {
   const {qDimensionInfo} = layout.qHyperCube;
   const {color} = layout;
   let colors = [...theme.getDataColorPalettes()[0].colors];
-  const pal = theme.getDataColorPalettes().find((c) => {
-    return c.key === layout.color.dimensionScheme;
-  });
+  const pal = theme.getDataColorPalettes().find((c) => c.key === layout.color.dimensionScheme);
 
   if (pal !== undefined) {
     colors = pal.colors;

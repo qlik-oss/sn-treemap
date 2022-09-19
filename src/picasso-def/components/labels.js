@@ -38,9 +38,7 @@ export const createTextLabels = ({
     }
     const texts = wantedText.split(/(\s+)/).filter((s) => s !== ' ');
     // find maxLength
-    const maxChars = texts.reduce((prev, current) => {
-      return prev.length > current.length ? prev : current;
-    });
+    const maxChars = texts.reduce((prev, current) => prev.length > current.length ? prev : current);
 
     const textSize = renderer.measureText({
       text: maxChars,

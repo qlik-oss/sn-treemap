@@ -39,13 +39,11 @@ import {
         const [chart, setChart] = useState(undefined);
         const state = useState({ mounted: false });
   
-        useEffect(() => {
-          return () => {
+        useEffect(() => () => {
             if (chart) {
               chart.destroy();
             }
-          };
-        }, [element, chart]);
+          }, [element, chart]);
   
         useEffect(() => {
           if(chart && layout?.qHyperCube) {
