@@ -36,6 +36,7 @@
     {
       "files": ["**/*.native.js"],
       "rules": {
+        "import/no-unresolved": [2, { "ignore": ["@qlik/carbon-core", "react", "react-native"] }],
         "react/jsx-filename-extension": 0,
         "react/no-array-index-key": 0,
         "react/jsx-closing-bracket-location": 0
