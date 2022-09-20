@@ -79,10 +79,9 @@ export const picassoDef = ({
   const level = getLevel(layout);
   const dimLevel = getNextSelecteDim(layout);
   const selectLevel = Math.min(level, dimLevel);
-  const treeHeight = layout.qHyperCube.qDimensionInfo.length;
   const interactionType = env.carbon ? 'kinesics' : 'hammer';
   const interactions = [
-    ...tooltipInteraction({level, treeHeight, layout}),
+    ...tooltipInteraction(),
     ...lassoInteraction({interactionType, picassoQ, selectionsApi}),
   ];
   const {color, field} = colorScale({layout, theme, level});

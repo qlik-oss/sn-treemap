@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-unresolved
 import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import {View, Text, StyleSheet} from 'react-native';
 import {breadCrumb} from './breadCrumb';
 
@@ -12,7 +14,7 @@ export const tooltip = ({level, layout, formatter}) => ({
       display: () => {
         const {qHyperCube} = layout;
         const {qMeasureInfo} = qHyperCube;
-        const result = breadCrumb({layout, data: data[dataIndex].data, level});
+        const result = breadCrumb({ data: data[dataIndex].data });
         const valueLabel = `${qMeasureInfo[0].qFallbackTitle}:`;
         const valueText = formatter[0].formatValue(data[dataIndex].data.value);
         return (
