@@ -1,4 +1,4 @@
-export const breadCrumb = ({layout, data, level}) => {
+export const breadCrumb = ({ data }) => {
   const stack = [];
   const recurse = (n, l) => {
     if (n && n.label) {

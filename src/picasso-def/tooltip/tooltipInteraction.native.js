@@ -1,4 +1,4 @@
-export const tooltipInteraction = ({level, treeHeight, layout}) => [
+export const tooltipInteraction = () => [
   {
     type: 'native',
     key: 'native',

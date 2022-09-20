@@ -10,6 +10,6 @@ export const createPicasso = ({renderer}) => {
     },
   });
   pic.use(picassoQ);
-  pic.use(picassoHammer);
+  pic.use(picassoHammer(Hammer));
   return {pic, picassoQ};
 };
