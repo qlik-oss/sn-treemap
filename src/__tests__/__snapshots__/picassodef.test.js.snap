@@ -340,6 +340,7 @@ Object {
         },
       },
       "range": Array [
+<<<<<<< HEAD
         "#ec983d",
         "#deb357",
         "#d0ce71",
@@ -347,6 +348,15 @@ Object {
         "#8ed195",
         "#5ab89e",
         "#26a0a7",
+=======
+        "#87205d",
+        "#9b5a86",
+        "#af94b0",
+        "#c4cfda",
+        "#82abbc",
+        "#41889e",
+        "#006580",
+>>>>>>> 4b0c783 (fix: broken tests)
       ],
       "type": "color",
     },
