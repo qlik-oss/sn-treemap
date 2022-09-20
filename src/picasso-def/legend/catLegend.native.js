@@ -21,9 +21,7 @@ export const catLegend = ({color, layout}) => {
       extract: {
         field: color.data.extract.field,
         filter: (f) => f.qElemNo >= 0,
-        trackBy: (d) => {
-          return d.qElemNo;
-        },
+        trackBy: (d) => d.qElemNo,
       },
     },
   };

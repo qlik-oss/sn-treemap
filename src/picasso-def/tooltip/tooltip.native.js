@@ -7,8 +7,7 @@ export const tooltip = ({level, layout, formatter}) => ({
   key: 'tooltip',
   level,
   dimensions: layout.qHyperCube.qDimensionInfo.length,
-  content: (data, dataIndex) => {
-    return {
+  content: (data, dataIndex) => ({
       data,
       display: () => {
         const {qHyperCube} = layout;
@@ -38,8 +37,7 @@ export const tooltip = ({level, layout, formatter}) => ({
           </View>
         );
       },
-    };
-  },
+    }),
 });
 
 const styles = StyleSheet.create({

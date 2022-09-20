@@ -1,6 +1,6 @@
 export const nativeLegend = () => ({
   require: ['chart', 'renderer', 'element'],
-  preferredSize(obj) {
+  preferredSize() {
     return 68;
   },
   mounted() {

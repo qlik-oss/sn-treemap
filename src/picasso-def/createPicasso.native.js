@@ -1,5 +1,3 @@
 import {createPicasso as carbonCreatePicasso} from '@qlik/carbon-core';
 
-export const createPicasso = (config) => {
-  return carbonCreatePicasso(config);
-};
+export const createPicasso = (config) => carbonCreatePicasso(config);

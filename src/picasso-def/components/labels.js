@@ -1,7 +1,9 @@
+import { truncate, cram } from "./text-helper";
+
 const TREEMAP_LABEL_FONTSIZE = 12;
 const TREEMAP_VALUE_FONTSIZE = 12;
 const TREEMAP_MESSAGE_SIZE = 16;
-import { truncate, cram } from "./text-helper";
+
 const fontFamily = "System";
 
 export const createTextLabels = ({
@@ -18,7 +20,7 @@ export const createTextLabels = ({
   const area = width * height;
   if (area && node?.data?.label) {
     if (node.header) {
-      return headerText({
+      headerText({
         node,
         width,
         height,
@@ -28,6 +30,7 @@ export const createTextLabels = ({
         valueLables,
         labels,
       });
+      return;
     }
     let wantedText = node.data.label;
     if (labels.value) {
@@ -35,11 +38,9 @@ export const createTextLabels = ({
     }
     const texts = wantedText.split(/(\s+)/).filter((s) => s !== ' ');
     // find maxLength
-    const maxChars = texts.reduce((prev, current) => {
-      return prev.length > current.length ? prev : current;
-    });
+    const maxChars = texts.reduce((prev, current) => prev.length > current.length ? prev : current);
 
-    let textSize = renderer.measureText({
+    const textSize = renderer.measureText({
       text: maxChars,
       fontSize: TREEMAP_VALUE_FONTSIZE,
       fontFamily,
@@ -47,7 +48,7 @@ export const createTextLabels = ({
 
     const verticalPadding = 12;
     if (textSize.width < width - verticalPadding) {
-      let top = node.y0 + 4;
+      const top = node.y0 + 4;
       // now calc maxheight
       if (labels.value) {
         texts.push(formatter[0].formatValue(node.data.value));
@@ -63,7 +64,7 @@ export const createTextLabels = ({
         0,
       );
       if (maxheight < height - 8) {
-        let y = top;
+        const y = top;
         let text = `${node.data.label}`;
         let leafValue = '';
           leafValue = formatter[0].formatValue(node.data.value);
@@ -105,12 +106,12 @@ const headerText = ({
 }) => {
   const verticalPadding = 12;
   let text = node.data.label;
-  let textSize = renderer.measureText({
+  const textSize = renderer.measureText({
     text,
     fontSize: TREEMAP_LABEL_FONTSIZE,
     fontFamily,
   });
-  let top = node.y0 + textSize.height;
+  const top = node.y0 + textSize.height;
   if (node.header && !node.showLable) {
     return;
   }
@@ -133,7 +134,7 @@ const headerText = ({
 };
 
 export const displayInvalidMessage = ({rect, text, renderer}) => {
-  let textSize = renderer.measureText({
+  const textSize = renderer.measureText({
     text,
     fontSize: TREEMAP_MESSAGE_SIZE,
     fontFamily,

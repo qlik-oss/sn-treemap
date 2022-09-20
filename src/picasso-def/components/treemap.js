@@ -1,4 +1,3 @@
-/* eslint-disable no-bitwise */
 import {treemap as d3Treemap} from 'd3-hierarchy';
 import {color as d3Color} from 'd3-color';
 import {createTextLabels, displayInvalidMessage, createOverlayLabel} from './labels';
@@ -9,10 +8,10 @@ const STROKE_WIDTH = 0.5;
 
 function toColor(num) {
   num >>>= 0;
-  var b = num & 0xff,
-    g = (num & 0xff00) >>> 8,
-    r = (num & 0xff0000) >>> 16,
-    a = ((num & 0xff000000) >>> 24) / 255;
+  const b = num & 0xff;
+  const g = (num & 0xff00) >>> 8;
+  const r = (num & 0xff0000) >>> 16;
+  const a = ((num & 0xff000000) >>> 24) / 255;
   return 'rgba(' + [r, g, b, a].join(',') + ')';
 }
 
@@ -100,7 +99,7 @@ export const treemap = () => ({
       translator,
     } = this.settings.settings;
     const boundingRect = this.rect;
-   
+
     if (!data.root || data.fields.length === 0) {
       return displayInvalidMessage({
         rect: this.rect,
@@ -127,10 +126,10 @@ export const treemap = () => ({
           b: 0,
           count: 0,
         };
-        parentSumColor.r = parentSumColor.r + sumColor.r;
-        parentSumColor.g = parentSumColor.g + sumColor.g;
-        parentSumColor.b = parentSumColor.b + sumColor.b;
-        parentSumColor.count = parentSumColor.count + 1;
+        parentSumColor.r += sumColor.r;
+        parentSumColor.g += sumColor.g;
+        parentSumColor.b += sumColor.b;
+        parentSumColor.count += 1;
         parent.sumColor = parentSumColor;
       }
     };
@@ -174,9 +173,9 @@ export const treemap = () => ({
     // and clean up data from treemap, the data is filtered so no zero area rects
     // are sent to picasso to render.
     const valueLables = [];
-    let overlayNodes = [];
-    let parentNodes = [];
-    let rects = [];
+    const overlayNodes = [];
+    const parentNodes = [];
+    const rects = [];
     const treeHeight = root.height;
     const visit = (node, index) => {
       const height = node.y1 - node.y0;

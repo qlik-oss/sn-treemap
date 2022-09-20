@@ -8,9 +8,7 @@ export const active = () => ({
   const {source} = d.data;
   return source?.field === select?.source?.field ? HIGHLIGHT_STROKE_WIDTH : 0;
   },
-  opacity: (d) => {
-    return d?.data?.overlayLabel || d?.data?.parentGroup ? 0 : 1;
-  },
+  opacity: (d) => d?.data?.overlayLabel || d?.data?.parentGroup ? 0 : 1,
 });
 
 export const inactive = () => ({

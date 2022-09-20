@@ -39,7 +39,7 @@ const byClasses = ({layout, theme}) => {
   }
 
   const {qHyperCube} = layout;
-  let index = Math.min(
+  const index = Math.min(
     dataColors.colors.length - 1,
     qHyperCube.qDimensionInfo.length,
   );
@@ -54,6 +54,7 @@ const byClasses = ({layout, theme}) => {
   }
   if (layout.color.mode === 'byExpression') {
     if(layout.color.measureScheme === 'dc') {
+      // eslint-disable-next-line no-shadow
       const index = Math.min(qHyperCube.qMeasureInfo[0].qAttrExprInfo[0].qMax + 1, dataColors.colors.length - 1)
       return [...dataColors.colors[index]].reverse();
     }
@@ -102,15 +103,13 @@ const byDimension = ({layout, theme, level}) => {
   const {qDimensionInfo} = layout.qHyperCube;
   const {color} = layout;
   let colors = [...theme.getDataColorPalettes()[0].colors];
-  const pal = theme.getDataColorPalettes().find((c) => {
-    return c.key === layout.color.dimensionScheme;
-  });
+  const pal = theme.getDataColorPalettes().find((c) => c.key === layout.color.dimensionScheme);
 
   if (pal !== undefined) {
     colors = pal.colors;
   }
 
-  let {dimIndex, field} = updateSelectionsDims({color, qDimensionInfo, level});
+  const {dimIndex, field} = updateSelectionsDims({color, qDimensionInfo, level});
   let dimColorLen = qDimensionInfo[dimIndex].qCardinal;
   if (layout.color.byDimDef) {
     if (qDimensionInfo[dimIndex]?.qAttrDimInfo[0]?.qCardinal) {
@@ -118,7 +117,7 @@ const byDimension = ({layout, theme, level}) => {
     }
   }
 
-  let index =
+  const index =
     qDimensionInfo.length === 1 && !layout.color.byDimDef
       ? 0
       : Math.min(dimColorLen - 1, colors.length - 1);
