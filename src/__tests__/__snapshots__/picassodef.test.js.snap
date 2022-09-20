@@ -82,7 +82,10 @@ Object {
       "key": "treemap",
       "settings": Object {
         "color": Object {
+          "measureScheme": "dc",
           "mode": "byMeasure",
+          "others": "#a5a5a5",
+          "persistent": false,
         },
         "formatter": Array [
           NumDateTimeFormatter {
@@ -248,6 +251,7 @@ Object {
         ],
         "getContrastingColorTo": [Function],
         "headerColor": "#F2F2F2",
+        "invalidMessage": undefined,
         "labels": Object {
           "auto": true,
           "headers": true,
@@ -257,40 +261,9 @@ Object {
         },
         "level": 0,
         "showHeaders": false,
+        "translator": undefined,
       },
       "type": "treemap",
-    },
-    Object {
-      "key": "overlay",
-      "layout": Object {
-        "displayOrder": 10,
-      },
-      "settings": Object {
-        "sources": Array [
-          Object {
-            "component": "treemap",
-            "selector": "rect",
-            "strategy": Object {
-              "settings": Object {
-                "align": 0.5,
-                "fontFamily": "arial",
-                "fontSize": 24,
-                "justify": 0.5,
-                "labels": Array [
-                  Object {
-                    "fill": [Function],
-                    "label": [Function],
-                    "wordBreak": "break-word",
-                  },
-                ],
-                "padding": 8,
-              },
-              "type": "rows",
-            },
-          },
-        ],
-      },
-      "type": "labels",
     },
     Object {
       "key": "tooltip",
@@ -358,7 +331,13 @@ Object {
         },
       },
       "range": Array [
+        "#87205d",
+        "#9b5a86",
+        "#af94b0",
         "#c4cfda",
+        "#82abbc",
+        "#41889e",
+        "#006580",
       ],
       "type": "color",
     },
