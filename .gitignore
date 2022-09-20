@@ -14,7 +14,7 @@ node_modules
 # production
 dist/
 core/esm/
-sn-table-ext
+sn-treemap-ext
 
 # testing
 coverage

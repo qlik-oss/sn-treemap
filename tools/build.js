@@ -1,7 +1,5 @@
 #! /usr/bin/env node
 
-/* eslint-disable no-unused-vars */
-
 const yargs = require('yargs');
 const fs = require('fs-extra');
 const path = require('path');
