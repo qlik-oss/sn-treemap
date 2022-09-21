@@ -2351,6 +2351,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@qlik-trial/sense-themes-default@^1.17.0":
+  version "1.17.0"
+  resolved "https://npm.pkg.github.com/download/@qlik-trial/sense-themes-default/1.17.0/d8ac7b4b832c9d0ba16a337d3d16dc13bb9bc4ab#d8ac7b4b832c9d0ba16a337d3d16dc13bb9bc4ab"
+  integrity sha512-Q5o+ebQr0zb3dwULfWG+lR02L/ub4CcCion+1jIev5gXKJz+2Yy1e0/5M6o+pnPKTQyByFZpl9TTV9yTrOQxwg==
+
 "@rollup/plugin-commonjs@22.0.2":
   version "22.0.2"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-22.0.2.tgz#ee8ca8415cda30d383b4096aad5222435b4b69b6"
@@ -5023,7 +5028,7 @@ express@4.18.1, express@^4.17.3:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
-extend@3.0.2:
+extend@3.0.2, extend@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
   integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
