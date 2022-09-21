@@ -34,6 +34,20 @@
 
   "overrides": [
     {
+      "files": ["src/picasso-def/formatting/*.js"],
+      "rules": {
+        "camelcase": 0,
+        "consistent-return": 0,
+        "func-names": 0,
+        "guard-for-in": 0,
+        "no-redeclare": 0,
+        "no-restricted-syntax": 0,
+        "no-underscore-dangle": 0,
+        "no-var": 0,
+        "vars-on-top": 0
+      }
+    },
+    {
       "files": ["**/*.native.js"],
       "rules": {
         "import/no-unresolved": [2, { "ignore": ["@qlik/carbon-core", "react", "react-native"] }],
