@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
 import React from 'react';
-// eslint-disable-next-line import/no-unresolved
 import {View, Text, StyleSheet} from 'react-native';
 import {breadCrumb} from './breadCrumb';
 
