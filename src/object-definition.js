@@ -171,11 +171,35 @@ const objectDefinition = () => {
      * @default
      */
     labels: {
-      // TODO document labels
+      /**
+       * Automatic label handling.
+       * @type {boolean}
+       * @default true
+       */
       auto: true,
+      /**
+       * Show labels on headers.
+       * @type {boolean}
+       * @default true
+       */
       headers: true,
+      /**
+       * Show overlay labels.
+       * @type {boolean}
+       * @default true
+       */
       overlay: true,
+      /**
+       * Show labels on leafs.
+       * @type {boolean}
+       * @default true
+       */
       leaves: true,
+      /**
+       * Show data point values.
+       * @type {boolean}
+       * @default false
+       */
       values: false,
     },
     /**
