@@ -1,18 +1,19 @@
 import {
-    useLayout,
-    useElement,
-    useEffect,
-    useState,
-    useTheme,
-    useSelections,
-    useRect,
-    useTranslator,
-  } from '@nebula.js/stardust';
-  import {createPicasso} from './picasso-def/createPicasso';
-  import {picassoDef} from './picasso-def';
-  import {treemap, tooltip, nativeLegend} from './picasso-def/components';
-  import {qae} from './qae';
-  import {picassoSelections} from './picassoSelections';
+  useLayout,
+  useElement,
+  useEffect,
+  useState,
+  useTheme,
+  useSelections,
+  useRect,
+  useTranslator,
+} from '@nebula.js/stardust';
+import {createPicasso} from './picasso-def/createPicasso';
+import {picassoDef} from './picasso-def';
+import {treemap, tooltip, nativeLegend} from './picasso-def/components';
+import {qae} from './qae';
+import {picassoSelections} from './picassoSelections';
+import ext from './ext/ext';
 
   const supernova = (env) => {
     const {pic, picassoQ} = createPicasso({renderer: env.renderer});
@@ -28,6 +29,7 @@ import {
 
     return {
       qae,
+      ext: ext(env),
       component() {
         const theme = useTheme();
         const layout = useLayout();
