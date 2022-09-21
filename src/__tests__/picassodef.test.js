@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 
 import {__DO_NOT_USE__ as NebualInternals}  from '@nebula.js/stardust';
-// eslint-disable-next-line import/no-unresolved
 import theme from '@qlik-trial/sense-themes-default/dist/horizon/theme.json';
 import { picassoDef } from '../picasso-def/picassoDef';
 import testdata from './testdata.json';
