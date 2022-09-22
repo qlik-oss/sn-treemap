@@ -1,0 +1,7 @@
+.cache/
+dist/
+.DS_Store
+*.html
+
+# keep old formatting in files copied from sense-client
+src/picasso-def/formatting

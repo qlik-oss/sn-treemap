@@ -1,0 +1,23 @@
+# misc
+*.log
+*.log
+.cache
+.eslintcache
+.DS_Store
+.idea
+.npmrc
+package-lock.json
+
+# dependencies
+node_modules
+
+# production
+dist/
+core/esm/
+sn-treemap-ext
+
+# testing
+coverage
+test/rendering/artifacts
+test/rendering/test-report
+test/rendering/state.json
