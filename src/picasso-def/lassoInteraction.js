@@ -1,8 +1,4 @@
-export const lassoInteraction = ({
-  interactionType,
-  picassoQ,
-  selectionsApi,
-}) => [
+export const lassoInteraction = ({ interactionType, picassoQ, selectionsApi }) => [
   {
     type: interactionType,
     key: 'hammer',

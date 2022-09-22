@@ -19,6 +19,7 @@
     "no-unused-expressions": 0,
     "no-nested-ternary": 0,
     "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
+    "prettier/prettier": 2,
 
     // TODO: fix or decide that they are not important and can be off
     "no-console": [2, { "allow": ["error"] }],

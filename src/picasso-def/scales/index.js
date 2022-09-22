@@ -1,3 +1,3 @@
-import {colorScale} from './colorScale';
+import { colorScale } from './colorScale';
 
-export {colorScale};
+export { colorScale };

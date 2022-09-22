@@ -1,11 +1,11 @@
-import {colorScale} from './scales';
-import {getLevel, getNextSelecteDim} from './getLevel';
+import { colorScale } from './scales';
+import { getLevel, getNextSelecteDim } from './getLevel';
 import ChartFormatting from './formatting/chart-formatting';
-import {legend} from './legend';
-import {lassoBrush} from './lassoBrush';
-import {lassoInteraction} from './lassoInteraction';
-import {tooltip, tooltipInteraction} from './tooltip';
-import {active, inactive} from './brushStyles';
+import { legend } from './legend';
+import { lassoBrush } from './lassoBrush';
+import { lassoInteraction } from './lassoInteraction';
+import { tooltip, tooltipInteraction } from './tooltip';
+import { active, inactive } from './brushStyles';
 
 const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {
   let measure;
@@ -18,10 +18,7 @@ const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {
     f = chartFormatter.getMeasureFormatter(i);
     if (f && f.type === 'U') {
       f.pattern = f.createPatternFromRange(measure.qMax, measure.qMax, true);
-      if (
-        Math.floor(Math.log(Math.abs(measure.qMax)) / Math.log(10)) % 3 ===
-        2
-      ) {
+      if (Math.floor(Math.log(Math.abs(measure.qMax)) / Math.log(10)) % 3 === 2) {
         f.pattern = f.pattern.substr(0, f.pattern.length - 2);
         f.pattern += 'A';
       }
@@ -42,7 +39,7 @@ const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {
     });
   }
   return formatters;
- };
+};
 
 export const expressionIsColor = (layout) => {
   let expressionColor;
@@ -60,39 +57,23 @@ export const expressionIsColor = (layout) => {
     };
   }
 
-  return {expressionColor, expressionColorText};
+  return { expressionColor, expressionColorText };
 };
 
-export const picassoDef = ({
-  layout,
-  theme,
-  env,
-  picassoQ,
-  selectionsApi,
-  showLegend,
-  invalidMessage,
-  translator,
-}) => {
-  if(!layout.qHyperCube) {
+export const picassoDef = ({ layout, theme, env, picassoQ, selectionsApi, showLegend, invalidMessage, translator }) => {
+  if (!layout.qHyperCube) {
     return {};
   }
   const level = getLevel(layout);
   const dimLevel = getNextSelecteDim(layout);
   const selectLevel = Math.min(level, dimLevel);
   const interactionType = env.carbon ? 'kinesics' : 'hammer';
-  const interactions = [
-    ...tooltipInteraction(),
-    ...lassoInteraction({interactionType, picassoQ, selectionsApi}),
-  ];
-  const {color, field} = colorScale({layout, theme, level});
-  const {expressionColor, expressionColorText} = expressionIsColor(layout);
-  const {qMeasureInfo} = layout.qHyperCube;
+  const interactions = [...tooltipInteraction(), ...lassoInteraction({ interactionType, picassoQ, selectionsApi })];
+  const { color, field } = colorScale({ layout, theme, level });
+  const { expressionColor, expressionColorText } = expressionIsColor(layout);
+  const { qMeasureInfo } = layout.qHyperCube;
 
-  const formatter = getFormatterForMeasures(
-    '',
-    qMeasureInfo.length,
-    qMeasureInfo,
-  );
+  const formatter = getFormatterForMeasures('', qMeasureInfo.length, qMeasureInfo);
 
   let scales = {
     color,
@@ -112,10 +93,10 @@ export const picassoDef = ({
             }
             if (datum?.qType === 'N' && datum?.qSubNodes?.length === 1) {
               let sb = datum.qSubNodes;
-              while(sb.length > 1) {
+              while (sb.length > 1) {
                 sb = sb.qSubNodes;
               }
-              if(sb[0].qType !== 'V') {
+              if (sb[0].qType !== 'V') {
                 return 0;
               }
               return datum.qMaxPos;
@@ -127,8 +108,8 @@ export const picassoDef = ({
             return 0;
           },
           props: {
-            color: {field},
-            select: {field: `qDimensionInfo/${selectLevel}`},
+            color: { field },
+            select: { field: `qDimensionInfo/${selectLevel}` },
             expressionColor,
             expressionColorText,
             isOther: { value: (d, node) => node.data.qElemNo === -3 },
@@ -142,7 +123,7 @@ export const picassoDef = ({
     {
       type: 'treemap',
       key: 'treemap',
-      data: {collection: {key: 'hierarchy'}},
+      data: { collection: { key: 'hierarchy' } },
       settings: {
         formatter,
         labels: layout.labels,
@@ -150,9 +131,7 @@ export const picassoDef = ({
           mode: layout.color.mode,
           measureScheme: layout.color.measureScheme,
           others: theme.getDataColorSpecials().others,
-          persistent:
-            layout.color.persistent ||
-            layout.qHyperCube.qDimensionInfo.length > 1,
+          persistent: layout.color.persistent || layout.qHyperCube.qDimensionInfo.length > 1,
         },
         showHeaders: layout.qHyperCube.qDimensionInfo.length > 1,
         getContrastingColorTo: theme.getContrastingColorTo,
@@ -193,19 +172,13 @@ export const picassoDef = ({
     },
   ];
 
-
-  const treemapLegend = legend({layout, color});
-  if (
-    treemapLegend &&
-    !expressionColor &&
-    !expressionColorText &&
-    showLegend === true
-  ) {
-    scales = {...scales, ...treemapLegend.scales};
+  const treemapLegend = legend({ layout, color });
+  if (treemapLegend && !expressionColor && !expressionColorText && showLegend === true) {
+    scales = { ...scales, ...treemapLegend.scales };
     components.push(treemapLegend.component);
   }
 
-  components.push(tooltip({level, layout, formatter}));
+  components.push(tooltip({ level, layout, formatter }));
 
   components.push(lassoBrush());
 

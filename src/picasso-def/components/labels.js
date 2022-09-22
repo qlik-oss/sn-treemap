@@ -1,10 +1,10 @@
-import { truncate, cram } from "./text-helper";
+import { truncate, cram } from './text-helper';
 
 const TREEMAP_LABEL_FONTSIZE = 12;
 const TREEMAP_VALUE_FONTSIZE = 12;
 const TREEMAP_MESSAGE_SIZE = 16;
 
-const fontFamily = "System";
+const fontFamily = 'System';
 
 export const createTextLabels = ({
   node,
@@ -38,7 +38,7 @@ export const createTextLabels = ({
     }
     const texts = wantedText.split(/(\s+)/).filter((s) => s !== ' ');
     // find maxLength
-    const maxChars = texts.reduce((prev, current) => prev.length > current.length ? prev : current);
+    const maxChars = texts.reduce((prev, current) => (prev.length > current.length ? prev : current));
 
     const textSize = renderer.measureText({
       text: maxChars,
@@ -61,20 +61,27 @@ export const createTextLabels = ({
             fontSize: TREEMAP_VALUE_FONTSIZE,
             fontFamily,
           }).height,
-        0,
+        0
       );
       if (maxheight < height - 8) {
         const y = top;
         let text = `${node.data.label}`;
         let leafValue = '';
-          leafValue = formatter[0].formatValue(node.data.value);
-          const valueSize = renderer.measureText({
-            text: leafValue,
-            fontSize: TREEMAP_VALUE_FONTSIZE,
-            fontFamily,
-          });
+        leafValue = formatter[0].formatValue(node.data.value);
+        const valueSize = renderer.measureText({
+          text: leafValue,
+          fontSize: TREEMAP_VALUE_FONTSIZE,
+          fontFamily,
+        });
 
-        text = cram(text, {width: width - 8, height}, (val) => renderer.measureText({text: val, fontFamily,fontSize: TREEMAP_VALUE_FONTSIZE, }), renderer, TREEMAP_VALUE_FONTSIZE, fontFamily);
+        text = cram(
+          text,
+          { width: width - 8, height },
+          (val) => renderer.measureText({ text: val, fontFamily, fontSize: TREEMAP_VALUE_FONTSIZE }),
+          renderer,
+          TREEMAP_VALUE_FONTSIZE,
+          fontFamily
+        );
         if (valueSize.width < width - verticalPadding && valueSize.height + maxheight < height - 8) {
           text += `\n${leafValue}`;
         }
@@ -89,21 +96,14 @@ export const createTextLabels = ({
           baseline: 'text-before-edge',
           maxWidth: width - verticalPadding,
           wordBreak: 'break-word',
-          data: {...node.data, depth: node.depth},
+          data: { ...node.data, depth: node.depth },
         });
       }
     }
   }
 };
 
-const headerText = ({
-  node,
-  width,
-  fill,
-  valueLables,
-  getContrastingColorTo,
-  renderer,
-}) => {
+const headerText = ({ node, width, fill, valueLables, getContrastingColorTo, renderer }) => {
   const verticalPadding = 12;
   let text = node.data.label;
   const textSize = renderer.measureText({
@@ -115,7 +115,7 @@ const headerText = ({
   if (node.header && !node.showLable) {
     return;
   }
-  if(textSize.width > width - 8) {
+  if (textSize.width > width - 8) {
     text = truncate(text, width - 10, renderer, TREEMAP_LABEL_FONTSIZE, fontFamily);
   }
   valueLables.push({
@@ -129,11 +129,11 @@ const headerText = ({
     anchor: 'left',
     baseline: 'centeral',
     maxWidth: width - verticalPadding,
-    data: {...node.data, depth: node.depth},
+    data: { ...node.data, depth: node.depth },
   });
 };
 
-export const displayInvalidMessage = ({rect, text, renderer}) => {
+export const displayInvalidMessage = ({ rect, text, renderer }) => {
   const textSize = renderer.measureText({
     text,
     fontSize: TREEMAP_MESSAGE_SIZE,
@@ -165,7 +165,7 @@ export const displayInvalidMessage = ({rect, text, renderer}) => {
   ];
 };
 
-export const createOverlayLabel = ({node, avgColor, width, height, renderer, getContrastingColorTo}) => {
+export const createOverlayLabel = ({ node, avgColor, width, height, renderer, getContrastingColorTo }) => {
   let text = node.data.label;
   let textSize = renderer.measureText({
     text,
@@ -176,7 +176,7 @@ export const createOverlayLabel = ({node, avgColor, width, height, renderer, get
   const x = node.x0 + (width - textSize.width) / 2;
   const y = node.y0 + 18 + (height - textSize.height) / 2;
 
-  if(textSize.width > width - 8) {
+  if (textSize.width > width - 8) {
     text = truncate(text, width - 10, renderer, TREEMAP_LABEL_FONTSIZE, fontFamily);
   }
 
@@ -187,8 +187,7 @@ export const createOverlayLabel = ({node, avgColor, width, height, renderer, get
   });
 
   const fitWidth = width - 8;
-  if(textSize.width < fitWidth && textSize.height < height) {
-
+  if (textSize.width < fitWidth && textSize.height < height) {
     return {
       type: 'text',
       text,
@@ -199,8 +198,8 @@ export const createOverlayLabel = ({node, avgColor, width, height, renderer, get
       fill: getContrastingColorTo(avgColor),
       baseline: 'center',
       opacity: 0.7,
-      data: {...node.data, depth: node.depth},
-    }
+      data: { ...node.data, depth: node.depth },
+    };
   }
   return undefined;
-}
+};

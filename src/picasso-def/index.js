@@ -1,3 +1,3 @@
-import {picassoDef} from './picassoDef';
+import { picassoDef } from './picassoDef';
 
-export {picassoDef};
+export { picassoDef };

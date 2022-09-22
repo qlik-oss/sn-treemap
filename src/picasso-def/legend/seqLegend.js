@@ -1,13 +1,13 @@
-export const seqLegend = ({color, layout}) => {
+export const seqLegend = ({ color, layout }) => {
   const scales = {
     seqFill: {
       type: 'sequential-color',
-      data: {field: 'qMeasureInfo/0'},
+      data: { field: 'qMeasureInfo/0' },
       range: color.range,
     },
     seqMajor: {
       type: 'color',
-      data: {field: 'qMeasureInfo/0'},
+      data: { field: 'qMeasureInfo/0' },
     },
   };
 
@@ -25,5 +25,5 @@ export const seqLegend = ({color, layout}) => {
       },
     },
   };
-  return {scales, component};
-}
+  return { scales, component };
+};

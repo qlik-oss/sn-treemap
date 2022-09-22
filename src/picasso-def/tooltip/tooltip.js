@@ -1,4 +1,4 @@
-export const tooltip = ({level, layout}) => ({
+export const tooltip = ({ level, layout }) => ({
   key: 'tooltip',
   type: 'tooltip',
   settings: {
@@ -10,7 +10,7 @@ export const tooltip = ({level, layout}) => ({
     extract: (n) => ({
       value: n.node.data,
     }),
-    content: ({h, data}) => {
+    content: ({ h, data }) => {
       let label = data[0].value.label;
       if (level !== 0) {
         label = '';
@@ -30,15 +30,7 @@ export const tooltip = ({level, layout}) => ({
         label = stack.join(', ');
       }
       if (level !== layout.qHyperCube.qDimensionInfo.length - 1) {
-        return h(
-          'div',
-          {},
-          h(
-            'div',
-            {style: {'font-size': '14px', 'font-weight': 'bold'}},
-            label,
-          ),
-        );
+        return h('div', {}, h('div', { style: { 'font-size': '14px', 'font-weight': 'bold' } }, label));
       }
       const display = `${layout.qHyperCube.qMeasureInfo[0].qFallbackTitle}: ${data[1].value.value}`;
       return h(
@@ -53,9 +45,9 @@ export const tooltip = ({level, layout}) => ({
               'font-weight': 'bold',
             },
           },
-          label,
+          label
         ),
-        h('div', {}, display),
+        h('div', {}, display)
       );
     },
   },
