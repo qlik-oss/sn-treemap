@@ -1,5 +1,5 @@
 {
-  "name": "@qlik/sn-treemap",
+  "name": "@nebula.js/sn-treemap",
   "version": "1.0.0-alpha.12",
   "description": "Treemap supernova that is DOM independent",
   "main": "dist/sn-treemap.js",
@@ -79,9 +79,11 @@
     "test": "jest",
     "lint": "eslint src",
     "ci:install": "yarn install --frozen-lockfile",
-    "build": "node ./tools/build.js",
+    "build": "node ./tools/build.js --core --ext",
+    "build:dev": "node ./tools/build.js --core --ext --mode development",
     "build:watch": "node ./tools/build.js --mode development -w",
-    "build:dev": "node ./tools/build.js --mode development",
+    "build:rn": "node ./tools/build.js --reactNative",
+    "build:rn:dev": "ditto src ./react-native/dist && rm -rf ./react-native/dist/__test__ && mv ./react-native/dist/index.js ./react-native/dist/sn-treemap.js",
     "start": "nebula serve --build false --type treemap"
   },
   "dependencies": {

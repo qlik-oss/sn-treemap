@@ -1,0 +1,30 @@
+{
+  "name": "@nebula.js/react-native-sn-treemap",
+  "version": "1.0.0-alpha.12",
+  "description": "react native treemap supernova",
+  "license": "MIT",
+  "author": "QlikTech International AB",
+  "keywords": [
+    "qlik",
+    "nebula",
+    "stardust"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qlik-oss/sn-treemap.git"
+  },
+  "files": [
+    "dist",
+    "api-specifications",
+    "core"
+  ],
+  "main": "dist/sn-treemap.js",
+  "peerDependencies": {
+    "react": "18.2.0",
+    "react-native": "0.70.1",
+    "@nebula.js/stardust": "2.x"
+  }
+}

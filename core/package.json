@@ -1,0 +1,10 @@
+{
+  "module": "esm/index.js",
+  "peerDependencies": {
+    "@nebula.js/stardust": "2.x || ^3.0.0-alpha",
+    "hammerjs": "^2.0.8",
+    "picasso-plugin-hammer": ">=1.5.0",
+    "picasso-plugin-q": ">=1.5.0",
+    "picasso.js": ">=1.5.0"
+  }
+}
