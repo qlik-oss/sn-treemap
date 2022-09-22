@@ -33,7 +33,6 @@
     "@nebula.js/cli-build": "^3.0.0-rc.2",
     "@nebula.js/cli-sense": "^3.0.0-rc.2",
     "@nebula.js/cli-serve": "^3.0.0-rc.2",
-    "@qlik-trial/sense-themes-default": "^1.17.0",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "babel-jest": "^27.1.0",
