@@ -1,9 +1,4 @@
-export const picassoSelections = ({
-  selectBrush,
-  picassoQ,
-  selections,
-  lasso,
-}) => {
+export const picassoSelections = ({ selectBrush, picassoQ, selections, lasso }) => {
   const valueInterceptor = (added) => {
     const brushes = selectBrush.brushes();
     brushes.forEach((b) => {
@@ -12,7 +7,7 @@ export const picassoSelections = ({
         selectBrush.clear([]);
       }
     });
-    return added.filter((t) => t.value >= 0) // do not allow selection on null or negative value
+    return added.filter((t) => t.value >= 0); // do not allow selection on null or negative value
   };
 
   const rangeInterceptor = (a) => {

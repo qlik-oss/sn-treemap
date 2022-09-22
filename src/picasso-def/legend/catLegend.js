@@ -1,9 +1,9 @@
-export const catLegend = ({color}) => {
+export const catLegend = ({ color }) => {
   const scales = {
     cat: {
       type: 'categorical-color',
       data: {
-        extract: {field: color.data.extract.field},
+        extract: { field: color.data.extract.field },
         filter: (f) => f.value >= 0,
       },
       range: (f) => f.data.items.map((d) => color.range[d.value]),
@@ -19,5 +19,5 @@ export const catLegend = ({color}) => {
       },
     },
   };
-  return {scales, component};
+  return { scales, component };
 };

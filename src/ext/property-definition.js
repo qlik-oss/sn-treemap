@@ -222,9 +222,7 @@ export default function propertyDefinition(env) {
                   },
                 ],
                 show(data) {
-                  return (
-                    getValue(data, 'labels.auto') || getValue(data, 'labels.leaves')
-                  );
+                  return getValue(data, 'labels.auto') || getValue(data, 'labels.leaves');
                 },
               },
             },

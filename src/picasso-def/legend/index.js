@@ -1,3 +1,3 @@
-import {legend} from './legend';
+import { legend } from './legend';
 
-export {legend};
+export { legend };

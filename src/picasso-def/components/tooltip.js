@@ -2,7 +2,7 @@ export const tooltip = () => ({
   require: ['chart', 'renderer', 'element'],
   on: {
     touchstart(e) {
-      const {content} = this.settings;
+      const { content } = this.settings;
       const point = {
         x: e.clientX,
         y: e.clientY,

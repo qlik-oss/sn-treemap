@@ -1,4 +1,4 @@
-import {tooltip} from './tooltip';
-import {tooltipInteraction} from './tooltipInteraction';
+import { tooltip } from './tooltip';
+import { tooltipInteraction } from './tooltipInteraction';
 
-export {tooltip, tooltipInteraction};
+export { tooltip, tooltipInteraction };

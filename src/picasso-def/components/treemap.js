@@ -1,6 +1,6 @@
-import {treemap as d3Treemap} from 'd3-hierarchy';
-import {color as d3Color} from 'd3-color';
-import {createTextLabels, displayInvalidMessage, createOverlayLabel} from './labels';
+import { treemap as d3Treemap } from 'd3-hierarchy';
+import { color as d3Color } from 'd3-color';
+import { createTextLabels, displayInvalidMessage, createOverlayLabel } from './labels';
 
 const HEAER_HEIGHT = 28;
 const OUTER_PADDING = 1;
@@ -17,36 +17,26 @@ function toColor(num) {
 
 const buildPath = (root, node) => {
   const par = root.path(node);
-  let path = '';// `${node.data.select.source.field}/${node.data.select.value}`;
+  let path = ''; // `${node.data.select.source.field}/${node.data.select.value}`;
   par.forEach((p) => {
-    if(p.data.source) {
-      path = `${path}/${p.data.source.field}`
+    if (p.data.source) {
+      path = `${path}/${p.data.source.field}`;
     } else {
-      path = `${path}/${p.data.select.label}`
+      path = `${path}/${p.data.select.label}`;
     }
   });
   path = `${path}/${node.data.select.value}`;
   return path;
-}
+};
 
-const getNodeColor = (
-  node,
-  colorScale,
-  headerColor,
-  colorSettings,
-  colorIndex,
-) => {
+const getNodeColor = (node, colorScale, headerColor, colorSettings, colorIndex) => {
   if (node.header && !isNaN(node.value)) {
     return headerColor;
   }
-  if (
-    node.data.expressionColor !== undefined &&
-    colorSettings.mode === 'byExpression'
-  ) {
+  if (node.data.expressionColor !== undefined && colorSettings.mode === 'byExpression') {
     if (colorSettings.measureScheme === 'dc') {
       const range = colorScale.range();
-      const colorValue =
-        node.data.expressionColor.value.qSubNodes[0].qAttrExps.qValues[0].qNum;
+      const colorValue = node.data.expressionColor.value.qSubNodes[0].qAttrExps.qValues[0].qNum;
       const index = Math.trunc(colorValue % range.length);
       if (range) {
         return range[index];
@@ -68,13 +58,10 @@ const getNodeColor = (
 
   if (
     colorScale.type === 'categorical-color' ||
-    colorSettings.measureScheme === 'dc' && colorSettings.mode !== "byMeasure"
+    (colorSettings.measureScheme === 'dc' && colorSettings.mode !== 'byMeasure')
   ) {
-
     const range = colorScale.range();
-    let colorValue = colorSettings.persistent
-      ? node.data.color.value
-      : colorIndex;
+    let colorValue = colorSettings.persistent ? node.data.color.value : colorIndex;
     if (colorValue < 0) {
       colorValue = node.data.select.value;
     }
@@ -87,17 +74,9 @@ const getNodeColor = (
 
 export const treemap = () => ({
   require: ['chart', 'renderer', 'element'],
-  render({data}) {
-    const {
-      headerColor,
-      getContrastingColorTo,
-      labels,
-      formatter,
-      level,
-      color,
-      invalidMessage,
-      translator,
-    } = this.settings.settings;
+  render({ data }) {
+    const { headerColor, getContrastingColorTo, labels, formatter, level, color, invalidMessage, translator } =
+      this.settings.settings;
     const boundingRect = this.rect;
 
     if (!data.root || data.fields.length === 0) {
@@ -135,7 +114,7 @@ export const treemap = () => ({
     };
 
     const getAverageColor = (node) => {
-      const {sumColor} = node;
+      const { sumColor } = node;
       if (sumColor) {
         const average = {
           r: Math.round(sumColor.r / sumColor.count),
@@ -230,7 +209,7 @@ export const treemap = () => ({
             data: {
               ...node.data,
               depth: node.depth,
-              next: {...node?.parent?.data},
+              next: { ...node?.parent?.data },
               path,
             },
           });
@@ -260,13 +239,20 @@ export const treemap = () => ({
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
       const avgColor = getAverageColor(node);
-      const label = createOverlayLabel({node, avgColor, width, height, renderer: this.renderer, getContrastingColorTo});
-      if(label) {
+      const label = createOverlayLabel({
+        node,
+        avgColor,
+        width,
+        height,
+        renderer: this.renderer,
+        getContrastingColorTo,
+      });
+      if (label) {
         overlayLabels.push(label);
       }
     });
 
-     const overlayRects = overlayNodes.map((node) => {
+    const overlayRects = overlayNodes.map((node) => {
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
       const avgColor = getAverageColor(node);
@@ -300,7 +286,7 @@ export const treemap = () => ({
         opacity: 0,
         x: node.x0,
         y: node.y0,
-        data: {...node.data, depth: node.depth, parentGroup: true},
+        data: { ...node.data, depth: node.depth, parentGroup: true },
       };
     });
 
@@ -312,6 +298,6 @@ export const treemap = () => ({
       });
     }
 
-    return [...rects,  ...valueLables,  ...parentRects, ...overlayLabels, ...overlayRects];
+    return [...rects, ...valueLables, ...parentRects, ...overlayLabels, ...overlayRects];
   },
 });

@@ -6,12 +6,12 @@
  * @returns {{text: String, rest: String}}
  */
 function truncate(text, width, renderer, fontSize, fontFamily) {
-  const approximation = renderer.measureText({text: 'W', fontSize, fontFamily});
-  const charWidth = width / approximation.width
+  const approximation = renderer.measureText({ text: 'W', fontSize, fontFamily });
+  const charWidth = width / approximation.width;
   // const actual =  renderer.measureText({text, fontSize, fontFamilay});
   const textWidth = approximation.width * text.length;
-  if(textWidth > width) {
-    return `${text.slice(0,  charWidth)}...`;
+  if (textWidth > width) {
+    return `${text.slice(0, charWidth)}...`;
   }
   return text;
 }
@@ -32,7 +32,6 @@ function getLines(text, width, measureText) {
     return [text];
   }
 
-
   for (r = 0; r < textLines.length; r++) {
     textLine = textLines[r] || '';
     words = textLine.split(/\s+/);
@@ -41,7 +40,7 @@ function getLines(text, width, measureText) {
     for (n = 1; n < words.length; n++) {
       testLine = `${line} ${words[n]}`;
       testWidth = measureText(testLine).width;
-      if (testWidth > width ) {
+      if (testWidth > width) {
         lines.push(line);
         line = words[n];
       } else {
@@ -55,20 +54,14 @@ function getLines(text, width, measureText) {
   return lines;
 }
 
-
-
 function cram(text, rect, measureText, renderer, fontSize, fontFamily) {
   const lines = getLines(text, rect.width, measureText);
   // truncate last line
-  if(lines.length > 1) {
+  if (lines.length > 1) {
     lines[lines.length - 1] = truncate(lines[lines.length - 1], rect.width, renderer, fontSize, fontFamily);
     return lines.join('\n');
   }
   return truncate(text, rect.width, renderer, fontSize, fontFamily);
 }
 
-
-export {
-  truncate,
-  cram,
-};
+export { truncate, cram };

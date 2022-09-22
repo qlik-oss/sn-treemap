@@ -6,8 +6,8 @@ export const nativeLegend = () => ({
   mounted() {
     this.chart.element.mountCatLegend(this.data.fields[0].title());
   },
-  render({data}) {
-    const {persistent} = this.settings.settings;
+  render({ data }) {
+    const { persistent } = this.settings.settings;
     const colorScale = this.chart.scale(this.settings.scale);
 
     const range = colorScale.range();
