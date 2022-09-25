@@ -30,7 +30,7 @@ export const createTextLabels = ({
       });
     }
     let wantedText = node.data.label;
-    if (labels.value) {
+    if (labels.value && labels.values) {
       wantedText += `\n${formatter[0].formatValue(node.data.value)}`;
     }
     const texts = wantedText.split(/(\s+)/).filter((s) => s !== ' ');
@@ -74,7 +74,7 @@ export const createTextLabels = ({
           });
 
         text = cram(text, {width: width - 8, height}, (val) => renderer.measureText({text: val, fontFamily,fontSize: TREEMAP_VALUE_FONTSIZE, }), renderer, TREEMAP_VALUE_FONTSIZE, fontFamily);
-        if (valueSize.width < width - verticalPadding && valueSize.height + maxheight < height - 8) {
+        if (valueSize.width < width - verticalPadding && valueSize.height + maxheight < height - 8 && labels.values) {
           text += `\n${leafValue}`;
         }
         valueLables.push({
@@ -164,15 +164,16 @@ export const displayInvalidMessage = ({rect, text, renderer}) => {
 };
 
 export const createOverlayLabel = ({node, avgColor, width, height, renderer, getContrastingColorTo}) => {
+  const fontSize = 32;
   let text = node.data.label;
   let textSize = renderer.measureText({
     text,
-    fontSize: 24,
+    fontSize,
     fontFamily,
   });
 
   const x = node.x0 + (width - textSize.width) / 2;
-  const y = node.y0 + 18 + (height - textSize.height) / 2;
+  const y = node.y0 + textSize.height + (height - textSize.height) / 2;
 
   if(textSize.width > width - 8) {
     text = truncate(text, width - 10, renderer, TREEMAP_LABEL_FONTSIZE, fontFamily);
@@ -180,23 +181,25 @@ export const createOverlayLabel = ({node, avgColor, width, height, renderer, get
 
   textSize = renderer.measureText({
     text,
-    fontSize: 24,
+    fontSize,
     fontFamily,
   });
 
   const fitWidth = width - 8;
   if(textSize.width < fitWidth && textSize.height < height) {
-
+    const fill = getContrastingColorTo(avgColor); 
     return {
       type: 'text',
       text,
       fontFamily,
-      fontSize: 24,
+      fontSize,
       x,
       y,
-      fill: getContrastingColorTo(avgColor),
+      fill,
+      stroke: getContrastingColorTo(fill),
+      strokeWidth: 1,
       baseline: 'center',
-      opacity: 0.7,
+      opacity: 0.3,
       data: {...node.data, depth: node.depth},
     }
   }
