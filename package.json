@@ -48,7 +48,7 @@
     "d3-path": "2.0.0",
     "eslint": "8.24.0",
     "eslint-config-airbnb": "18.2.1",
-    "eslint-config-prettier": "^7.0.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jest": "27.0.4",
     "eslint-plugin-jsx-a11y": "6.6.1",
@@ -78,6 +78,7 @@
     "test": "jest",
     "lint": "eslint src",
     "ci:install": "yarn install --frozen-lockfile",
+    "build": "node ./tools/build.js",
     "build:watch": "node ./tools/build.js --mode development -w",
     "build:dev": "node ./tools/build.js --mode development",
     "start": "nebula serve --build false --type treemap"
