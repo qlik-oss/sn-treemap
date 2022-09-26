@@ -1,14 +1,19 @@
 import {
+  useApp,
+  useAppLayout,
   useLayout,
   useElement,
   useEffect,
+  useModel,
   useState,
+  usePromise,
   useTheme,
   useOptions,
   useSelections,
   useRect,
   useTranslator,
 } from '@nebula.js/stardust';
+import { colorService as createColorService } from 'qlik-chart-modules';
 import { createPicasso } from './picasso-def/createPicasso';
 import { picassoDef } from './picasso-def';
 import { treemap, tooltip, nativeLegend } from './picasso-def/components';
@@ -37,8 +42,11 @@ const supernova = (env) => {
       const element = useElement();
       const selections = useSelections();
       const translator = useTranslator();
+      const app = useApp();
+      const model = useModel();
       const rect = useRect();
       const options = useOptions();
+      const { qLocaleInfo: localeInfo } = useAppLayout();
       const [chart, setChart] = useState(undefined);
       const state = useState({ mounted: false });
 
@@ -85,10 +93,34 @@ const supernova = (env) => {
         }
       }, [element, layout, selections, theme, options]);
 
-      useEffect(() => {
+      usePromise(async () => {
         if (!chart || layout.qSelectionInfo.qInSelections) {
           return;
         }
+        const colorService = createColorService({
+          picasso: pic,
+          model,
+          app,
+          translator,
+          config: {
+            auto: false, // prevents default auto() to be called internally
+            key: 'fill',
+          },
+        });
+
+        const createConfig = ({ getUseBaseColors }) => ({
+          theme,
+          legendProps: layout.legend,
+          layout,
+          localeInfo,
+          hc: layout.qHyperCube,
+          colorProps: {
+            ...layout.color,
+            useBaseColors: getUseBaseColors(layout),
+          },
+        });
+
+        await colorService.initialize({ createConfig });
 
         const settings = picassoDef({
           layout,
@@ -99,9 +131,21 @@ const supernova = (env) => {
           showLegend,
           invalidMessage,
           translator,
+          colorService,
+          chart,
           options,
         });
-        const data = { type: 'q', data: layout.qHyperCube };
+        const data = [
+          {
+            type: 'q',
+            key: 'qHyperCube',
+            data: layout.qHyperCube,
+            config: {
+              localeInfo,
+            },
+          },
+          ...colorService.getData(),
+        ];
         chart.update({ data, settings });
         state.selectBrush.end();
         state.lassoBrush.end();

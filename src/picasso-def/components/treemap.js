@@ -4,15 +4,6 @@ import { createTextLabels, displayInvalidMessage, createOverlayLabel } from './l
 import { TREEMAP_DEFINES } from './defines';
 import { setupBrushes } from './setupBrushes.native';
 
-function toColor(num) {
-  num >>>= 0;
-  const b = num & 0xff;
-  const g = (num & 0xff00) >>> 8;
-  const r = (num & 0xff0000) >>> 16;
-  const a = ((num & 0xff000000) >>> 24) / 255;
-  return 'rgba(' + [r, g, b, a].join(',') + ')';
-}
-
 const buildPath = (root, node) => {
   const par = root.path(node);
   let path = ''; // `${node.data.select.source.field}/${node.data.select.value}`;
@@ -27,53 +18,22 @@ const buildPath = (root, node) => {
   return path;
 };
 
-const getNodeColor = (node, colorScale, headerColor, colorSettings, colorIndex) => {
+const getNodeColor = (node, headerColor, box, chart) => {
   if (node.header && !isNaN(node.value)) {
     return headerColor;
   }
-  if (node.data.expressionColor !== undefined && colorSettings.mode === 'byExpression') {
-    if (colorSettings.measureScheme === 'dc') {
-      const range = colorScale.range();
-      const colorValue = node.data.expressionColor.value.qSubNodes[0].qAttrExps.qValues[0].qNum;
-      const index = Math.trunc(colorValue % range.length);
-      if (range) {
-        return range[index];
-      }
-      return '#000000';
-    }
-    const exp = node.data.expressionColor.value;
-    if (!isNaN(exp)) {
-      return toColor(exp);
-    } else if (node.data.expressionColorText !== undefined) {
-      const hextString = `#${node.data.expressionColorText.value.toString(16)}`;
-      return hextString;
-    }
-  }
-
-  if (node.data?.expressionColor?.label?.qType === 'O') {
-    return colorSettings.others;
-  }
-
-  if (
-    colorScale.type === 'categorical-color' ||
-    (colorSettings.measureScheme === 'dc' && colorSettings.mode !== 'byMeasure')
-  ) {
-    const range = colorScale.range();
-    let colorValue = colorSettings.persistent ? node.data.color.value : colorIndex;
-    if (colorValue < 0) {
-      colorValue = node.data.select.value;
-    }
-    const index = colorValue % range.length;
-    return range[index];
-  }
-
-  return colorScale(node.data.color.value);
+  return box.fill({
+    datum: node.data,
+    resources: {
+      scale: (key) => chart.scale(key),
+    },
+  });
 };
 
 export const treemap = () => ({
   require: ['chart', 'renderer', 'element'],
   render({ data }) {
-    const { headerColor, getContrastingColorTo, labels, formatter, level, color, invalidMessage, translator } =
+    const { headerColor, getContrastingColorTo, labels, formatter, level, invalidMessage, translator, box } =
       this.settings.settings;
     const boundingRect = this.rect;
 
@@ -131,7 +91,6 @@ export const treemap = () => ({
       return 'rgba(0, 0, 0, 0.7)';
     };
 
-    const colorScale = this.chart.scale('color');
     const root = d3Treemap()
       .size([boundingRect.width, boundingRect.height])
       .round(false)
@@ -157,12 +116,11 @@ export const treemap = () => ({
     const rects = [];
     const parentRects = [];
     const treeHeight = root.height;
-
-    const visit = (node, index) => {
+    const visit = (node) => {
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
       if (height * width) {
-        const fill = getNodeColor(node, colorScale, headerColor, color, index);
+        const fill = getNodeColor(node, headerColor, box, this.chart);
         if (node.header || node.height === 1) {
           incrementColor(node, fill);
           if (node.header && height) {
