@@ -345,5 +345,34 @@ Object {
       "type": "color",
     },
   },
+  "strategy": Object {
+    "center": Object {
+      "minHeightRatio": 0,
+      "minWidthRatio": 0,
+    },
+    "layoutModes": Object {
+      "FULL": Object {
+        "height": 450,
+        "width": 550,
+      },
+      "MEDIUM": Object {
+        "height": 220,
+        "width": 400,
+      },
+      "SMALL": Object {
+        "height": 150,
+        "width": 300,
+      },
+      "SPARK": Object {
+        "height": 0,
+        "width": 0,
+      },
+      "XSMALL": Object {
+        "height": 75,
+        "width": 150,
+      },
+    },
+    "logicalSize": undefined,
+  },
 }
 `;

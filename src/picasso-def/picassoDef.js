@@ -6,6 +6,7 @@ import { lassoBrush } from './lassoBrush';
 import { lassoInteraction } from './lassoInteraction';
 import { tooltip, tooltipInteraction } from './tooltip';
 import { active, inactive } from './brushStyles';
+import { dockLayout } from './dock-layout';
 
 const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {
   let measure;
@@ -60,7 +61,17 @@ export const expressionIsColor = (layout) => {
   return { expressionColor, expressionColorText };
 };
 
-export const picassoDef = ({ layout, theme, env, picassoQ, selectionsApi, showLegend, invalidMessage, translator }) => {
+export const picassoDef = ({
+  layout,
+  theme,
+  env,
+  picassoQ,
+  selectionsApi,
+  showLegend,
+  invalidMessage,
+  translator,
+  options,
+}) => {
   if (!layout.qHyperCube) {
     return {};
   }
@@ -187,5 +198,6 @@ export const picassoDef = ({ layout, theme, env, picassoQ, selectionsApi, showLe
     scales,
     interactions,
     components,
+    strategy: dockLayout(layout, options),
   };
 };
