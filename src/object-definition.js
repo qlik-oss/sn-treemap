@@ -218,7 +218,7 @@ const objectDefinition = () => {
        * @type {boolean}
        * @default
        */
-      show: true,
+      show: false,
       /**
        * Show the legend title.
        * @type {boolean}
