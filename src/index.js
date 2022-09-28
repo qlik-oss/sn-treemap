@@ -4,6 +4,7 @@ import {
   useEffect,
   useState,
   useTheme,
+  useOptions,
   useSelections,
   useRect,
   useTranslator,
@@ -37,6 +38,7 @@ const supernova = (env) => {
       const selections = useSelections();
       const translator = useTranslator();
       const rect = useRect();
+      const options = useOptions();
       const [chart, setChart] = useState(undefined);
       const state = useState({ mounted: false });
 
@@ -58,18 +60,7 @@ const supernova = (env) => {
       useEffect(() => {
         if (!state.mounted && selections !== undefined && layout.qHyperCube) {
           state.mounted = true;
-          const settings = picassoDef({
-            layout,
-            theme,
-            env,
-            picassoQ,
-            selectionsApi: selections,
-            showLegend,
-            invalidMessage,
-            translator,
-          });
-          const data = { type: 'q', data: layout.qHyperCube, key: 'qHyperCube' };
-          const c = pic.chart({ element, settings, data });
+          const c = pic.chart({ element, settings: {}, data: [] });
 
           state.selectBrush = c.brush('dataContext');
           state.lassoBrush = c.brush('lassoContext');
@@ -96,25 +87,26 @@ const supernova = (env) => {
       }, [element, layout, selections, theme]);
 
       useEffect(() => {
-        if (chart) {
-          if (!layout.qSelectionInfo.qInSelections) {
-            const settings = picassoDef({
-              layout,
-              theme,
-              env,
-              picassoQ,
-              selectionsApi: selections,
-              showLegend,
-              invalidMessage,
-              translator,
-            });
-            const data = { type: 'q', data: layout.qHyperCube };
-            chart.update({ data, settings });
-            state.selectBrush.end();
-            state.lassoBrush.end();
-          }
+        if (!chart || layout.qSelectionInfo.qInSelections) {
+          return;
         }
-      }, [layout, chart, theme, selections]);
+
+        const settings = picassoDef({
+          layout,
+          theme,
+          env,
+          picassoQ,
+          selectionsApi: selections,
+          showLegend,
+          invalidMessage,
+          translator,
+          options,
+        });
+        const data = { type: 'q', data: layout.qHyperCube };
+        chart.update({ data, settings });
+        state.selectBrush.end();
+        state.lassoBrush.end();
+      }, [layout, chart, theme, selections, options]);
     },
   };
 };
