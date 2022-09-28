@@ -44,16 +44,21 @@ if (watch) {
 }
 
 const main = async () => {
-  console.log('---> BUILDING SUPERNOVA');
-  const watcher = await build(buildArgs);
+  try {
+    console.log('---> BUILDING SUPERNOVA');
+    const watcher = await build(buildArgs);
 
-  if (buildExt) {
-    buildExtension();
-    if (watch) {
-      watcher.on('event', (event) => {
-        event.code === 'BUNDLE_END' && buildExtension();
-      });
+    if (buildExt) {
+      buildExtension();
+      if (watch) {
+        watcher.on('event', (event) => {
+          event.code === 'BUNDLE_END' && buildExtension();
+        });
+      }
     }
+  } catch (e) {
+    console.log(e);
+    process.exit(1);
   }
 };
 
