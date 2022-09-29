@@ -1,4 +1,6 @@
+import conversion from 'qlik-object-conversion';
 import pp from './property-definition';
+import dataDefinition from './data-definition';
 
 function hasValidLayout(layout) {
   return (
@@ -22,6 +24,18 @@ export default function ext(env) {
       sharing: hasValidLayout,
       viewData: true,
     },
-    // TODO: object conversion
+    importProperties: (exportFormat, initialProperties, extension) => {
+      const propertyTree = conversion.colorChart.importProperties({
+        exportFormat,
+        initialProperties,
+        dataDefinition: dataDefinition(env),
+        defaultPropertyValues: {
+          defaultDimension: extension.getDefaultDimensionProperties(),
+          defaultMeasure: extension.getDefaultMeasureProperties(),
+        },
+      });
+      return propertyTree;
+    },
+    exportProperties: (propertyTree) => conversion.colorChart.exportProperties({ propertyTree }),
   };
 }
