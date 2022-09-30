@@ -20,7 +20,7 @@ export const appListAtom = atom(async get => {
   try {
     const connectionConfig = get(selectedConnectionAtom);
     const result = await fetch(
-      `https://${connectionConfig?.tenant}/api/v1/items?resourceType=app&limit=20`,
+      `https://${connectionConfig?.tenant}/api/v1/items?resourceType=app&limit=100`,
       {
         method: 'GET',
         headers: {

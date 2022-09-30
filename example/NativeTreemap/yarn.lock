@@ -1108,6 +1108,9 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@nebula.js/react-native-sn-treemap@file:../../build/dist":
+  version "1.0.0-alpha.12"
+
 "@nebula.js/stardust@2.9.0":
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-2.9.0.tgz#e424eb0948d5ebca7e9ffb369290a0102753e0e8"
@@ -1136,25 +1139,20 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@qlik/carbon-core@2.0.0-alpha.3":
-  version "2.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@qlik/carbon-core/-/carbon-core-2.0.0-alpha.3.tgz#b16bfec9a46051de6e4d85a18d5812a296466f05"
-  integrity sha512-dQAteEvofuP2Qat0Bc+gpF4Xeb38hbbmcvZ/V1XfgZJpXSX0VB8tr0Qsj19/dwhgC7zVrKDbFSkwEAy9lgdDsw==
+"@qlik/carbon-core@2.0.0-alpha.4":
+  version "2.0.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/@qlik/carbon-core/-/carbon-core-2.0.0-alpha.4.tgz#8fc9f9b6c93745b2cc8904447df5d0d4b83be14b"
+  integrity sha512-z96ti7QyMV2QxBb6u+X7iXPFyVo5oPdWoqnD1UJtMd0ybkU05lSA+86/abq/nk2zFT6tvfhOtrhMPkXMJLFKeQ==
 
-"@qlik/react-native-carbon@2.0.0-alpha.18":
-  version "2.0.0-alpha.18"
-  resolved "https://registry.yarnpkg.com/@qlik/react-native-carbon/-/react-native-carbon-2.0.0-alpha.18.tgz#ae813a202f066155f2291d4266b7d668325ebdd8"
-  integrity sha512-Ca12VXatFjU4tvIap7itfdlQPFU5sxPblSGQgG76FKtsgesMHx6SvtlIQn7TW1JfeXRJTVtPR4OMtJQ5Z3w/Ng==
+"@qlik/react-native-carbon@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@qlik/react-native-carbon/-/react-native-carbon-2.0.0.tgz#8c2d6fc4fbb654ec78fbc0398da0b4c45d6854bf"
+  integrity sha512-m1LCIrSkkKu6UEh5ymfeOF22OhK7TtE8hAr511heHHUwK5ethDS4iX1a6pUoi7s5CPhFZiuE26+b1UQJCgB6hg==
 
-"@qlik/react-native-helium@^1.1.0-alpha.14":
-  version "1.1.0-alpha.14"
-  resolved "https://registry.yarnpkg.com/@qlik/react-native-helium/-/react-native-helium-1.1.0-alpha.14.tgz#f2ce9a034afa2a26775b2ca4d1a9ebeaa2ba7a31"
-  integrity sha512-jLI88/ydxHL625pxYDrs0II0GdGtHN6KgEGP4L9mtjIZH1M5KYA7YhCP+6nYha6oZF+hU9mBaGZgnUxWZ0NwuA==
-
-"@qlik/sn-treemap@1.0.0-alpha.12":
-  version "1.0.0-alpha.12"
-  resolved "https://registry.yarnpkg.com/@qlik/sn-treemap/-/sn-treemap-1.0.0-alpha.12.tgz#a7b1a0146ac989d79978c83a782d879407b6b04d"
-  integrity sha512-RfVgB+OrHYRaRfnWVCZn4YAPjK6V16Nm0QkO8R9XLh1fn+Tw0QIDdHUC0L+JnBivUOIYeUizT0drpk5CtKl8lw==
+"@qlik/react-native-helium@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@qlik/react-native-helium/-/react-native-helium-1.2.2.tgz#f780465c021ffd710c1f489dbb8635fdc15d7dd6"
+  integrity sha512-b6+IRCMm5beTm1sQGgkaGzeUpMqDVcibv5xAOkwPWgprkfPYW4ICwH2q0Hb4TLwfNFuLQI2qZO1C1pqYxNwoDw==
 
 "@react-native-async-storage/async-storage@^1.17.6":
   version "1.17.6"
@@ -6247,6 +6245,23 @@ punycode@^2.1.0, punycode@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
+
+qlik-chart-modules@^0.37.0:
+  version "0.37.0"
+  resolved "https://registry.yarnpkg.com/qlik-chart-modules/-/qlik-chart-modules-0.37.0.tgz#6cb736c81f6aba182d1fd86b40ef3e76ecd8e67d"
+  integrity sha512-qLHAMQLBPgu3FDySnCWccw5/ZiB8Xh3J9OF0k6FeAd8GyzKXGqaLAPSQR17EFnBtB2kSsFoDbIJI2lMMd0cp1g==
+
+qlik-modifiers@0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/qlik-modifiers/-/qlik-modifiers-0.5.1.tgz#df81fe57e24fc88f7271e91bc23ab960144667a4"
+  integrity sha512-jQXt3oH7UwO5mhwUf0fHiUMRNutb1Fsq2jjN4NQ5Q0ZvBzhjrJPGcIpMMIcU4tmrYabkXS/GaVMA3Oa38jzpsw==
+
+qlik-object-conversion@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/qlik-object-conversion/-/qlik-object-conversion-0.14.0.tgz#c355e1e9266160ed6ad789fe5864d190918c9cf7"
+  integrity sha512-q3YSnzNpogdTRMGkNYe/5Hw58M44xPlKPShG8KcAO7w7OHTUbNSW0noS097f0S2u56XUIsT9iSNPO4ptOi/Z/Q==
+  dependencies:
+    qlik-modifiers "0.5.1"
 
 query-string@^7.0.0:
   version "7.1.1"

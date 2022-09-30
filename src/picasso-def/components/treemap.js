@@ -235,7 +235,8 @@ export const treemap = () => ({
             type: 'rect',
             width,
             height,
-            fill: 'rgba(0,0,0,0)',
+            fill: 'rgba(255,255,255,0)',
+            opacity: 0,
             x: node.x0,
             y: node.y0,
             data: {

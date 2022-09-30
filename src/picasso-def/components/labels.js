@@ -94,7 +94,6 @@ export const createTextLabels = ({
           y,
           fill: fill ? getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
           baseline: 'text-before-edge',
-          maxWidth: width - verticalPadding,
           wordBreak: 'break-word',
           data: { ...node.data, depth: node.depth },
         });
@@ -127,7 +126,7 @@ const headerText = ({ node, width, fill, valueLables, getContrastingColorTo, ren
     y: top + TREEMAP_LABEL_FONTSIZE / 2,
     fill: fill ? getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
     anchor: 'left',
-    baseline: 'centeral',
+    baseline: 'central',
     maxWidth: width - verticalPadding,
     data: { ...node.data, depth: node.depth },
   });
@@ -167,7 +166,7 @@ export const displayInvalidMessage = ({ rect, text, renderer }) => {
 
 export const calculateSizes = ({ rect, renderer, text }) => {
   const desiredRect = { ...rect };
-  desiredRect.height = rect.height * 0.5; // padding
+  desiredRect.height = rect.height * 0.3; // padding
   // // get the M width
   const W = renderer.measureText({ text: 'W', fontSize: `${desiredRect.height}px`, fontFamily });
 
@@ -192,6 +191,7 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, ge
   const x = node.x0 + Math.abs(width / 2 - bounding.width / 2);
   const y = node.y0 + height / 2;
   const fontHeight = parseInt(fontSize, 10);
+  const fill = getContrastingColorTo(avgColor);
   if (fontHeight > 8) {
     return {
       type: 'text',
@@ -200,7 +200,9 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, ge
       fontSize,
       x,
       y,
-      fill: getContrastingColorTo(avgColor),
+      fill,
+      stroke: getContrastingColorTo(fill), // helium supports stroke
+      strokeWidth: 1,
       opacity: 0.7,
       baseline: 'central',
       data: { ...node.data, depth: node.depth, overlay: true },
