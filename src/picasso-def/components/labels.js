@@ -4,7 +4,7 @@ const TREEMAP_LABEL_FONTSIZE = 12;
 const TREEMAP_VALUE_FONTSIZE = 12;
 const TREEMAP_MESSAGE_SIZE = 16;
 
-const fontFamily = 'System';
+const fontFamily = 'Arial';
 
 export const createTextLabels = ({
   node,
@@ -165,40 +165,45 @@ export const displayInvalidMessage = ({ rect, text, renderer }) => {
   ];
 };
 
+export const calculateSizes = ({ rect, renderer, text }) => {
+  const desiredRect = { ...rect };
+  desiredRect.height = rect.height * 0.5; // padding
+  // // get the M width
+  const W = renderer.measureText({ text: 'W', fontSize: `${desiredRect.height}px`, fontFamily });
+
+  // // get the area
+  const textLength = text.length;
+  const A = desiredRect.width * desiredRect.height;
+  const predicted = A / (W.width * textLength);
+  const predictedBounding = renderer.measureText({ fontSize: `${predicted}px`, text, fontFamily });
+  const ratio = Math.sqrt(desiredRect.width / predictedBounding.width);
+  // // not all devices support subpixel sizes
+  const optimal = parseInt(Math.min(desiredRect.height, predicted * ratio), 10);
+  const fontSize = `${optimal}px`;
+  const bounding = renderer.measureText({ fontSize, text, fontFamily });
+  return { fontSize, bounding };
+};
+
 export const createOverlayLabel = ({ node, avgColor, width, height, renderer, getContrastingColorTo }) => {
-  let text = node.data.label;
-  let textSize = renderer.measureText({
-    text,
-    fontSize: 24,
-    fontFamily,
-  });
-
-  const x = node.x0 + (width - textSize.width) / 2;
-  const y = node.y0 + 18 + (height - textSize.height) / 2;
-
-  if (textSize.width > width - 8) {
-    text = truncate(text, width - 10, renderer, TREEMAP_LABEL_FONTSIZE, fontFamily);
-  }
-
-  textSize = renderer.measureText({
-    text,
-    fontSize: 24,
-    fontFamily,
-  });
-
-  const fitWidth = width - 8;
-  if (textSize.width < fitWidth && textSize.height < height) {
+  const text = node.data.label;
+  const rect = { x: 0, y: 0, width, height };
+  const textMeasure = calculateSizes({ rect, renderer, text });
+  const { fontSize, bounding } = textMeasure;
+  const x = node.x0 + Math.abs(width / 2 - bounding.width / 2);
+  const y = node.y0 + height / 2;
+  const fontHeight = parseInt(fontSize, 10);
+  if (fontHeight > 8) {
     return {
       type: 'text',
       text,
       fontFamily,
-      fontSize: 24,
+      fontSize,
       x,
       y,
       fill: getContrastingColorTo(avgColor),
-      baseline: 'center',
       opacity: 0.7,
-      data: { ...node.data, depth: node.depth },
+      baseline: 'central',
+      data: { ...node.data, depth: node.depth, overlay: true },
     };
   }
   return undefined;

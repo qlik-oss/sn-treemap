@@ -1,10 +1,7 @@
 import { treemap as d3Treemap } from 'd3-hierarchy';
 import { color as d3Color } from 'd3-color';
 import { createTextLabels, displayInvalidMessage, createOverlayLabel } from './labels';
-
-const HEAER_HEIGHT = 28;
-const OUTER_PADDING = 1;
-const STROKE_WIDTH = 0.5;
+import { TREEMAP_DEFINES } from './defines';
 
 function toColor(num) {
   num >>>= 0;
@@ -134,16 +131,16 @@ export const treemap = () => ({
     const root = d3Treemap()
       .size([boundingRect.width, boundingRect.height])
       .round(false)
-      .paddingInner(STROKE_WIDTH)
-      .paddingOuter(OUTER_PADDING)
+      .paddingInner(TREEMAP_DEFINES.STROKE_WIDTH)
+      .paddingOuter(TREEMAP_DEFINES.OUTER_PADDING)
       .paddingTop((node) => {
         // only want headers at level 1
         if (node.depth === 1 && node.height !== 1) {
           const nodeHeight = node.y1 - node.y0;
-          const showLable = nodeHeight > HEAER_HEIGHT * 2;
+          const showLable = nodeHeight > TREEMAP_DEFINES.HEAER_HEIGHT * 2;
           node.header = true;
           node.showLable = showLable;
-          return labels.headers && showLable ? HEAER_HEIGHT : 1;
+          return labels.headers && showLable ? TREEMAP_DEFINES.HEAER_HEIGHT : 1;
         }
         return 1;
       })(dataset);
@@ -153,21 +150,18 @@ export const treemap = () => ({
     // are sent to picasso to render.
     const valueLables = [];
     const overlayNodes = [];
-    const parentNodes = [];
     const rects = [];
+    const parentRects = [];
     const treeHeight = root.height;
+
     const visit = (node, index) => {
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
       if (height * width) {
         const fill = getNodeColor(node, colorScale, headerColor, color, index);
         if (node.header || node.height === 1) {
-          let opacity = 1;
           incrementColor(node, fill);
           if (node.header && height) {
-            if (!node.showLable) {
-              opacity = 0;
-            }
             if (labels.headers) {
               createTextLabels({
                 node,
@@ -197,13 +191,51 @@ export const treemap = () => ({
             });
           }
 
+          if (node.depth === treeHeight - 1) {
+            const path = buildPath(root, node);
+            const childRect = {
+              type: 'rect',
+              width,
+              height,
+              fill,
+              x: node.x0,
+              y: node.y0,
+              data: {
+                ...node.data,
+                depth: node.depth,
+                next: { ...node?.parent?.data },
+                child: true,
+                path,
+              },
+            };
+            rects.push(childRect);
+          } else if (node.header && !isNaN(node.value)) {
+            const childRect = {
+              type: 'rect',
+              width,
+              height,
+              fill,
+              x: node.x0,
+              y: node.y0,
+            };
+            rects.push(childRect);
+          }
+        } else if (node.depth === 2 && treeHeight > 2 && node.data.label) {
+          // only show overlays if headers are enabled, other wise the headers
+          // take precedence
+          node.data.next = node?.parent?.data;
+          node.data.depth = node.depth;
+          overlayNodes.push(node);
+        }
+        if (node.depth - 1 === level) {
+          // this is a decorator rect
           const path = buildPath(root, node);
-          rects.push({
+          node.data.next = node?.parent?.data;
+          const childRect = {
             type: 'rect',
             width,
             height,
-            fill,
-            opacity,
+            fill: 'rgba(0,0,0,0)',
             x: node.x0,
             y: node.y0,
             data: {
@@ -212,16 +244,8 @@ export const treemap = () => ({
               next: { ...node?.parent?.data },
               path,
             },
-          });
-        } else if (node.depth === 2 && treeHeight > 2 && node.data.label) {
-          // only show overlays if headers are enabled, other wise the headers
-          // take precedence
-          node.data.next = node?.parent?.data;
-          node.data.depth = node.depth;
-          overlayNodes.push(node);
-        } else if (node.depth - 1 === level) {
-          node.data.next = node?.parent?.data;
-          parentNodes.push(node);
+          };
+          rects.push(childRect);
         }
       }
 
@@ -252,44 +276,6 @@ export const treemap = () => ({
       }
     });
 
-    const overlayRects = overlayNodes.map((node) => {
-      const height = node.y1 - node.y0;
-      const width = node.x1 - node.x0;
-      const avgColor = getAverageColor(node);
-
-      const path = buildPath(root, node);
-      return {
-        type: 'rect',
-        width,
-        height,
-        fill: 'white',
-        opacity: 0,
-        x: node.x0,
-        y: node.y0,
-        data: {
-          ...node.data,
-          overlayLabel: node.data.label,
-          color: avgColor,
-          path,
-        },
-      };
-    });
-
-    const parentRects = parentNodes.map((node) => {
-      const height = node.y1 - node.y0;
-      const width = node.x1 - node.x0;
-      return {
-        type: 'rect',
-        width,
-        height,
-        fill: 'black',
-        opacity: 0,
-        x: node.x0,
-        y: node.y0,
-        data: { ...node.data, depth: node.depth, parentGroup: true },
-      };
-    });
-
     if (rects.length === 0) {
       return displayInvalidMessage({
         rect: this.rect,
@@ -298,6 +284,6 @@ export const treemap = () => ({
       });
     }
 
-    return [...rects, ...valueLables, ...parentRects, ...overlayLabels, ...overlayRects];
+    return [...rects, ...valueLables, ...overlayLabels, ...parentRects];
   },
 });
