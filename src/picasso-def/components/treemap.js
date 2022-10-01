@@ -1,16 +1,7 @@
 import { treemap as d3Treemap } from 'd3-hierarchy';
-import { color as d3Color } from 'd3-color';
 import { createTextLabels, displayInvalidMessage, createOverlayLabel } from './labels';
 import { TREEMAP_DEFINES } from './defines';
-
-function toColor(num) {
-  num >>>= 0;
-  const b = num & 0xff;
-  const g = (num & 0xff00) >>> 8;
-  const r = (num & 0xff0000) >>> 16;
-  const a = ((num & 0xff000000) >>> 24) / 255;
-  return 'rgba(' + [r, g, b, a].join(',') + ')';
-}
+import { incrementColor, getAverageContrastedColor, getNodeColor } from './colors';
 
 const buildPath = (root, node) => {
   const par = root.path(node);
@@ -24,49 +15,6 @@ const buildPath = (root, node) => {
   });
   path = `${path}/${node.data.select.value}`;
   return path;
-};
-
-const getNodeColor = (node, colorScale, headerColor, colorSettings, colorIndex) => {
-  if (node.header && !isNaN(node.value)) {
-    return headerColor;
-  }
-  if (node.data.expressionColor !== undefined && colorSettings.mode === 'byExpression') {
-    if (colorSettings.measureScheme === 'dc') {
-      const range = colorScale.range();
-      const colorValue = node.data.expressionColor.value.qSubNodes[0].qAttrExps.qValues[0].qNum;
-      const index = Math.trunc(colorValue % range.length);
-      if (range) {
-        return range[index];
-      }
-      return '#000000';
-    }
-    const exp = node.data.expressionColor.value;
-    if (!isNaN(exp)) {
-      return toColor(exp);
-    } else if (node.data.expressionColorText !== undefined) {
-      const hextString = `#${node.data.expressionColorText.value.toString(16)}`;
-      return hextString;
-    }
-  }
-
-  if (node.data?.expressionColor?.label?.qType === 'O') {
-    return colorSettings.others;
-  }
-
-  if (
-    colorScale.type === 'categorical-color' ||
-    (colorSettings.measureScheme === 'dc' && colorSettings.mode !== 'byMeasure')
-  ) {
-    const range = colorScale.range();
-    let colorValue = colorSettings.persistent ? node.data.color.value : colorIndex;
-    if (colorValue < 0) {
-      colorValue = node.data.select.value;
-    }
-    const index = colorValue % range.length;
-    return range[index];
-  }
-
-  return colorScale(node.data.color.value);
 };
 
 export const treemap = () => ({
@@ -91,41 +39,6 @@ export const treemap = () => ({
         }
         return b.value - a.value;
       });
-
-    const incrementColor = (node, fill) => {
-      const sumColor = d3Color(fill);
-      if (sumColor) {
-        const parent = node.depth === 4 ? node.parent.parent : node.parent;
-        const parentSumColor = parent?.sumColor || {
-          r: 0,
-          g: 0,
-          b: 0,
-          count: 0,
-        };
-        parentSumColor.r += sumColor.r;
-        parentSumColor.g += sumColor.g;
-        parentSumColor.b += sumColor.b;
-        parentSumColor.count += 1;
-        parent.sumColor = parentSumColor;
-      }
-    };
-
-    const getAverageColor = (node) => {
-      const { sumColor } = node;
-      if (sumColor) {
-        const average = {
-          r: Math.round(sumColor.r / sumColor.count),
-          g: Math.round(sumColor.g / sumColor.count),
-          b: Math.round(sumColor.b / sumColor.count),
-        };
-        const ar = `rgb(${average.r}, ${average.g}, ${average.b})`;
-        const contrast = getContrastingColorTo(ar);
-        const withAlpha = d3Color(contrast);
-        withAlpha.opacity = 0.7;
-        return withAlpha.toString();
-      }
-      return 'rgba(0, 0, 0, 0.7)';
-    };
 
     const colorScale = this.chart.scale('color');
     const root = d3Treemap()
@@ -160,7 +73,6 @@ export const treemap = () => ({
       if (height * width) {
         const fill = getNodeColor(node, colorScale, headerColor, color, index);
         if (node.header || node.height === 1) {
-          incrementColor(node, fill);
           if (node.header && height) {
             if (labels.headers) {
               createTextLabels({
@@ -192,6 +104,7 @@ export const treemap = () => ({
           }
 
           if (node.depth === treeHeight - 1) {
+            incrementColor(node, fill);
             const path = buildPath(root, node);
             const childRect = {
               type: 'rect',
@@ -228,14 +141,15 @@ export const treemap = () => ({
           overlayNodes.push(node);
         }
         if (node.depth - 1 === level) {
-          // this is a decorator rect
+          // this is a decorator rect for stroke on selections.
           const path = buildPath(root, node);
           node.data.next = node?.parent?.data;
           const childRect = {
             type: 'rect',
             width,
             height,
-            fill: 'rgba(0,0,0,0)',
+            fill: 'rgba(255,255,255,0)',
+            opacity: 0, // this may seem redundant, but it is required. Otherwise during selections picasso will render this square on top
             x: node.x0,
             y: node.y0,
             data: {
@@ -262,10 +176,12 @@ export const treemap = () => ({
     overlayNodes.forEach((node) => {
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
-      const avgColor = getAverageColor(node);
+      const fill = getAverageContrastedColor(node);
+      const stroke = getContrastingColorTo(fill);
       const label = createOverlayLabel({
         node,
-        avgColor,
+        fill,
+        stroke,
         width,
         height,
         renderer: this.renderer,

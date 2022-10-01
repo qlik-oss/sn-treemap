@@ -184,7 +184,7 @@ export const calculateSizes = ({ rect, renderer, text }) => {
   return { fontSize, bounding };
 };
 
-export const createOverlayLabel = ({ node, avgColor, width, height, renderer, getContrastingColorTo }) => {
+export const createOverlayLabel = ({ node, fill, stroke, width, height, renderer }) => {
   const text = node.data.label;
   const rect = { x: 0, y: 0, width, height };
   const textMeasure = calculateSizes({ rect, renderer, text });
@@ -200,7 +200,9 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, ge
       fontSize,
       x,
       y,
-      fill: getContrastingColorTo(avgColor),
+      fill,
+      stroke, // helium supports stroked color
+      strokeWidth: 2,
       opacity: 0.7,
       baseline: 'central',
       data: { ...node.data, depth: node.depth, overlay: true },
