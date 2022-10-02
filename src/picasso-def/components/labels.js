@@ -183,7 +183,7 @@ export const calculateSizes = ({ rect, renderer, text }) => {
   return { fontSize, bounding };
 };
 
-export const createOverlayLabel = ({ node, avgColor, width, height, renderer, getContrastingColorTo }) => {
+export const createOverlayLabel = ({ node, avgColor, width, height, renderer, getContrastingColorTo, level }) => {
   const text = node.data.label;
   const rect = { x: 0, y: 0, width, height };
   const textMeasure = calculateSizes({ rect, renderer, text });
@@ -192,6 +192,7 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, ge
   const y = node.y0 + height / 2;
   const fontHeight = parseInt(fontSize, 10);
   const fill = getContrastingColorTo(avgColor);
+  // only add the data if the current level is less than the overlay level wichi is 2
   if (fontHeight > 8) {
     return {
       type: 'text',
@@ -205,7 +206,14 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, ge
       strokeWidth: 1,
       opacity: 0.7,
       baseline: 'central',
-      data: { ...node.data, depth: node.depth, overlay: true },
+      data:
+        level < 2
+          ? {
+              ...node.data,
+              depth: node.depth,
+              overlay: true,
+            }
+          : undefined,
     };
   }
   return undefined;

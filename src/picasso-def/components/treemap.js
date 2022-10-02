@@ -275,6 +275,7 @@ export const treemap = () => ({
         height,
         renderer: this.renderer,
         getContrastingColorTo,
+        level,
       });
       if (label) {
         overlayLabels.push(label);
