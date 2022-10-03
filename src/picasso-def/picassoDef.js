@@ -120,7 +120,10 @@ export const picassoDef = ({
           },
           props: {
             color: { field },
-            select: { field: `qDimensionInfo/${selectLevel}` },
+            select: {
+              field: `qDimensionInfo/${selectLevel}`,
+              reduce: (values) => (values.length === 1 ? values[0] : undefined),
+            },
             expressionColor,
             expressionColorText,
             isOther: { value: (d, node) => node.data.qElemNo === -3 },
