@@ -1139,10 +1139,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@qlik/carbon-core@2.0.0-alpha.4":
-  version "2.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@qlik/carbon-core/-/carbon-core-2.0.0-alpha.4.tgz#8fc9f9b6c93745b2cc8904447df5d0d4b83be14b"
-  integrity sha512-z96ti7QyMV2QxBb6u+X7iXPFyVo5oPdWoqnD1UJtMd0ybkU05lSA+86/abq/nk2zFT6tvfhOtrhMPkXMJLFKeQ==
+"@qlik/carbon-core@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@qlik/carbon-core/-/carbon-core-2.0.1.tgz#c03e9e7641b2eeb560b3cb41fab1197beb388bef"
+  integrity sha512-qakluJlLhQhAqT0hty9PIzX6twulTH6JMXZOp0YeFIllpXmZoL30Yl5B/hw/BTIRkTsO1lNHswkTNqYrTRsmtg==
 
 "@qlik/react-native-carbon@2.0.0":
   version "2.0.0"
