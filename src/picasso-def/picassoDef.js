@@ -196,8 +196,8 @@ export const picassoDef = ({
   return {
     collections,
     scales,
-    interactions,
     components,
+    interactions,
     strategy: dockLayout(layout, options),
   };
 };

@@ -60,19 +60,7 @@ const supernova = (env) => {
       useEffect(() => {
         if (!state.mounted && selections !== undefined && layout.qHyperCube) {
           state.mounted = true;
-          const settings = picassoDef({
-            layout,
-            theme,
-            env,
-            picassoQ,
-            selectionsApi: selections,
-            showLegend,
-            invalidMessage,
-            translator,
-            options,
-          });
-          const data = { type: 'q', data: layout.qHyperCube, key: 'qHyperCube' };
-          const c = pic.chart({ element, settings, data });
+          const c = pic.chart({ element, settings: {}, data: [] });
           state.selectBrush = c.brush('dataContext');
           state.lassoBrush = c.brush('lassoContext');
           selections.addListener('cleared', () => {

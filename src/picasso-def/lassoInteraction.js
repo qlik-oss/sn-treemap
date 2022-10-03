@@ -2,6 +2,7 @@ export const lassoInteraction = ({ interactionType, picassoQ, selectionsApi }) =
   {
     type: interactionType,
     key: 'hammer',
+    enable: () => true,
     gestures: [
       {
         type: 'Pan',
