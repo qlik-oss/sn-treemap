@@ -7,9 +7,10 @@ Mobile uses react-native.   As such all javascript should work on both the web a
 
 ### Testing mobile
 #### Pre-reqs
-1. Install [react-native dev environment](https://reactnative.dev/docs/0.68/environment-setup). This includes Xcode and Android Studio.
-2. A QCS Account with an API Key
-3. An app with some treemaps
+1. For now a Mac System, until we have automated tests in the cloud
+2. Install [react-native dev environment](https://reactnative.dev/docs/0.68/environment-setup). This includes Xcode and Android Studio.
+3. [A QCS Account with an API Key](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-generate-api-keys.htm)
+4. An app with some treemaps
 
 
 #### Running
