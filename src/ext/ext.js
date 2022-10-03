@@ -1,6 +1,7 @@
 import conversion from 'qlik-object-conversion';
 import pp from './property-definition';
 import dataDefinition from './data-definition';
+import softDefinition from './explore-definition';
 
 function hasValidLayout(layout) {
   return (
@@ -15,7 +16,7 @@ function hasValidLayout(layout) {
 export default function ext(env) {
   return {
     definition: pp(env),
-    // TODO soft properties
+    softDefinition,
     support: {
       cssScaling: false,
       snapshot: hasValidLayout,
