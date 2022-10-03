@@ -312,6 +312,7 @@ Object {
       "type": "native",
     },
     Object {
+      "enable": [Function],
       "gestures": Array [
         Object {
           "events": Object {
