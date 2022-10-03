@@ -2,6 +2,7 @@ import { treemap as d3Treemap } from 'd3-hierarchy';
 import { color as d3Color } from 'd3-color';
 import { createTextLabels, displayInvalidMessage, createOverlayLabel } from './labels';
 import { TREEMAP_DEFINES } from './defines';
+import { setupBrushes } from './setupBrushes.native';
 
 function toColor(num) {
   num >>>= 0;
@@ -75,6 +76,9 @@ export const treemap = () => ({
     const { headerColor, getContrastingColorTo, labels, formatter, level, color, invalidMessage, translator } =
       this.settings.settings;
     const boundingRect = this.rect;
+
+    // this is needed for mobile to setup native selections
+    setupBrushes(this.settings.brush, this.chart);
 
     if (!data.root || data.fields.length === 0) {
       return displayInvalidMessage({
@@ -235,7 +239,8 @@ export const treemap = () => ({
             type: 'rect',
             width,
             height,
-            fill: 'rgba(0,0,0,0)',
+            fill: 'rgba(255,255,255,0)',
+            opacity: 0,
             x: node.x0,
             y: node.y0,
             data: {

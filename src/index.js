@@ -61,7 +61,6 @@ const supernova = (env) => {
         if (!state.mounted && selections !== undefined && layout.qHyperCube) {
           state.mounted = true;
           const c = pic.chart({ element, settings: {}, data: [] });
-
           state.selectBrush = c.brush('dataContext');
           state.lassoBrush = c.brush('lassoContext');
           selections.addListener('cleared', () => {
@@ -84,7 +83,7 @@ const supernova = (env) => {
 
           setChart(c);
         }
-      }, [element, layout, selections, theme]);
+      }, [element, layout, selections, theme, options]);
 
       useEffect(() => {
         if (!chart || layout.qSelectionInfo.qInSelections) {

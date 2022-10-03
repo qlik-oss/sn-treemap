@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Supernova} from '@qlik/react-native-carbon';
 // import your SN here
-import supernova from '@qlik/sn-treemap';
+import supernova from '@nebula.js/react-native-sn-treemap';
 import theme from './theme.json';
 import {useAtomValue} from 'jotai';
 import {currentModelAtom, loadableOpenAppAtom} from '../atoms';
