@@ -18,6 +18,7 @@ Object {
             },
             "select": Object {
               "field": "qDimensionInfo/0",
+              "reduce": [Function],
             },
           },
           "value": [Function],
