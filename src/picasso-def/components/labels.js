@@ -192,7 +192,6 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, ge
   const y = node.y0 + height / 2;
   const fontHeight = parseInt(fontSize, 10);
   const fill = getContrastingColorTo(avgColor);
-  // only add the data if the current level is less than the overlay level wichi is 2
   if (fontHeight > 8) {
     return {
       type: 'text',
