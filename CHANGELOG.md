@@ -1,3 +1,10 @@
+# [1.0.0-alpha.14](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2022-10-04)
+
+
+### Bug Fixes
+
+* change readme ([9b88cec](https://github.com/qlik-oss/sn-treemap/commit/9b88ceca1edad54a433241ec0e2ec40ddb184858))
+
 # [1.0.0-alpha.13](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-10-04)
 
 
