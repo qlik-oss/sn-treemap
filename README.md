@@ -3,7 +3,7 @@ Treemap Supernova
 
 ## Mobile
 ### Preamble
-Mobile uses react-native.   As such all javascript should work on both the web and mobile. However react-native uses a custom JavaScript engine called Hermes.  For rendering picasso charts, mobile uses a hightly optimized rendering engine, called [Helium](https://github.com/qlik-oss/react-native-helium), that uses a GPU backend for Skia.  Skia is the same 2D graphics library used for Canvas in Chrome and Android.  So again, things must be tested to ensure compatiblity.
+Mobile uses react-native.   As such all javascript should work on both the web and mobile. However react-native uses a custom JavaScript engine called Hermes.  For rendering picasso charts, mobile uses a hightly optimized rendering engine, called [Helium](https://github.com/qlik-oss/react-native-helium), that uses a GPU backend for Skia.
 
 RVM is recomended.
 
