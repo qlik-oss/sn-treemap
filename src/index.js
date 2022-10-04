@@ -19,6 +19,7 @@ import { picassoDef } from './picasso-def';
 import { treemap, tooltip, nativeLegend } from './picasso-def/components';
 import { qae } from './qae';
 import { picassoSelections } from './picassoSelections';
+import { auto } from './colors/auto';
 import ext from './ext/ext';
 
 const supernova = (env) => {
@@ -93,7 +94,7 @@ const supernova = (env) => {
         }
       }, [element, layout, selections, theme, options]);
 
-      usePromise(async () => {
+      const [, error] = usePromise(async () => {
         if (!chart || layout.qSelectionInfo.qInSelections) {
           return;
         }
@@ -103,7 +104,7 @@ const supernova = (env) => {
           app,
           translator,
           config: {
-            auto: false, // prevents default auto() to be called internally
+            auto,
             key: 'fill',
           },
         });
@@ -150,6 +151,10 @@ const supernova = (env) => {
         state.selectBrush.end();
         state.lassoBrush.end();
       }, [layout, chart, theme, selections, options]);
+
+      if (error) {
+        throw error;
+      }
     },
   };
 };
