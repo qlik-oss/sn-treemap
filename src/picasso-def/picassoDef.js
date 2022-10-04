@@ -1,4 +1,3 @@
-import { colorScale } from './scales';
 import { getLevel, getNextSelecteDim } from './getLevel';
 import ChartFormatting from './formatting/chart-formatting';
 import { legend } from './legend';
@@ -70,6 +69,8 @@ export const picassoDef = ({
   showLegend,
   invalidMessage,
   translator,
+  colorService,
+  chart,
   options,
 }) => {
   if (!layout.qHyperCube) {
@@ -80,15 +81,11 @@ export const picassoDef = ({
   const selectLevel = Math.min(level, dimLevel);
   const interactionType = env.carbon ? 'kinesics' : 'hammer';
   const interactions = [...tooltipInteraction(), ...lassoInteraction({ interactionType, picassoQ, selectionsApi })];
-  const { color, field } = colorScale({ layout, theme, level });
-  const { expressionColor, expressionColorText } = expressionIsColor(layout);
   const { qMeasureInfo } = layout.qHyperCube;
 
   const formatter = getFormatterForMeasures('', qMeasureInfo.length, qMeasureInfo);
 
-  let scales = {
-    color,
-  };
+  const scales = colorService.getScales();
 
   const collections = [
     {
@@ -119,13 +116,11 @@ export const picassoDef = ({
             return 0;
           },
           props: {
-            color: { field },
             select: {
               field: `qDimensionInfo/${selectLevel}`,
               reduce: (values) => (values.length === 1 ? values[0] : undefined),
             },
-            expressionColor,
-            expressionColorText,
+            ...colorService.getDatumProps(),
             isOther: { value: (d, node) => node.data.qElemNo === -3 },
           },
         },
@@ -141,6 +136,9 @@ export const picassoDef = ({
       settings: {
         formatter,
         labels: layout.labels,
+        box: {
+          fill: colorService.getColor(),
+        },
         color: {
           mode: layout.color.mode,
           measureScheme: layout.color.measureScheme,
@@ -186,10 +184,10 @@ export const picassoDef = ({
     },
   ];
 
-  const treemapLegend = legend({ layout, color });
-  if (treemapLegend && !expressionColor && !expressionColorText && showLegend === true) {
-    scales = { ...scales, ...treemapLegend.scales };
-    components.push(treemapLegend.component);
+  const treemapLegend = legend({ colorService, chart, layout });
+  if (treemapLegend && showLegend === true) {
+    components.push(...treemapLegend.components);
+    interactions[1].gestures.push(...treemapLegend.interactions);
   }
 
   components.push(tooltip({ level, layout, formatter }));
@@ -201,6 +199,7 @@ export const picassoDef = ({
     scales,
     components,
     interactions,
+    palettes: colorService.getPalettes(),
     strategy: dockLayout(layout, options),
   };
 };

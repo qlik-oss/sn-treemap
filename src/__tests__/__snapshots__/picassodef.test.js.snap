@@ -85,6 +85,9 @@ Object {
       },
       "key": "treemap",
       "settings": Object {
+        "box": Object {
+          "fill": undefined,
+        },
         "color": Object {
           "measureScheme": "dc",
           "mode": "byMeasure",
@@ -328,6 +331,7 @@ Object {
       "type": "hammer",
     },
   ],
+  "palettes": undefined,
   "scales": Object {
     "color": Object {
       "data": Object {

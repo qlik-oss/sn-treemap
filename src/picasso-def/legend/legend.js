@@ -1,12 +1,18 @@
-import { catLegend } from './catLegend';
-import { seqLegend } from './seqLegend';
+import { fixNativeLegend } from './nativeLegend';
 
-export const legend = ({ layout, color }) => {
-  if (layout.legend.show) {
-    if (color.type === 'categorical-color') {
-      return catLegend({ color, layout });
+export const legend = ({ colorService, chart, layout }) => {
+  const treemapLegend = colorService.getLegend(
+    {
+      eventName: 'legend',
+      key: 'legend',
+      // viewState: opts.viewState,
+      chart,
+      styleReference: 'object.treemap',
+      // rtl: context.rtl,
     }
-    return seqLegend({ color, layout });
-  }
-  return undefined;
+    // { navigationDisabled }
+  );
+
+  fixNativeLegend(treemapLegend, colorService, layout);
+  return treemapLegend;
 };
