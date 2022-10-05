@@ -21,3 +21,6 @@ coverage
 test/rendering/artifacts
 test/rendering/test-report
 test/rendering/state.json
+
+#pack files
+*.tgz
