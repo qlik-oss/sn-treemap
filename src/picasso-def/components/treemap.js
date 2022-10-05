@@ -1,8 +1,8 @@
 import { treemap as d3Treemap } from 'd3-hierarchy';
-import { color as d3Color } from 'd3-color';
 import { createTextLabels, displayInvalidMessage, createOverlayLabel } from './labels';
 import { TREEMAP_DEFINES } from './defines';
 import { setupBrushes } from './setupBrushes.native';
+import { incrementColor, getAverageColor } from './colorUtils';
 
 const buildPath = (root, node) => {
   const par = root.path(node);
@@ -56,41 +56,6 @@ export const treemap = () => ({
         return b.value - a.value;
       });
 
-    const incrementColor = (node, fill) => {
-      const sumColor = d3Color(fill);
-      if (sumColor) {
-        const parent = node.depth === 4 ? node.parent.parent : node.parent;
-        const parentSumColor = parent?.sumColor || {
-          r: 0,
-          g: 0,
-          b: 0,
-          count: 0,
-        };
-        parentSumColor.r += sumColor.r;
-        parentSumColor.g += sumColor.g;
-        parentSumColor.b += sumColor.b;
-        parentSumColor.count += 1;
-        parent.sumColor = parentSumColor;
-      }
-    };
-
-    const getAverageColor = (node) => {
-      const { sumColor } = node;
-      if (sumColor) {
-        const average = {
-          r: Math.round(sumColor.r / sumColor.count),
-          g: Math.round(sumColor.g / sumColor.count),
-          b: Math.round(sumColor.b / sumColor.count),
-        };
-        const ar = `rgb(${average.r}, ${average.g}, ${average.b})`;
-        const contrast = getContrastingColorTo(ar);
-        const withAlpha = d3Color(contrast);
-        withAlpha.opacity = 0.7;
-        return withAlpha.toString();
-      }
-      return 'rgba(0, 0, 0, 0.7)';
-    };
-
     const root = d3Treemap()
       .size([boundingRect.width, boundingRect.height])
       .round(false)
@@ -119,10 +84,10 @@ export const treemap = () => ({
     const visit = (node) => {
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
-      if (height * width) {
+      const area = height * width;
+      if (area > 0) {
         const fill = getNodeColor(node, headerColor, box, this.chart);
         if (node.header || node.height === 1) {
-          incrementColor(node, fill);
           if (node.header && height) {
             if (labels.headers) {
               createTextLabels({
@@ -154,6 +119,8 @@ export const treemap = () => ({
           }
 
           if (node.depth === treeHeight - 1) {
+            // only consider for leaf nodes
+            incrementColor(node, fill);
             const path = buildPath(root, node);
             const childRect = {
               type: 'rect',
