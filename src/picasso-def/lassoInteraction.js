@@ -1,8 +1,8 @@
-export const lassoInteraction = ({ interactionType, picassoQ, selectionsApi }) => [
+export const lassoInteraction = ({ constraints, interactionType, picassoQ, selectionsApi }) => [
   {
     type: interactionType,
     key: 'hammer',
-    enable: () => true,
+    enable: () => !constraints?.select && !constraints?.active,
     gestures: [
       {
         type: 'Pan',
