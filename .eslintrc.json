@@ -49,7 +49,7 @@
       }
     },
     {
-      "files": ["**/*.native.js"],
+      "files": ["**/*.native.js", "**/*.native.jsx"],
       "rules": {
         "import/no-unresolved": [2, { "ignore": ["@qlik/carbon-core", "react", "react-native"] }],
         "react/jsx-filename-extension": 0,
