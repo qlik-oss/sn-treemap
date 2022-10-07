@@ -89,7 +89,7 @@ export const treemap = () => ({
         const fill = getNodeColor(node, headerColor, box, this.chart);
         if (node.header || node.height === 1) {
           if (node.header && height) {
-            if (labels.headers || labels.auto ) {
+            if (labels.headers || labels.auto) {
               createTextLabels({
                 node,
                 width,
