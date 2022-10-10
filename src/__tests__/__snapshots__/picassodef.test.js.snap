@@ -48,23 +48,6 @@ Object {
               },
             },
           },
-          Object {
-            "context": "lassoContext",
-            "data": Array [
-              "select",
-            ],
-            "filter": [Function],
-            "style": Object {
-              "active": Object {
-                "opacity": [Function],
-                "stroke": "black",
-                "strokeWidth": [Function],
-              },
-              "inactive": Object {
-                "opacity": [Function],
-              },
-            },
-          },
         ],
         "trigger": Array [
           Object {
@@ -293,7 +276,7 @@ Object {
             Object {
               "action": "add",
               "contexts": Array [
-                "lassoContext",
+                "dataContext",
               ],
               "data": Array [
                 "select",

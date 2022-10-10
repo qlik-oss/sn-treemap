@@ -7,7 +7,7 @@ export const lassoBrush = () => ({
         {
           key: 'treemap',
           data: ['select'],
-          contexts: ['lassoContext'],
+          contexts: ['dataContext'],
           action: 'add',
         },
       ],

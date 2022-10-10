@@ -1,4 +1,4 @@
-export const picassoSelections = ({ selectBrush, picassoQ, selections, lasso }) => {
+export const picassoSelections = ({ selectBrush, picassoQ, selections }) => {
   const valueInterceptor = (added) => {
     const brushes = selectBrush.brushes();
     brushes.forEach((b) => {
@@ -20,26 +20,24 @@ export const picassoSelections = ({ selectBrush, picassoQ, selections, lasso }) 
     return a;
   };
 
-  if (!lasso) {
-    selectBrush.on('update', async (added) => {
-      if (!selections.isActive() && added.length > 0) {
-        await selections.begin(['/qHyperCubeDef']);
+  selectBrush.on('update', async (added) => {
+    if (!selections.isActive() && added.length > 0) {
+      await selections.begin(['/qHyperCubeDef']);
+    }
+    if (selections.isActive()) {
+      try {
+        const generated = picassoQ.selections(selectBrush, {});
+        generated.forEach((s) => {
+          if (s?.params?.[0]?.startsWith('/0/')) {
+            s.params[0] = '/qHyperCubeDef';
+          }
+          selections.select(s);
+        });
+      } catch (error) {
+        console.error('Failed to apply selections', error);
       }
-      if (selections.isActive()) {
-        try {
-          const generated = picassoQ.selections(selectBrush, {});
-          generated.forEach((s) => {
-            if (s?.params?.[0]?.startsWith('/0/')) {
-              s.params[0] = '/qHyperCubeDef';
-            }
-            selections.select(s);
-          });
-        } catch (error) {
-          console.error('Failed to apply selections', error);
-        }
-      }
-    });
-  }
+    }
+  });
 
   selectBrush.intercept('set-ranges', rangeInterceptor);
   selectBrush.intercept('toggle-ranges', rangeInterceptor);

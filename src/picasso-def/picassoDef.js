@@ -170,15 +170,6 @@ export const picassoDef = ({
               inactive: inactive(),
             },
           },
-          {
-            filter: (d) => d?.data?.select?.value > -1,
-            context: 'lassoContext',
-            data: ['select'],
-            style: {
-              active: active(),
-              inactive: inactive(),
-            },
-          },
         ],
       },
     },
