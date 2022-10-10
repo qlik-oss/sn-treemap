@@ -65,10 +65,10 @@ export const treemap = () => ({
         // only want headers at level 1
         if (node.depth === 1 && node.height !== 1) {
           const nodeHeight = node.y1 - node.y0;
-          const showLable = nodeHeight > TREEMAP_DEFINES.HEAER_HEIGHT * 2;
+          const showLable = nodeHeight > TREEMAP_DEFINES.HEADER_HEIGHT * 2;
           node.header = true;
           node.showLable = showLable;
-          return labels.headers && showLable ? TREEMAP_DEFINES.HEAER_HEIGHT : 1;
+          return (labels.headers || labels.auto) && showLable ? TREEMAP_DEFINES.HEADER_HEIGHT : 1;
         }
         return 1;
       })(dataset);
@@ -89,7 +89,7 @@ export const treemap = () => ({
         const fill = getNodeColor(node, headerColor, box, this.chart);
         if (node.header || node.height === 1) {
           if (node.header && height) {
-            if (labels.headers) {
+            if (labels.headers || labels.auto) {
               createTextLabels({
                 node,
                 width,
@@ -104,7 +104,7 @@ export const treemap = () => ({
             } else if (labels.overlay) {
               overlayNodes.push(node);
             }
-          } else if (labels.leaves && !node.header) {
+          } else if ((labels.leaves || labels.auto) && !node.header) {
             createTextLabels({
               node,
               width,
@@ -150,7 +150,7 @@ export const treemap = () => ({
             rects.push(childRect);
           }
         } else if (node.depth === 2 && treeHeight > 2 && node.data.label) {
-          // only show overlays if headers are enabled, other wise the headers
+          // only show overlays if headers are disabled, other wise the headers
           // take precedence
           node.data.next = node?.parent?.data;
           node.data.depth = node.depth;

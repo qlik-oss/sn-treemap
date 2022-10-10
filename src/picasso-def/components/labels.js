@@ -1,6 +1,6 @@
 import { truncate, cram } from './text-helper';
 
-const TREEMAP_LABEL_FONTSIZE = 12;
+const TREEMAP_LABEL_FONTSIZE = 14;
 const TREEMAP_VALUE_FONTSIZE = 12;
 const TREEMAP_MESSAGE_SIZE = 16;
 
@@ -82,14 +82,16 @@ export const createTextLabels = ({
           TREEMAP_VALUE_FONTSIZE,
           fontFamily
         );
-        if (valueSize.width < width - verticalPadding && valueSize.height + maxheight < height - 8) {
-          text += `\n${leafValue}`;
+        if (labels.values) {
+          if (valueSize.width < width && valueSize.height + maxheight < height - 8) {
+            text += `\n${leafValue}`;
+          }
         }
         valueLables.push({
           type: 'text',
           text,
           fontFamily,
-          fontSize: TREEMAP_VALUE_FONTSIZE,
+          fontSize: TREEMAP_VALUE_FONTSIZE + 'px',
           x: node.x0 + TREEMAP_VALUE_FONTSIZE / 2,
           y,
           fill: fill ? getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
@@ -110,7 +112,7 @@ const headerText = ({ node, width, fill, valueLables, getContrastingColorTo, ren
     fontSize: TREEMAP_LABEL_FONTSIZE,
     fontFamily,
   });
-  const top = node.y0 + textSize.height;
+  const top = node.y0 + 4;
   if (node.header && !node.showLable) {
     return;
   }
@@ -121,7 +123,7 @@ const headerText = ({ node, width, fill, valueLables, getContrastingColorTo, ren
     type: 'text',
     text,
     fontFamily,
-    fontSize: TREEMAP_LABEL_FONTSIZE,
+    fontSize: TREEMAP_LABEL_FONTSIZE + 'px',
     x: node.x0 + TREEMAP_LABEL_FONTSIZE / 2,
     y: top + TREEMAP_LABEL_FONTSIZE / 2,
     fill: fill ? getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
@@ -153,7 +155,7 @@ export const displayInvalidMessage = ({ rect, text, renderer }) => {
       type: 'text',
       text,
       fontFamily,
-      fontSize: TREEMAP_MESSAGE_SIZE,
+      fontSize: TREEMAP_MESSAGE_SIZE + 'px',
       x: (rect.width - textSize.width) / 2,
       y: (rect.height - textSize.height) / 2,
       fill: 'red',
@@ -202,8 +204,9 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, ge
       y,
       fill,
       stroke: getContrastingColorTo(fill), // helium supports stroke
-      strokeWidth: 1,
-      opacity: 0.7,
+      strokeWidth: 2,
+      strokeFirst: true,
+      opacity: 0.5,
       baseline: 'central',
       data: {
         ...node.data,
