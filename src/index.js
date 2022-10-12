@@ -71,24 +71,15 @@ const supernova = (env) => {
           state.mounted = true;
           const c = pic.chart({ element, settings: {}, data: [] });
           state.selectBrush = c.brush('dataContext');
-          state.lassoBrush = c.brush('lassoContext');
           selections.addListener('cleared', () => {
             state.selectBrush.clear();
-            state.lassoBrush.clear();
           });
 
           selections.addListener('aborted', () => {
             state.selectBrush.end();
-            state.lassoBrush.end();
           });
 
           picassoSelections({ selectBrush: state.selectBrush, picassoQ, selections });
-          picassoSelections({
-            selectBrush: state.lassoBrush,
-            picassoQ,
-            selections,
-            lasso: true,
-          });
 
           setChart(c);
         }
@@ -149,7 +140,6 @@ const supernova = (env) => {
         ];
         chart.update({ data, settings });
         state.selectBrush.end();
-        state.lassoBrush.end();
       }, [layout, chart, theme, selections, options]);
 
       if (error) {

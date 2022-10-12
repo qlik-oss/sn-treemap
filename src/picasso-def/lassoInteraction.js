@@ -15,7 +15,7 @@ export const lassoInteraction = ({ interactionType, picassoQ, selectionsApi }) =
           },
           panend: function onPanEnd(e) {
             this.chart.component('lasso').emit('lassoEnd', e);
-            const brush = this.chart.brush('lassoContext');
+            const brush = this.chart.brush('dataContext');
             if (brush && selectionsApi) {
               setTimeout(() => {
                 const generated = picassoQ.selections(brush, {});
