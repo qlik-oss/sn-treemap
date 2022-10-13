@@ -1,6 +1,7 @@
 import {
   useApp,
   useAppLayout,
+  useConstraints,
   useLayout,
   useElement,
   useEffect,
@@ -50,6 +51,7 @@ const supernova = (env) => {
       const { qLocaleInfo: localeInfo } = useAppLayout();
       const [chart, setChart] = useState(undefined);
       const state = useState({ mounted: false });
+      const constraints = useConstraints();
 
       useEffect(
         () => () => {
@@ -126,6 +128,7 @@ const supernova = (env) => {
           colorService,
           chart,
           options,
+          constraints,
         });
         const data = [
           {
@@ -140,7 +143,7 @@ const supernova = (env) => {
         ];
         chart.update({ data, settings });
         state.selectBrush.end();
-      }, [layout, chart, theme, selections, options]);
+      }, [layout, chart, theme, selections, options, constraints]);
 
       if (error) {
         throw error;

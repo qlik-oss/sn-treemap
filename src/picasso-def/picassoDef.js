@@ -72,6 +72,7 @@ export const picassoDef = ({
   colorService,
   chart,
   options,
+  constraints,
 }) => {
   if (!layout.qHyperCube) {
     return {};
@@ -80,7 +81,10 @@ export const picassoDef = ({
   const dimLevel = getNextSelecteDim(layout);
   const selectLevel = Math.min(level, dimLevel);
   const interactionType = env.carbon ? 'kinesics' : 'hammer';
-  const interactions = [...tooltipInteraction(), ...lassoInteraction({ interactionType, picassoQ, selectionsApi })];
+  const interactions = [
+    ...tooltipInteraction(constraints),
+    ...lassoInteraction({ constraints, interactionType, picassoQ, selectionsApi }),
+  ];
   const { qMeasureInfo } = layout.qHyperCube;
 
   const formatter = getFormatterForMeasures('', qMeasureInfo.length, qMeasureInfo);
@@ -128,6 +132,29 @@ export const picassoDef = ({
     },
   ];
 
+  const allowSelections = !constraints?.select && !constraints?.active;
+
+  const brushSettings = {
+    trigger: [
+      {
+        on: 'tap',
+        contexts: ['dataContext'],
+        data: ['select'],
+      },
+    ],
+    consume: [
+      {
+        filter: (d) => d?.data?.select?.value > -1,
+        context: 'dataContext',
+        data: ['select'],
+        style: {
+          active: active(),
+          inactive: inactive(),
+        },
+      },
+    ],
+  };
+
   const components = [
     {
       type: 'treemap',
@@ -152,26 +179,7 @@ export const picassoDef = ({
         invalidMessage,
         translator,
       },
-      brush: {
-        trigger: [
-          {
-            on: 'tap',
-            contexts: ['dataContext'],
-            data: ['select'],
-          },
-        ],
-        consume: [
-          {
-            filter: (d) => d?.data?.select?.value > -1,
-            context: 'dataContext',
-            data: ['select'],
-            style: {
-              active: active(),
-              inactive: inactive(),
-            },
-          },
-        ],
-      },
+      brush: allowSelections ? brushSettings : undefined,
     },
   ];
 
