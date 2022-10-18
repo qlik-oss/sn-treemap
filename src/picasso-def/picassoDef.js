@@ -1,11 +1,11 @@
 import { getLevel, getNextSelecteDim } from './getLevel';
 import ChartFormatting from './formatting/chart-formatting';
 import { legend } from './legend';
-import { lassoBrush } from './lassoBrush';
-import { lassoInteraction } from './lassoInteraction';
+import createSelectables from './selectables';
 import { tooltip, tooltipInteraction } from './tooltip';
 import { active, inactive } from './brushStyles';
 import { dockLayout } from './dock-layout';
+import gesturesToInteractions from './gesturesToInteractions';
 
 const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {
   let measure;
@@ -41,38 +41,17 @@ const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {
   return formatters;
 };
 
-export const expressionIsColor = (layout) => {
-  let expressionColor;
-  let expressionColorText;
-  if (layout.color.mode === 'byExpression' && layout.color.expressionIsColor) {
-    expressionColor = {
-      field: 'qMeasureInfo/0/qAttrExprInfo/0',
-    };
-    expressionColorText = {
-      field: 'qMeasureInfo/0/qAttrExprInfo/0',
-      value: (v) => {
-        const a = v?.qText.slice(1) || '0';
-        return parseInt(a, 16);
-      },
-    };
-  }
-
-  return { expressionColor, expressionColorText };
-};
-
 export const picassoDef = ({
   layout,
   theme,
   env,
-  picassoQ,
-  selectionsApi,
   showLegend,
   invalidMessage,
   translator,
   colorService,
   chart,
   options,
-  constraints,
+  actions,
 }) => {
   if (!layout.qHyperCube) {
     return {};
@@ -81,15 +60,22 @@ export const picassoDef = ({
   const dimLevel = getNextSelecteDim(layout);
   const selectLevel = Math.min(level, dimLevel);
   const interactionType = env.carbon ? 'kinesics' : 'hammer';
-  const interactions = [
-    ...tooltipInteraction(constraints),
-    ...lassoInteraction({ constraints, interactionType, picassoQ, selectionsApi }),
-  ];
   const { qMeasureInfo } = layout.qHyperCube;
 
   const formatter = getFormatterForMeasures('', qMeasureInfo.length, qMeasureInfo);
 
   const scales = colorService.getScales();
+
+  const treemapLegend = legend({ colorService, chart, layout });
+  const selectables = createSelectables({
+    actions,
+    colorService,
+    isDimensionLocked: false,
+    isSingleSelectionmodels: false,
+    scales,
+    legendComponent: treemapLegend?.components[0],
+  });
+  const gestures = selectables.gestures.sort((a, b) => (b.prio || 0) - (a.prio || 0));
 
   const collections = [
     {
@@ -132,21 +118,12 @@ export const picassoDef = ({
     },
   ];
 
-  const allowSelections = !constraints?.select && !constraints?.active;
-
   const brushSettings = {
-    trigger: [
-      {
-        on: 'tap',
-        contexts: ['dataContext'],
-        data: ['select'],
-      },
-    ],
     consume: [
       {
         filter: (d) => d?.data?.select?.value > -1,
-        context: 'dataContext',
-        data: ['select'],
+        context: 'selection',
+        data: ['select', 'fill'],
         style: {
           active: active(),
           inactive: inactive(),
@@ -179,19 +156,20 @@ export const picassoDef = ({
         invalidMessage,
         translator,
       },
-      brush: allowSelections ? brushSettings : undefined,
+      brush: brushSettings,
     },
   ];
 
-  const treemapLegend = legend({ colorService, chart, layout });
   if (treemapLegend && showLegend === true) {
     components.push(...treemapLegend.components);
-    interactions[1].gestures.push(...treemapLegend.interactions);
+    gestures.unshift(...treemapLegend.interactions);
   }
 
   components.push(tooltip({ level, layout, formatter }));
 
-  components.push(lassoBrush());
+  components.push(...selectables.components);
+
+  const interactions = [...tooltipInteraction(actions), gesturesToInteractions(interactionType, gestures)];
 
   return {
     collections,

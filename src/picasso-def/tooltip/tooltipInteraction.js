@@ -1,11 +1,11 @@
-export const tooltipInteraction = (constraints) => [
+export const tooltipInteraction = (actions) => [
   {
     type: 'native',
     key: 'native',
     events: {
       mousemove(e) {
         const tooltip = this.chart.component('tooltip');
-        if (tooltip && !constraints?.passive) {
+        if (tooltip && actions?.tooltip.enabled()) {
           tooltip.emit('show', e);
         }
       },

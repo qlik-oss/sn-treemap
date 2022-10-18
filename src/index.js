@@ -1,7 +1,6 @@
 import {
   useApp,
   useAppLayout,
-  useConstraints,
   useLayout,
   useElement,
   useEffect,
@@ -19,8 +18,10 @@ import { createPicasso } from './picasso-def/createPicasso';
 import { picassoDef } from './picasso-def';
 import { treemap, tooltip, nativeLegend } from './picasso-def/components';
 import { qae } from './qae';
-import { picassoSelections } from './picassoSelections';
+// import { picassoSelections } from './picassoSelections';
 import { auto } from './colors/auto';
+import useActions from './hooks/use-actions';
+import useSelectionService from './hooks/use-selections';
 import ext from './ext/ext';
 
 const supernova = (env) => {
@@ -51,7 +52,8 @@ const supernova = (env) => {
       const { qLocaleInfo: localeInfo } = useAppLayout();
       const [chart, setChart] = useState(undefined);
       const state = useState({ mounted: false });
-      const constraints = useConstraints();
+      const actions = useActions({ lassoIsAlwaysActive: env.carbon });
+      const selectionService = useSelectionService({ chart, actions });
 
       useEffect(
         () => () => {
@@ -72,23 +74,12 @@ const supernova = (env) => {
         if (!state.mounted && selections !== undefined && layout.qHyperCube) {
           state.mounted = true;
           const c = pic.chart({ element, settings: {}, data: [] });
-          state.selectBrush = c.brush('dataContext');
-          selections.addListener('cleared', () => {
-            state.selectBrush.clear();
-          });
-
-          selections.addListener('aborted', () => {
-            state.selectBrush.end();
-          });
-
-          picassoSelections({ selectBrush: state.selectBrush, picassoQ, selections });
-
           setChart(c);
         }
       }, [element, layout, selections, theme, options]);
 
       const [, error] = usePromise(async () => {
-        if (!chart || layout.qSelectionInfo.qInSelections) {
+        if (!chart || !selectionService || layout.qSelectionInfo.qInSelections) {
           return;
         }
         const colorService = createColorService({
@@ -115,6 +106,8 @@ const supernova = (env) => {
         });
 
         await colorService.initialize({ createConfig });
+        const colorField = colorService.getSettings().field;
+        selectionService.setBrushAliases({ colorField });
 
         const settings = picassoDef({
           layout,
@@ -128,7 +121,7 @@ const supernova = (env) => {
           colorService,
           chart,
           options,
-          constraints,
+          actions,
         });
         const data = [
           {
@@ -142,8 +135,8 @@ const supernova = (env) => {
           ...colorService.getData(),
         ];
         chart.update({ data, settings });
-        state.selectBrush.end();
-      }, [layout, chart, theme, selections, options, constraints]);
+        // state.selectBrush.end();
+      }, [layout, chart, selectionService, theme, selections, options, actions]);
 
       if (error) {
         throw error;

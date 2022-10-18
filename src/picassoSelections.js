@@ -7,7 +7,7 @@ export const picassoSelections = ({ selectBrush, picassoQ, selections }) => {
         selectBrush.clear([]);
       }
     });
-    return added.filter((t) => t.value >= 0).slice(0, -1); // do not allow selection on null or negative value
+    return added.filter((t) => t.value >= 0); // do not allow selection on null or negative value
   };
 
   const rangeInterceptor = (a) => {

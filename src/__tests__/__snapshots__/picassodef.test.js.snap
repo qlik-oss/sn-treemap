@@ -32,9 +32,10 @@ Object {
       "brush": Object {
         "consume": Array [
           Object {
-            "context": "dataContext",
+            "context": "selection",
             "data": Array [
               "select",
+              "fill",
             ],
             "filter": [Function],
             "style": Object {
@@ -47,17 +48,6 @@ Object {
                 "opacity": [Function],
               },
             },
-          },
-        ],
-        "trigger": Array [
-          Object {
-            "contexts": Array [
-              "dataContext",
-            ],
-            "data": Array [
-              "select",
-            ],
-            "on": "tap",
           },
         ],
       },
@@ -270,13 +260,16 @@ Object {
     },
     Object {
       "key": "lasso",
+      "layout": Object {
+        "displayOrder": 99,
+      },
       "settings": Object {
         "brush": Object {
           "components": Array [
             Object {
               "action": "add",
               "contexts": Array [
-                "dataContext",
+                "selection",
               ],
               "data": Array [
                 "select",
@@ -284,6 +277,26 @@ Object {
               "key": "treemap",
             },
           ],
+        },
+        "lasso": Object {
+          "fill": "rgba(0, 0, 0, 0)",
+          "opacity": 0.7,
+          "stroke": "black",
+          "strokeDasharray": Array [],
+          "strokeWidth": 2,
+        },
+        "snapIndicator": Object {
+          "opacity": 0.7,
+          "stroke": "black",
+          "strokeDasharray": "5, 5",
+          "strokeWidth": 2,
+          "threshold": 75,
+        },
+        "startPoint": Object {
+          "opacity": 1,
+          "r": 10,
+          "stroke": "rgba(77, 192, 78, 1)",
+          "strokeWidth": 0,
         },
       },
       "type": "brush-lasso",
@@ -299,14 +312,35 @@ Object {
       "type": "native",
     },
     Object {
-      "enable": [Function],
       "gestures": Array [
         Object {
           "events": Object {
-            "pan": [Function],
-            "panend": [Function],
-            "panstart": [Function],
+            "tap": [Function],
           },
+          "key": "event:tap",
+          "options": Object {
+            "enable": [Function],
+            "event": "tap",
+            "interval": 10,
+            "pointers": 1,
+          },
+          "recognizeWith": undefined,
+          "requireFailure": undefined,
+          "type": "Tap",
+        },
+        Object {
+          "events": Object {
+            "lassoend": [Function],
+            "lassomove": [Function],
+            "lassostart": [Function],
+          },
+          "key": "event:lasso",
+          "options": Object {
+            "enable": [Function],
+            "event": "lasso",
+          },
+          "recognizeWith": undefined,
+          "requireFailure": undefined,
           "type": "Pan",
         },
       ],
