@@ -4,7 +4,7 @@ const TREEMAP_LABEL_FONTSIZE = 14;
 const TREEMAP_VALUE_FONTSIZE = 12;
 const TREEMAP_MESSAGE_SIZE = 16;
 
-const fontFamily = 'Arial';
+const fontFamily = 'Source Sans Pro';
 
 export const createTextLabels = ({
   node,
@@ -92,6 +92,7 @@ export const createTextLabels = ({
           text,
           fontFamily,
           fontSize: TREEMAP_VALUE_FONTSIZE + 'px',
+          fontWeight: 'normal',
           x: node.x0 + TREEMAP_VALUE_FONTSIZE / 2,
           y,
           fill: fill ? getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
@@ -124,6 +125,7 @@ const headerText = ({ node, width, fill, valueLables, getContrastingColorTo, ren
     text,
     fontFamily,
     fontSize: TREEMAP_LABEL_FONTSIZE + 'px',
+    fontWeight: 'normal',
     x: node.x0 + TREEMAP_LABEL_FONTSIZE / 2,
     y: top + TREEMAP_LABEL_FONTSIZE / 2,
     fill: fill ? getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
@@ -156,6 +158,7 @@ export const displayInvalidMessage = ({ rect, text, renderer }) => {
       text,
       fontFamily,
       fontSize: TREEMAP_MESSAGE_SIZE + 'px',
+      fontWeight: 'normal',
       x: (rect.width - textSize.width) / 2,
       y: (rect.height - textSize.height) / 2,
       fill: 'red',
@@ -166,31 +169,11 @@ export const displayInvalidMessage = ({ rect, text, renderer }) => {
   ];
 };
 
-export const calculateSizes = ({ rect, renderer, text }) => {
-  const desiredRect = { ...rect };
-  desiredRect.height = rect.height * 0.3; // padding
-  // // get the M width
-  const W = renderer.measureText({ text: 'W', fontSize: `${desiredRect.height}px`, fontFamily });
-
-  // // get the area
-  const textLength = text.length;
-  const A = desiredRect.width * desiredRect.height;
-  const predicted = A / (W.width * textLength);
-  const predictedBounding = renderer.measureText({ fontSize: `${predicted}px`, text, fontFamily });
-  const ratio = Math.sqrt(desiredRect.width / predictedBounding.width);
-  // // not all devices support subpixel sizes
-  const optimal = parseInt(Math.min(desiredRect.height, predicted * ratio), 10);
-  const fontSize = `${optimal}px`;
-  const bounding = renderer.measureText({ fontSize, text, fontFamily });
-  return { fontSize, bounding };
-};
-
-export const createOverlayLabel = ({ node, avgColor, width, height, renderer, getContrastingColorTo }) => {
+export const createOverlayLabel = ({ node, avgColor, width, height, getContrastingColorTo }) => {
   const text = node.data.label;
-  const rect = { x: 0, y: 0, width, height };
-  const textMeasure = calculateSizes({ rect, renderer, text });
-  const { fontSize, bounding } = textMeasure;
-  const x = node.x0 + Math.abs(width / 2 - bounding.width / 2);
+  const optimal = Math.round(0.1 * Math.sqrt(2 * width * height));
+  const fontSize = `${optimal}px`;
+  const x = node.x0 + Math.abs(width / 2);
   const y = node.y0 + height / 2;
   const fontHeight = parseInt(fontSize, 10);
   const fill = getContrastingColorTo(avgColor);
@@ -200,14 +183,14 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, ge
       text,
       fontFamily,
       fontSize,
+      fontWeight: 'bold',
       x,
       y,
       fill,
       stroke: getContrastingColorTo(fill), // helium supports stroke
-      strokeWidth: 2,
-      strokeFirst: true,
+      strokeWidth: 1,
       opacity: 0.5,
-      baseline: 'central',
+      anchor: 'center',
       data: {
         ...node.data,
         depth: node.depth,
