@@ -33,7 +33,7 @@ const getNodeColor = (node, headerColor, box, chart) => {
 export const treemap = () => ({
   require: ['chart', 'renderer', 'element'],
   render({ data }) {
-    const { headerColor, getContrastingColorTo, labels, formatter, level, invalidMessage, translator, box } =
+    const { headerColor, labels, formatter, level, invalidMessage, translator, box, theme } =
       this.settings.settings;
     const boundingRect = this.rect;
 
@@ -45,6 +45,7 @@ export const treemap = () => ({
         rect: this.rect,
         renderer: this.renderer,
         text: translator.translate('InvalidVisualization'),
+        theme,
       });
     }
     const dataset = data.root
@@ -98,8 +99,8 @@ export const treemap = () => ({
                 valueLables,
                 labels,
                 formatter,
-                getContrastingColorTo,
                 renderer: this.renderer,
+                theme,
               });
             } else if (labels.overlay) {
               overlayNodes.push(node);
@@ -113,8 +114,8 @@ export const treemap = () => ({
               valueLables,
               labels,
               formatter,
-              getContrastingColorTo,
               renderer: this.renderer,
+              theme,
             });
           }
 
@@ -199,7 +200,7 @@ export const treemap = () => ({
         width,
         height,
         renderer: this.renderer,
-        getContrastingColorTo,
+        theme,
       });
       if (label) {
         overlayLabels.push(label);
@@ -211,6 +212,7 @@ export const treemap = () => ({
         rect: this.rect,
         renderer: this.renderer,
         text: invalidMessage,
+        theme,
       });
     }
 

@@ -4,19 +4,7 @@ const TREEMAP_LABEL_FONTSIZE = 14;
 const TREEMAP_VALUE_FONTSIZE = 12;
 const TREEMAP_MESSAGE_SIZE = 16;
 
-const fontFamily = 'Source Sans Pro';
-
-export const createTextLabels = ({
-  node,
-  width,
-  height,
-  fill,
-  valueLables,
-  labels,
-  formatter,
-  getContrastingColorTo,
-  renderer,
-}) => {
+export const createTextLabels = ({ node, width, height, fill, valueLables, labels, formatter, renderer, theme }) => {
   const area = width * height;
   if (area && node?.data?.label) {
     if (node.header) {
@@ -25,10 +13,10 @@ export const createTextLabels = ({
         width,
         height,
         fill,
-        getContrastingColorTo,
         renderer,
         valueLables,
         labels,
+        theme,
       });
       return;
     }
@@ -39,10 +27,11 @@ export const createTextLabels = ({
     const texts = wantedText.split(/(\s+)/).filter((s) => s !== ' ');
     // find maxLength
     const maxChars = texts.reduce((prev, current) => (prev.length > current.length ? prev : current));
-
+    const fontFamily = theme.getStyle('object.treemap', 'leaf.label', 'fontFamily') || 'Source Sans Pro';
+    const fontSize = theme.getStyle('object.treemap', 'leaf.label', 'fontSize') || TREEMAP_LABEL_FONTSIZE + 'px';
     const textSize = renderer.measureText({
       text: maxChars,
-      fontSize: TREEMAP_VALUE_FONTSIZE,
+      fontSize,
       fontFamily,
     });
 
@@ -58,7 +47,7 @@ export const createTextLabels = ({
           acc +
           renderer.measureText({
             text: cur,
-            fontSize: TREEMAP_VALUE_FONTSIZE,
+            fontSize,
             fontFamily,
           }).height,
         0
@@ -70,16 +59,16 @@ export const createTextLabels = ({
         leafValue = formatter[0].formatValue(node.data.value);
         const valueSize = renderer.measureText({
           text: leafValue,
-          fontSize: TREEMAP_VALUE_FONTSIZE,
+          fontSize,
           fontFamily,
         });
 
         text = cram(
           text,
           { width: width - 8, height },
-          (val) => renderer.measureText({ text: val, fontFamily, fontSize: TREEMAP_VALUE_FONTSIZE }),
+          (val) => renderer.measureText({ text: val, fontFamily, fontSize }),
           renderer,
-          TREEMAP_VALUE_FONTSIZE,
+          fontSize,
           fontFamily
         );
         if (labels.values) {
@@ -91,11 +80,11 @@ export const createTextLabels = ({
           type: 'text',
           text,
           fontFamily,
-          fontSize: TREEMAP_VALUE_FONTSIZE + 'px',
+          fontSize,
           fontWeight: 'normal',
-          x: node.x0 + TREEMAP_VALUE_FONTSIZE / 2,
+          x: node.x0 + Math.abs(parseInt(fontSize, 10) / 2),
           y,
-          fill: fill ? getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
+          fill: fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
           baseline: 'text-before-edge',
           wordBreak: 'break-word',
           data: { ...node.data, depth: node.depth },
@@ -105,12 +94,14 @@ export const createTextLabels = ({
   }
 };
 
-const headerText = ({ node, width, fill, valueLables, getContrastingColorTo, renderer }) => {
+const headerText = ({ node, width, fill, valueLables, renderer, theme }) => {
   const verticalPadding = 12;
   let text = node.data.label;
+  const fontFamily = theme.getStyle('object.treemap', 'branch.label', 'fontFamily') || 'Source Sans Pro';
+  const fontSize = theme.getStyle('object.treemap', 'branch.label', 'fontSize') || TREEMAP_VALUE_FONTSIZE + 'px';
   const textSize = renderer.measureText({
     text,
-    fontSize: TREEMAP_LABEL_FONTSIZE,
+    fontSize,
     fontFamily,
   });
   const top = node.y0 + 4;
@@ -118,17 +109,17 @@ const headerText = ({ node, width, fill, valueLables, getContrastingColorTo, ren
     return;
   }
   if (textSize.width > width - 8) {
-    text = truncate(text, width - 10, renderer, TREEMAP_LABEL_FONTSIZE, fontFamily);
+    text = truncate(text, width - 10, renderer, fontSize, fontFamily);
   }
   valueLables.push({
     type: 'text',
     text,
     fontFamily,
-    fontSize: TREEMAP_LABEL_FONTSIZE + 'px',
+    fontSize,
     fontWeight: 'normal',
-    x: node.x0 + TREEMAP_LABEL_FONTSIZE / 2,
-    y: top + TREEMAP_LABEL_FONTSIZE / 2,
-    fill: fill ? getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
+    x: node.x0 + parseInt(fontSize, 10) / 2,
+    y: top + parseInt(fontSize, 10) / 2,
+    fill: fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
     anchor: 'left',
     baseline: 'central',
     maxWidth: width - verticalPadding,
@@ -136,10 +127,12 @@ const headerText = ({ node, width, fill, valueLables, getContrastingColorTo, ren
   });
 };
 
-export const displayInvalidMessage = ({ rect, text, renderer }) => {
+export const displayInvalidMessage = ({ rect, text, renderer, theme }) => {
+  const fontFamily = theme.getStyle('object.treemap', 'label.value', 'fontFamily') || 'Source Sans Pro';
+  const fontSize = theme.getStyle('object.treemap', 'label.value', 'fontSize') || TREEMAP_MESSAGE_SIZE + 'px';
   const textSize = renderer.measureText({
     text,
-    fontSize: TREEMAP_MESSAGE_SIZE,
+    fontSize,
     fontFamily,
   });
 
@@ -169,14 +162,15 @@ export const displayInvalidMessage = ({ rect, text, renderer }) => {
   ];
 };
 
-export const createOverlayLabel = ({ node, avgColor, width, height, getContrastingColorTo }) => {
+export const createOverlayLabel = ({ node, avgColor, width, height, theme }) => {
   const text = node.data.label;
+  const fontFamily = theme.getStyle('object.treemap', 'label.value', 'fontFamily') || 'Source Sans Pro';
   const optimal = Math.round(0.1 * Math.sqrt(2 * width * height));
   const fontSize = `${optimal}px`;
   const x = node.x0 + Math.abs(width / 2);
   const y = node.y0 + height / 2;
   const fontHeight = parseInt(fontSize, 10);
-  const fill = getContrastingColorTo(avgColor);
+  const fill = theme.getContrastingColorTo(avgColor);
   if (fontHeight > 8) {
     return {
       type: 'text',
@@ -187,7 +181,7 @@ export const createOverlayLabel = ({ node, avgColor, width, height, getContrasti
       x,
       y,
       fill,
-      stroke: getContrastingColorTo(fill), // helium supports stroke
+      stroke: theme.getContrastingColorTo(fill), // helium supports stroke
       strokeWidth: 1,
       opacity: 0.5,
       anchor: 'center',
