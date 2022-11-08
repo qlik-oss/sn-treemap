@@ -136,7 +136,7 @@ const supernova = (env) => {
         ];
         chart.update({ data, settings });
         // state.selectBrush.end();
-      }, [layout, chart, selectionService, theme, selections, options, actions]);
+      }, [layout, chart, selectionService, theme.name(), selections, options, actions]);
 
       if (error) {
         throw error;
