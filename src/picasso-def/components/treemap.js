@@ -33,8 +33,7 @@ const getNodeColor = (node, headerColor, box, chart) => {
 export const treemap = () => ({
   require: ['chart', 'renderer', 'element'],
   render({ data }) {
-    const { headerColor, labels, formatter, level, invalidMessage, translator, box, theme } =
-      this.settings.settings;
+    const { headerColor, labels, formatter, level, invalidMessage, translator, box, theme } = this.settings.settings;
     const boundingRect = this.rect;
 
     // this is needed for mobile to setup native selections
