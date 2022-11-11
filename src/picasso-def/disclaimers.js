@@ -62,6 +62,9 @@ function infoComponent(disclaimerLabel, translator) {
 }
 
 export function getInfoDisclaimer(layout, translator) {
+  if (layout.showDisclaimer === false) {
+    return undefined;
+  }
   if (negativeOrZeroValues(layout)) {
     return infoComponent('NegativeOrZeroValues', translator);
   }
