@@ -1,8 +1,9 @@
+import customTooltipNodes from '../custom-tooltip/picasso-definitions/nodes';
 import { getLevel, getNextSelecteDim } from './getLevel';
 import ChartFormatting from './formatting/chart-formatting';
 import { legend } from './legend';
 import createSelectables from './selectables';
-import { tooltip, tooltipInteraction } from './tooltip';
+import createTooltipService from './tooltip/service';
 import { active, inactive } from './brushStyles';
 import { dockLayout } from './dock-layout';
 import gesturesToInteractions from './gesturesToInteractions';
@@ -52,6 +53,8 @@ export const picassoDef = ({
   chart,
   options,
   actions,
+  customTooltipService,
+  properties,
 }) => {
   if (!layout.qHyperCube) {
     return {};
@@ -77,6 +80,21 @@ export const picassoDef = ({
   });
   const gestures = selectables.gestures.sort((a, b) => (b.prio || 0) - (a.prio || 0));
 
+  const tooltipService = createTooltipService({
+    chart,
+    actions,
+    translator,
+    rtl: false, // TODO
+    colorService,
+    theme,
+    custom: customTooltipService,
+    properties,
+    level,
+    layout,
+    formatter,
+  });
+
+  const dimensionCount = layout.qHyperCube.qDimensionInfo.length;
   const collections = [
     {
       key: 'hierarchy',
@@ -112,6 +130,8 @@ export const picassoDef = ({
             },
             ...colorService.getDatumProps(),
             isOther: { value: (d, node) => node.data.qElemNo === -3 },
+            customTooltipAttrExps:
+              dimensionCount !== 0 ? customTooltipNodes.getNode(layout, { dimensionCount }) : undefined,
           },
         },
       },
@@ -165,11 +185,13 @@ export const picassoDef = ({
     gestures.unshift(...treemapLegend.interactions);
   }
 
-  components.push(tooltip({ level, layout, formatter }));
+  components.push(...tooltipService.getComponents());
+  const tooltipInteractions = tooltipService.getInteractions();
+  gestures.push(...tooltipInteractions.gestures);
 
   components.push(...selectables.components);
 
-  const interactions = [...tooltipInteraction(actions), gesturesToInteractions(interactionType, gestures)];
+  const interactions = [tooltipInteractions.native, gesturesToInteractions(interactionType, gestures)];
 
   return {
     collections,

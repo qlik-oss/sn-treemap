@@ -63,7 +63,7 @@
     "picasso-plugin-q": "^1.2.1",
     "picasso.js": "^1.2.1",
     "prettier": "2.7.1",
-    "qlik-chart-modules": "0.41.0",
+    "qlik-chart-modules": "0.44.0",
     "qlik-object-conversion": "0.14.0",
     "typescript": "^4.1.3"
   },

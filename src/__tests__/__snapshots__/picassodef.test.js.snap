@@ -11,6 +11,10 @@ Object {
             "color": Object {
               "field": "qMeasureInfo/0",
             },
+            "customTooltipAttrExps": Object {
+              "field": "qDimensionInfo/0",
+              "value": [Function],
+            },
             "expressionColor": undefined,
             "expressionColorText": undefined,
             "isOther": Object {
@@ -265,14 +269,44 @@ Object {
       "type": "treemap",
     },
     Object {
-      "key": "tooltip",
+      "beforeMount": [Function],
+      "beforeUpdate": [Function],
+      "destroyed": [Function],
+      "key": "tooltip-qcm",
+      "layout": Object {
+        "displayOrder": 3,
+      },
       "settings": Object {
+        "afterHide": [Function],
+        "afterShow": [Function],
+        "appendTo": [Function],
         "content": [Function],
-        "duration": 2500,
+        "direction": "ltr",
+        "duration": 8000,
         "extract": [Function],
-        "placement": Object {
-          "area": "target",
-          "type": "bounds",
+        "filter": [Function],
+        "placement": [Function],
+      },
+      "show": true,
+      "style": Object {
+        "arrow": Object {
+          "color": "#404040",
+        },
+        "cell": Object {
+          "hyphens": "auto",
+          "max-width": "180px",
+          "overflow-wrap": "break-word",
+          "word-break": "break-word",
+          "word-wrap": "break-word",
+        },
+        "content": Object {
+          "background": "rgba(64, 64, 64, 0.9)",
+          "border-spacing": "4px",
+          "display": "table",
+          "empty-cells": "show",
+          "fontFamily": "'Source Sans Pro', 'Arial', 'sans-serif'",
+          "fontSize": "13px",
+          "opacity": "1",
         },
       },
       "type": "tooltip",
@@ -326,8 +360,9 @@ Object {
       "events": Object {
         "mouseleave": [Function],
         "mousemove": [Function],
+        "mouseup": [Function],
+        "wheel": [Function],
       },
-      "key": "native",
       "type": "native",
     },
     Object {
@@ -361,6 +396,18 @@ Object {
           "recognizeWith": undefined,
           "requireFailure": undefined,
           "type": "Pan",
+        },
+        Object {
+          "events": Object {
+            "tooltipTap": [Function],
+          },
+          "key": "event:tooltipTap",
+          "options": Object {
+            "enable": [Function],
+            "event": "tooltipTap",
+          },
+          "recognizeWith": "tap",
+          "type": "Tap",
         },
       ],
       "key": "hammer",

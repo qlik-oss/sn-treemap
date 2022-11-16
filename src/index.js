@@ -4,6 +4,7 @@ import {
   useLayout,
   useElement,
   useEffect,
+  useEmbed,
   useModel,
   useState,
   usePromise,
@@ -25,6 +26,8 @@ import useSelectionService from './hooks/use-selections';
 import useViewState from './hooks/use-viewstate';
 import setupSnapshot from './snapshot';
 import ext from './ext/ext';
+import createCustomTooltipService from './custom-tooltip/service';
+import customTooltipMigrators from './custom-tooltip/migrators';
 
 const supernova = (env) => {
   const { pic, picassoQ } = createPicasso({ renderer: env.renderer });
@@ -56,6 +59,7 @@ const supernova = (env) => {
       const state = useState({ mounted: false });
       const actions = useActions({ lassoIsAlwaysActive: env.carbon });
       const selectionService = useSelectionService({ chart, actions });
+      const embed = useEmbed();
       const viewState = useViewState();
       const colorService = createColorService({
         picasso: pic,
@@ -108,9 +112,25 @@ const supernova = (env) => {
           },
         });
 
+        const customTooltipService = createCustomTooltipService({
+          flags: env.flags,
+          layout,
+          app,
+          model,
+          picasso: pic,
+          chart,
+          translator,
+          localeInfo,
+          embed,
+          options,
+        });
+
+        const properties = model && !layout.snapshotData ? await model.getEffectiveProperties() : undefined;
         await colorService.initialize({ createConfig });
         const colorField = colorService.getSettings().field;
         selectionService.setBrushAliases({ colorField });
+
+        customTooltipMigrators.attrExpr.updateProperties(model, layout);
 
         const settings = picassoDef({
           layout,
@@ -125,6 +145,8 @@ const supernova = (env) => {
           chart,
           options,
           actions,
+          customTooltipService,
+          properties,
         });
         const data = [
           {
