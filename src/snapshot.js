@@ -4,6 +4,7 @@
 import { onTakeSnapshot, useImperativeHandle, useElement } from '@nebula.js/stardust';
 import getLegendScrollOffset from './util/legend-scroll-offset';
 import attachSnapshotMeta from './util/attach-snapshot-meta';
+
 const KEY = 'legend-cat';
 
 export default function setupSnapshot({ chart, viewState, colorService }) {
