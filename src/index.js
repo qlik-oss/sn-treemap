@@ -22,6 +22,8 @@ import { qae } from './qae';
 import { auto } from './colors/auto';
 import useActions from './hooks/use-actions';
 import useSelectionService from './hooks/use-selections';
+import useViewState from './hooks/use-viewstate';
+import setupSnapshot from './snapshot';
 import ext from './ext/ext';
 
 const supernova = (env) => {
@@ -54,6 +56,17 @@ const supernova = (env) => {
       const state = useState({ mounted: false });
       const actions = useActions({ lassoIsAlwaysActive: env.carbon });
       const selectionService = useSelectionService({ chart, actions });
+      const viewState = useViewState();
+      const colorService = createColorService({
+        picasso: pic,
+        model,
+        app,
+        translator,
+        config: {
+          auto,
+          key: 'fill',
+        },
+      });
 
       useEffect(
         () => () => {
@@ -82,16 +95,6 @@ const supernova = (env) => {
         if (!chart || !selectionService || layout.qSelectionInfo.qInSelections) {
           return;
         }
-        const colorService = createColorService({
-          picasso: pic,
-          model,
-          app,
-          translator,
-          config: {
-            auto,
-            key: 'fill',
-          },
-        });
 
         const createConfig = ({ getUseBaseColors }) => ({
           theme,
@@ -141,6 +144,7 @@ const supernova = (env) => {
       if (error) {
         throw error;
       }
+      setupSnapshot({ element, chart, viewState, colorService });
     },
   };
 };
