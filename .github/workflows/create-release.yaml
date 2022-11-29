@@ -1,0 +1,57 @@
+name: "Create release"
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-type:
+        type: choice
+        description: Pre release?
+        options:
+        - No pre release
+        - alpha
+        - beta
+        - rc
+      dry:
+        type: boolean
+        description: Dry run
+        default: true
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: git config
+      run: |
+        git config user.name "github-action"
+        git config user.email "github-action@noreply.github.com"
+
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+
+    - name: build sn-treemap
+      run: |
+        yarn install --frozen-lockfile
+        yarn lint
+        yarn build
+        yarn test
+
+    - name: Add npm publish token to .npmrc
+      run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+    - name: yarn release
+      run: |
+        echo dry-run is ${{ inputs.dry }}
+        [[ "${{ inputs.dry }}" == "true" ]] && \
+        DRY="--dry-run" || DRY=""
+
+        [[ "${{ inputs.release-type }}" == "No pre release" ]] && \
+        yarn release $DRY || \
+        yarn release --preRelease=${{ inputs.release-type }} $DRY
+
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
