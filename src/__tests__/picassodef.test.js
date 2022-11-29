@@ -29,6 +29,7 @@ describe('Treemap picassodef render', () => {
       getColor: () => undefined,
       getLegend: () => undefined,
       getPalettes: () => undefined,
+      getSettings: () => ({}),
     };
     const data = picassoDef({ layout, theme: _theme.externalAPI, env: {}, colorService });
     expect(data).toMatchSnapshot();
