@@ -37,7 +37,7 @@ jobs:
         yarn test
 
     - name: Add npm publish token to .npmrc
-      run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+      run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_SECRET }}
     - name: yarn release
       run: |
         echo dry-run is ${{ inputs.dry }}
@@ -49,4 +49,4 @@ jobs:
         yarn release --preRelease=${{ inputs.release-type }} $DRY
 
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
