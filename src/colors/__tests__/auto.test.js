@@ -23,8 +23,8 @@ describe('auto color', () => {
     };
     const result = auto({ defaultAuto, layout });
     expect(result).toMatchInlineSnapshot(`
-      Object {
-        "byDimDef": Object {
+      {
+        "byDimDef": {
           "activeDimensionIndex": 0,
         },
         "mode": "byDimension",
