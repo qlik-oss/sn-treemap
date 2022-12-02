@@ -11,7 +11,7 @@ describe('Treemap picassodef render', () => {
     const _theme = themeFn();
     const options = {
       direction: 'ltr',
-    }
+    };
     const colorService = {
       getDatumProps: () => ({
         color: {
