@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Treemap picassodef render should render ok 1`] = `
-{
-  "collections": [
-    {
-      "data": {
-        "hierarchy": {
+Object {
+  "collections": Array [
+    Object {
+      "data": Object {
+        "hierarchy": Object {
           "label": [Function],
-          "props": {
-            "color": {
+          "props": Object {
+            "color": Object {
               "field": "qMeasureInfo/0",
             },
-            "customTooltipAttrExps": {
+            "customTooltipAttrExps": Object {
               "field": "qDimensionInfo/0",
               "value": [Function],
             },
             "expressionColor": undefined,
             "expressionColorText": undefined,
-            "isOther": {
+            "isOther": Object {
               "value": [Function],
             },
-            "select": {
+            "select": Object {
               "field": "qDimensionInfo/0",
               "reduce": [Function],
             },
@@ -31,52 +31,52 @@ exports[`Treemap picassodef render should render ok 1`] = `
       "key": "hierarchy",
     },
   ],
-  "components": [
-    {
-      "brush": {
-        "consume": [
-          {
+  "components": Array [
+    Object {
+      "brush": Object {
+        "consume": Array [
+          Object {
             "context": "selection",
-            "data": [
+            "data": Array [
               "select",
               "fill",
             ],
             "filter": [Function],
-            "style": {
-              "active": {
+            "style": Object {
+              "active": Object {
                 "opacity": [Function],
                 "stroke": "black",
                 "strokeWidth": [Function],
               },
-              "inactive": {
+              "inactive": Object {
                 "opacity": [Function],
               },
             },
           },
         ],
       },
-      "data": {
-        "collection": {
+      "data": Object {
+        "collection": Object {
           "key": "hierarchy",
         },
       },
       "key": "treemap",
-      "settings": {
-        "box": {
+      "settings": Object {
+        "box": Object {
           "fill": undefined,
         },
-        "color": {
+        "color": Object {
           "measureScheme": "dc",
           "mode": "byMeasure",
           "others": "#a5a5a5",
           "persistent": false,
         },
-        "formatter": [
+        "formatter": Array [
           NumDateTimeFormatter {
             "_dateFormatter": DateFormatter {
-              "localeInfo": {
-                "qCalendarStrings": {
-                  "qDayNames": [
+              "localeInfo": Object {
+                "qCalendarStrings": Object {
+                  "qDayNames": Array [
                     "Mon",
                     "Tue",
                     "Wed",
@@ -85,7 +85,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
                     "Sat",
                     "Sun",
                   ],
-                  "qLongDayNames": [
+                  "qLongDayNames": Array [
                     "Monday",
                     "Tuesday",
                     "Wednesday",
@@ -94,7 +94,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
                     "Saturday",
                     "Sunday",
                   ],
-                  "qLongMonthNames": [
+                  "qLongMonthNames": Array [
                     "January",
                     "February",
                     "March",
@@ -108,7 +108,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
                     "November",
                     "December",
                   ],
-                  "qMonthNames": [
+                  "qMonthNames": Array [
                     "Jan",
                     "Feb",
                     "Mar",
@@ -124,7 +124,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
                   ],
                 },
               },
-              "locale_days": [
+              "locale_days": Array [
                 "Monday",
                 "Tuesday",
                 "Wednesday",
@@ -133,7 +133,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
                 "Saturday",
                 "Sunday",
               ],
-              "locale_days_abbr": [
+              "locale_days_abbr": Array [
                 "Mon",
                 "Tue",
                 "Wed",
@@ -142,7 +142,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
                 "Sat",
                 "Sun",
               ],
-              "locale_months": [
+              "locale_months": Array [
                 "January",
                 "February",
                 "March",
@@ -156,7 +156,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
                 "November",
                 "December",
               ],
-              "locale_months_abbr": [
+              "locale_months_abbr": Array [
                 "Jan",
                 "Feb",
                 "Mar",
@@ -173,9 +173,9 @@ exports[`Treemap picassodef render should render ok 1`] = `
               "pattern": "0.##A",
             },
             "_numberFormatter": NumberFormatter {
-              "_prepared": {
+              "_prepared": Object {
                 "negative": false,
-                "positive": {
+                "positive": Object {
                   "abbreviate": true,
                   "d": ".",
                   "decTemp": ".",
@@ -192,7 +192,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
                   "temp": 2,
                 },
               },
-              "abbreviations": {
+              "abbreviations": Object {
                 "-12": "p",
                 "-15": "f",
                 "-18": "a",
@@ -216,17 +216,17 @@ exports[`Treemap picassodef render should render ok 1`] = `
               "thousandDelimiter": "",
               "type": "U",
             },
-            "_prepared": {
+            "_prepared": Object {
               "d": undefined,
               "pattern": "0.##A",
               "t": undefined,
             },
             "decimalDelimiter": ".",
-            "localeInfo": {},
+            "localeInfo": Object {},
             "pattern": "0.##A",
             "thousandDelimiter": "",
             "type": "U",
-            "values": {
+            "values": Object {
               "max": 79336,
               "min": 6422,
               "range": 72914,
@@ -235,7 +235,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
         ],
         "headerColor": "#F2F2F2",
         "invalidMessage": undefined,
-        "labels": {
+        "labels": Object {
           "auto": true,
           "headers": true,
           "leaves": true,
@@ -243,9 +243,10 @@ exports[`Treemap picassodef render should render ok 1`] = `
           "values": true,
         },
         "level": 0,
+        "rtl": false,
         "showHeaders": false,
-        "theme": {
-          "_events": {},
+        "theme": Object {
+          "_events": Object {},
           "_maxListeners": undefined,
           "addListener": [Function],
           "emit": [Function],
@@ -268,15 +269,15 @@ exports[`Treemap picassodef render should render ok 1`] = `
       },
       "type": "treemap",
     },
-    {
+    Object {
       "beforeMount": [Function],
       "beforeUpdate": [Function],
       "destroyed": [Function],
       "key": "tooltip-qcm",
-      "layout": {
+      "layout": Object {
         "displayOrder": 3,
       },
-      "settings": {
+      "settings": Object {
         "afterHide": [Function],
         "afterShow": [Function],
         "appendTo": [Function],
@@ -288,18 +289,18 @@ exports[`Treemap picassodef render should render ok 1`] = `
         "placement": [Function],
       },
       "show": true,
-      "style": {
-        "arrow": {
+      "style": Object {
+        "arrow": Object {
           "color": "#404040",
         },
-        "cell": {
+        "cell": Object {
           "hyphens": "auto",
           "max-width": "180px",
           "overflow-wrap": "break-word",
           "word-break": "break-word",
           "word-wrap": "break-word",
         },
-        "content": {
+        "content": Object {
           "background": "rgba(64, 64, 64, 0.9)",
           "border-spacing": "4px",
           "display": "table",
@@ -311,41 +312,41 @@ exports[`Treemap picassodef render should render ok 1`] = `
       },
       "type": "tooltip",
     },
-    {
+    Object {
       "key": "lasso",
-      "layout": {
+      "layout": Object {
         "displayOrder": 99,
       },
-      "settings": {
-        "brush": {
-          "components": [
-            {
+      "settings": Object {
+        "brush": Object {
+          "components": Array [
+            Object {
               "action": "add",
-              "contexts": [
+              "contexts": Array [
                 "selection",
               ],
-              "data": [
+              "data": Array [
                 "select",
               ],
               "key": "treemap",
             },
           ],
         },
-        "lasso": {
+        "lasso": Object {
           "fill": "rgba(0, 0, 0, 0)",
           "opacity": 0.7,
           "stroke": "black",
-          "strokeDasharray": [],
+          "strokeDasharray": Array [],
           "strokeWidth": 2,
         },
-        "snapIndicator": {
+        "snapIndicator": Object {
           "opacity": 0.7,
           "stroke": "black",
           "strokeDasharray": "5, 5",
           "strokeWidth": 2,
           "threshold": 75,
         },
-        "startPoint": {
+        "startPoint": Object {
           "opacity": 1,
           "r": 10,
           "stroke": "rgba(77, 192, 78, 1)",
@@ -355,9 +356,9 @@ exports[`Treemap picassodef render should render ok 1`] = `
       "type": "brush-lasso",
     },
   ],
-  "interactions": [
-    {
-      "events": {
+  "interactions": Array [
+    Object {
+      "events": Object {
         "mouseleave": [Function],
         "mousemove": [Function],
         "mouseup": [Function],
@@ -365,14 +366,14 @@ exports[`Treemap picassodef render should render ok 1`] = `
       },
       "type": "native",
     },
-    {
-      "gestures": [
-        {
-          "events": {
+    Object {
+      "gestures": Array [
+        Object {
+          "events": Object {
             "tap": [Function],
           },
           "key": "event:tap",
-          "options": {
+          "options": Object {
             "enable": [Function],
             "event": "tap",
             "interval": 10,
@@ -382,14 +383,14 @@ exports[`Treemap picassodef render should render ok 1`] = `
           "requireFailure": undefined,
           "type": "Tap",
         },
-        {
-          "events": {
+        Object {
+          "events": Object {
             "lassoend": [Function],
             "lassomove": [Function],
             "lassostart": [Function],
           },
           "key": "event:lasso",
-          "options": {
+          "options": Object {
             "enable": [Function],
             "event": "lasso",
           },
@@ -397,12 +398,12 @@ exports[`Treemap picassodef render should render ok 1`] = `
           "requireFailure": undefined,
           "type": "Pan",
         },
-        {
-          "events": {
+        Object {
+          "events": Object {
             "tooltipTap": [Function],
           },
           "key": "event:tooltipTap",
-          "options": {
+          "options": Object {
             "enable": [Function],
             "event": "tooltipTap",
           },
@@ -415,14 +416,14 @@ exports[`Treemap picassodef render should render ok 1`] = `
     },
   ],
   "palettes": undefined,
-  "scales": {
-    "color": {
-      "data": {
-        "extract": {
+  "scales": Object {
+    "color": Object {
+      "data": Object {
+        "extract": Object {
           "field": "qMeasureInfo/0",
         },
       },
-      "range": [
+      "range": Array [
         "#ec983d",
         "#deb357",
         "#d0ce71",
@@ -434,29 +435,29 @@ exports[`Treemap picassodef render should render ok 1`] = `
       "type": "color",
     },
   },
-  "strategy": {
-    "center": {
+  "strategy": Object {
+    "center": Object {
       "minHeightRatio": 0,
       "minWidthRatio": 0,
     },
-    "layoutModes": {
-      "FULL": {
+    "layoutModes": Object {
+      "FULL": Object {
         "height": 450,
         "width": 550,
       },
-      "MEDIUM": {
+      "MEDIUM": Object {
         "height": 220,
         "width": 400,
       },
-      "SMALL": {
+      "SMALL": Object {
         "height": 150,
         "width": 300,
       },
-      "SPARK": {
+      "SPARK": Object {
         "height": 0,
         "width": 0,
       },
-      "XSMALL": {
+      "XSMALL": Object {
         "height": 75,
         "width": 150,
       },

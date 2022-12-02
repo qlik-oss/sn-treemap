@@ -9,6 +9,9 @@ describe('Treemap picassodef render', () => {
   it('should render ok', () => {
     const layout = testdata.qLayout[0].value;
     const _theme = themeFn();
+    const options = {
+      direction: 'ltr',
+    }
     const colorService = {
       getDatumProps: () => ({
         color: {
@@ -31,7 +34,7 @@ describe('Treemap picassodef render', () => {
       getPalettes: () => undefined,
       getSettings: () => ({}),
     };
-    const data = picassoDef({ layout, theme: _theme.externalAPI, env: {}, colorService });
+    const data = picassoDef({ layout, theme: _theme.externalAPI, env: {}, colorService, options });
     expect(data).toMatchSnapshot();
   });
 });
