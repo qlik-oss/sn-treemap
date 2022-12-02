@@ -17,12 +17,18 @@ exports[`Treemap picassodef render should render ok 1`] = `
             },
             "expressionColor": undefined,
             "expressionColorText": undefined,
+            "isNull": {
+              "value": [Function],
+            },
             "isOther": {
               "value": [Function],
             },
             "select": {
               "field": "qDimensionInfo/0",
               "reduce": [Function],
+            },
+            "size": {
+              "value": [Function],
             },
           },
           "value": [Function],
@@ -41,7 +47,6 @@ exports[`Treemap picassodef render should render ok 1`] = `
               "select",
               "fill",
             ],
-            "filter": [Function],
             "style": {
               "active": {
                 "opacity": [Function],

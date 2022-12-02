@@ -5,7 +5,7 @@ const TOOLTIP_COMPONENT_KEY = 'tooltip-qcm';
 
 const collectFrom = ({ nodes }) => {
   const node = nodes.filter((n) => !!n.data)[0];
-  return node ? [node] : [];
+  return node && !node.data?.isNull?.value ? [node] : [];
 };
 
 export default function createTooltipService({
@@ -21,7 +21,6 @@ export default function createTooltipService({
   formatter,
 }) {
   const major = ({ data }) => data.value;
-  // const filter = ({ data }) => !data.null.value || data.end.value === 0;
 
   return tooltipService({
     chart,

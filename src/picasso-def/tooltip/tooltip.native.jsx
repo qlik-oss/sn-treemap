@@ -14,7 +14,7 @@ export const tooltip = ({ level, layout, formatter }) => ({
       const { qMeasureInfo } = qHyperCube;
       const result = breadCrumb({ data: data[dataIndex].data });
       const valueLabel = `${qMeasureInfo[0].qFallbackTitle}:`;
-      const valueText = formatter[0].formatValue(data[dataIndex].data.value);
+      const valueText = formatter[0].formatValue(data[dataIndex].data.size.value);
       return (
         <View style={{ maxWidth: 400 }}>
           {result.map((text, index) => (
