@@ -37,8 +37,6 @@ export const createTextLabels = ({
     const fontSize = theme.getStyle('object.treemap', 'leaf.label', 'fontSize') || TREEMAP_LABEL_FONTSIZE + 'px';
     const top = node.y0 + 4;
     const valueText = formatter[0].formatValue(node.data.value);
-    const labelSize = 0;
-    const valueSize = 0;
     const labelTextSize = processText({
       text: labelText,
       fontSize,
