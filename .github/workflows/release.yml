@@ -19,6 +19,11 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - uses: ./.github/actions/yarn_install
+      - name: build sn-treemap
+        run: |
+          yarn lint
+          yarn build
+          yarn test
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
