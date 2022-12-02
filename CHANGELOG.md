@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0...v1.0.1) (2022-12-02)
+
+
+### Bug Fixes
+
+* include build files in published package ([#71](https://github.com/qlik-oss/sn-treemap/issues/71)) ([06996e1](https://github.com/qlik-oss/sn-treemap/commit/06996e130994ac47f1f6e1d25a4cc58dbe5ae68b))
+
 # 1.0.0 (2022-12-01)
 
 
