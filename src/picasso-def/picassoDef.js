@@ -49,12 +49,14 @@ export const picassoDef = ({
   showLegend,
   invalidMessage,
   translator,
+  viewState,
   colorService,
   chart,
   options,
   actions,
   customTooltipService,
   properties,
+  rtl,
 }) => {
   if (!layout.qHyperCube) {
     return {};
@@ -69,7 +71,7 @@ export const picassoDef = ({
 
   const scales = colorService.getScales();
 
-  const treemapLegend = legend({ colorService, chart, layout });
+  const treemapLegend = legend({ colorService, chart, layout, rtl, viewState });
   const selectables = createSelectables({
     actions,
     colorService,
@@ -84,7 +86,7 @@ export const picassoDef = ({
     chart,
     actions,
     translator,
-    rtl: false, // TODO
+    rtl,
     colorService,
     theme,
     custom: customTooltipService,
@@ -175,6 +177,7 @@ export const picassoDef = ({
         invalidMessage,
         translator,
         theme,
+        rtl: options.direction === 'rtl',
       },
       brush: brushSettings,
     },

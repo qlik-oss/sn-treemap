@@ -33,7 +33,8 @@ const getNodeColor = (node, headerColor, box, chart) => {
 export const treemap = () => ({
   require: ['chart', 'renderer', 'element'],
   render({ data }) {
-    const { headerColor, labels, formatter, level, invalidMessage, translator, box, theme } = this.settings.settings;
+    const { headerColor, labels, formatter, level, invalidMessage, translator, box, theme, rtl } =
+      this.settings.settings;
     const boundingRect = this.rect;
 
     // this is needed for mobile to setup native selections
@@ -100,6 +101,7 @@ export const treemap = () => ({
                 formatter,
                 renderer: this.renderer,
                 theme,
+                rtl,
               });
             } else if (labels.overlay) {
               overlayNodes.push(node);
@@ -115,6 +117,7 @@ export const treemap = () => ({
               formatter,
               renderer: this.renderer,
               theme,
+              rtl,
             });
           }
 
@@ -184,8 +187,22 @@ export const treemap = () => ({
       }
     };
 
+    const updateNodePositionX = (node, width) => {
+      const nodeWidth = node.x1 - node.x0;
+      node.x0 = width - node.x0 - nodeWidth;
+      node.x1 = node.x0 + nodeWidth;
+      if (node.children) {
+        node.children.forEach((child) => updateNodePositionX(child, width));
+      }
+    };
+
     root.children.forEach((node, index) => {
-      visit(node, index);
+      if (rtl) {
+        updateNodePositionX(node, boundingRect.width);
+        visit(node, index);
+      } else {
+        visit(node, index);
+      }
     });
 
     const overlayLabels = [];
@@ -200,6 +217,7 @@ export const treemap = () => ({
         height,
         renderer: this.renderer,
         theme,
+        rtl,
       });
       if (label) {
         overlayLabels.push(label);

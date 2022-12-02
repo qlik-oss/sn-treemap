@@ -141,12 +141,14 @@ const supernova = (env) => {
           showLegend,
           invalidMessage,
           translator,
+          viewState,
           colorService,
           chart,
           options,
           actions,
           customTooltipService,
           properties,
+          rtl: options.direction === 'rtl',
         });
         const data = [
           {

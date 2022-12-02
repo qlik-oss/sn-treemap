@@ -1,14 +1,14 @@
 import { fixNativeLegend } from './nativeLegend';
 
-export const legend = ({ colorService, chart, layout }) => {
+export const legend = ({ colorService, chart, layout, rtl, viewState }) => {
   const treemapLegend = colorService.getLegend(
     {
       eventName: 'legend',
       key: 'legend',
-      // viewState: opts.viewState,
+      viewState,
       chart,
       styleReference: 'object.treemap',
-      // rtl: context.rtl,
+      rtl,
     }
     // { navigationDisabled }
   );
