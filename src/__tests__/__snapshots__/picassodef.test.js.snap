@@ -243,6 +243,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
           "values": true,
         },
         "level": 0,
+        "rtl": false,
         "showHeaders": false,
         "theme": {
           "_events": {},

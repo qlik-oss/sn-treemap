@@ -4,7 +4,18 @@ const TREEMAP_LABEL_FONTSIZE = 14;
 const TREEMAP_VALUE_FONTSIZE = 12;
 const TREEMAP_MESSAGE_SIZE = 16;
 
-export const createTextLabels = ({ node, width, height, fill, valueLables, labels, formatter, renderer, theme }) => {
+export const createTextLabels = ({
+  node,
+  width,
+  height,
+  fill,
+  valueLables,
+  labels,
+  formatter,
+  renderer,
+  theme,
+  rtl,
+}) => {
   const area = width * height;
   if (area && node?.data?.label) {
     if (node.header) {
@@ -17,73 +28,62 @@ export const createTextLabels = ({ node, width, height, fill, valueLables, label
         valueLables,
         labels,
         theme,
+        rtl,
       });
       return;
     }
-    let wantedText = node.data.label;
-    if (labels.value) {
-      wantedText += `\n${formatter[0].formatValue(node.data.value)}`;
-    }
-    const texts = wantedText.split(/(\s+)/).filter((s) => s !== ' ');
-    // find maxLength
-    const maxChars = texts.reduce((prev, current) => (prev.length > current.length ? prev : current));
+    const labelText = node.data.label;
     const fontFamily = theme.getStyle('object.treemap', 'leaf.label', 'fontFamily') || 'Source Sans Pro';
     const fontSize = theme.getStyle('object.treemap', 'leaf.label', 'fontSize') || TREEMAP_LABEL_FONTSIZE + 'px';
-    const textSize = renderer.measureText({
-      text: maxChars,
+    const top = node.y0 + 4;
+    const valueText = formatter[0].formatValue(node.data.value);
+    const labelTextSize = processText({
+      text: labelText,
       fontSize,
       fontFamily,
+      renderer,
+      width,
+      height,
     });
 
-    const verticalPadding = 12;
-    if (textSize.width < width - verticalPadding) {
-      const top = node.y0 + 4;
-      // now calc maxheight
-      if (labels.value) {
-        texts.push(formatter[0].formatValue(node.data.value));
-      }
-      const maxheight = texts.reduce(
-        (acc, cur) =>
-          acc +
-          renderer.measureText({
-            text: cur,
-            fontSize,
-            fontFamily,
-          }).height,
-        0
-      );
-      if (maxheight < height - 8) {
-        const y = top;
-        let text = `${node.data.label}`;
-        let leafValue = '';
-        leafValue = formatter[0].formatValue(node.data.value);
-        const valueSize = renderer.measureText({
-          text: leafValue,
-          fontSize,
-          fontFamily,
-        });
-
-        text = cram(
-          text,
-          { width: width - 8, height },
-          (val) => renderer.measureText({ text: val, fontFamily, fontSize }),
-          renderer,
-          fontSize,
-          fontFamily
-        );
-        if (labels.values) {
-          if (valueSize.width < width && valueSize.height + maxheight < height - 8) {
-            text += `\n${leafValue}`;
-          }
-        }
+    valueLables.push({
+      type: 'text',
+      text: labelText,
+      fontFamily,
+      fontSize,
+      fontWeight: 'normal',
+      x: rtl
+        ? node.x1 - labelTextSize.textSize.width - Math.abs(parseInt(fontSize, 10) / 2)
+        : node.x0 + Math.abs(parseInt(fontSize, 10) / 2),
+      y: top,
+      fill: fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
+      baseline: 'text-before-edge',
+      wordBreak: 'break-word',
+      data: { ...node.data, depth: node.depth },
+    });
+    if (labels.values) {
+      const valueTextSize = processText({
+        text: valueText,
+        fontSize,
+        fontFamily,
+        renderer,
+        width,
+        height,
+      });
+      if (
+        valueTextSize.textSize.width < width &&
+        valueTextSize.textSize.height + valueTextSize.maxheight < height - 8
+      ) {
         valueLables.push({
           type: 'text',
-          text,
+          text: valueText,
           fontFamily,
           fontSize,
           fontWeight: 'normal',
-          x: node.x0 + Math.abs(parseInt(fontSize, 10) / 2),
-          y,
+          x: rtl
+            ? node.x1 - valueTextSize.textSize.width - Math.abs(parseInt(fontSize, 10) / 2)
+            : node.x0 + Math.abs(parseInt(fontSize, 10) / 2),
+          y: top + valueTextSize.textSize.height,
           fill: fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
           baseline: 'text-before-edge',
           wordBreak: 'break-word',
@@ -94,7 +94,45 @@ export const createTextLabels = ({ node, width, height, fill, valueLables, label
   }
 };
 
-const headerText = ({ node, width, fill, valueLables, renderer, theme }) => {
+const processText = ({ text, fontSize, fontFamily, renderer, width, height }) => {
+  const texts = text.split(/(\s+)/).filter((s) => s !== ' ');
+  // find maxLength
+  const maxChars = texts.reduce((prev, current) => (prev.length > current.length ? prev : current));
+  const textSize = renderer.measureText({
+    text: maxChars,
+    fontSize,
+    fontFamily,
+  });
+
+  const verticalPadding = 12;
+  let maxheight = 0;
+  if (textSize.width < width - verticalPadding) {
+    // now calc maxheight
+    maxheight = texts.reduce(
+      (acc, cur) =>
+        acc +
+        renderer.measureText({
+          text: cur,
+          fontSize,
+          fontFamily,
+        }).height,
+      0
+    );
+    if (maxheight < height - 8) {
+      text = cram(
+        text,
+        { width: width - 8, height },
+        (val) => renderer.measureText({ text: val, fontFamily, fontSize }),
+        renderer,
+        fontSize,
+        fontFamily
+      );
+    }
+  }
+  return { textSize, maxheight };
+};
+
+const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl }) => {
   const verticalPadding = 12;
   let text = node.data.label;
   const fontFamily = theme.getStyle('object.treemap', 'branch.label', 'fontFamily') || 'Source Sans Pro';
@@ -117,10 +155,10 @@ const headerText = ({ node, width, fill, valueLables, renderer, theme }) => {
     fontFamily,
     fontSize,
     fontWeight: 'normal',
-    x: node.x0 + parseInt(fontSize, 10) / 2,
+    x: rtl ? node.x1 - parseInt(fontSize, 10) / 2 : node.x0 + parseInt(fontSize, 10) / 2,
     y: top + parseInt(fontSize, 10) / 2,
     fill: fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
-    anchor: 'left',
+    anchor: rtl ? 'right' : 'left',
     baseline: 'central',
     maxWidth: width - verticalPadding,
     data: { ...node.data, depth: node.depth },
