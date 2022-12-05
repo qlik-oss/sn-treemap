@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Treemap picassodef render should render ok 1`] = `
-Object {
-  "collections": Array [
-    Object {
-      "data": Object {
-        "hierarchy": Object {
+{
+  "collections": [
+    {
+      "data": {
+        "hierarchy": {
           "label": [Function],
-          "props": Object {
-            "color": Object {
+          "props": {
+            "color": {
               "field": "qMeasureInfo/0",
             },
-            "customTooltipAttrExps": Object {
+            "customTooltipAttrExps": {
               "field": "qDimensionInfo/0",
               "value": [Function],
             },
             "expressionColor": undefined,
             "expressionColorText": undefined,
-            "isOther": Object {
+            "isOther": {
               "value": [Function],
             },
-            "select": Object {
+            "select": {
               "field": "qDimensionInfo/0",
               "reduce": [Function],
             },
@@ -31,52 +31,52 @@ Object {
       "key": "hierarchy",
     },
   ],
-  "components": Array [
-    Object {
-      "brush": Object {
-        "consume": Array [
-          Object {
+  "components": [
+    {
+      "brush": {
+        "consume": [
+          {
             "context": "selection",
-            "data": Array [
+            "data": [
               "select",
               "fill",
             ],
             "filter": [Function],
-            "style": Object {
-              "active": Object {
+            "style": {
+              "active": {
                 "opacity": [Function],
                 "stroke": "black",
                 "strokeWidth": [Function],
               },
-              "inactive": Object {
+              "inactive": {
                 "opacity": [Function],
               },
             },
           },
         ],
       },
-      "data": Object {
-        "collection": Object {
+      "data": {
+        "collection": {
           "key": "hierarchy",
         },
       },
       "key": "treemap",
-      "settings": Object {
-        "box": Object {
+      "settings": {
+        "box": {
           "fill": undefined,
         },
-        "color": Object {
+        "color": {
           "measureScheme": "dc",
           "mode": "byMeasure",
           "others": "#a5a5a5",
           "persistent": false,
         },
-        "formatter": Array [
+        "formatter": [
           NumDateTimeFormatter {
             "_dateFormatter": DateFormatter {
-              "localeInfo": Object {
-                "qCalendarStrings": Object {
-                  "qDayNames": Array [
+              "localeInfo": {
+                "qCalendarStrings": {
+                  "qDayNames": [
                     "Mon",
                     "Tue",
                     "Wed",
@@ -85,7 +85,7 @@ Object {
                     "Sat",
                     "Sun",
                   ],
-                  "qLongDayNames": Array [
+                  "qLongDayNames": [
                     "Monday",
                     "Tuesday",
                     "Wednesday",
@@ -94,7 +94,7 @@ Object {
                     "Saturday",
                     "Sunday",
                   ],
-                  "qLongMonthNames": Array [
+                  "qLongMonthNames": [
                     "January",
                     "February",
                     "March",
@@ -108,7 +108,7 @@ Object {
                     "November",
                     "December",
                   ],
-                  "qMonthNames": Array [
+                  "qMonthNames": [
                     "Jan",
                     "Feb",
                     "Mar",
@@ -124,7 +124,7 @@ Object {
                   ],
                 },
               },
-              "locale_days": Array [
+              "locale_days": [
                 "Monday",
                 "Tuesday",
                 "Wednesday",
@@ -133,7 +133,7 @@ Object {
                 "Saturday",
                 "Sunday",
               ],
-              "locale_days_abbr": Array [
+              "locale_days_abbr": [
                 "Mon",
                 "Tue",
                 "Wed",
@@ -142,7 +142,7 @@ Object {
                 "Sat",
                 "Sun",
               ],
-              "locale_months": Array [
+              "locale_months": [
                 "January",
                 "February",
                 "March",
@@ -156,7 +156,7 @@ Object {
                 "November",
                 "December",
               ],
-              "locale_months_abbr": Array [
+              "locale_months_abbr": [
                 "Jan",
                 "Feb",
                 "Mar",
@@ -173,9 +173,9 @@ Object {
               "pattern": "0.##A",
             },
             "_numberFormatter": NumberFormatter {
-              "_prepared": Object {
+              "_prepared": {
                 "negative": false,
-                "positive": Object {
+                "positive": {
                   "abbreviate": true,
                   "d": ".",
                   "decTemp": ".",
@@ -192,7 +192,7 @@ Object {
                   "temp": 2,
                 },
               },
-              "abbreviations": Object {
+              "abbreviations": {
                 "-12": "p",
                 "-15": "f",
                 "-18": "a",
@@ -216,17 +216,17 @@ Object {
               "thousandDelimiter": "",
               "type": "U",
             },
-            "_prepared": Object {
+            "_prepared": {
               "d": undefined,
               "pattern": "0.##A",
               "t": undefined,
             },
             "decimalDelimiter": ".",
-            "localeInfo": Object {},
+            "localeInfo": {},
             "pattern": "0.##A",
             "thousandDelimiter": "",
             "type": "U",
-            "values": Object {
+            "values": {
               "max": 79336,
               "min": 6422,
               "range": 72914,
@@ -235,7 +235,7 @@ Object {
         ],
         "headerColor": "#F2F2F2",
         "invalidMessage": undefined,
-        "labels": Object {
+        "labels": {
           "auto": true,
           "headers": true,
           "leaves": true,
@@ -245,8 +245,8 @@ Object {
         "level": 0,
         "rtl": false,
         "showHeaders": false,
-        "theme": Object {
-          "_events": Object {},
+        "theme": {
+          "_events": {},
           "_maxListeners": undefined,
           "addListener": [Function],
           "emit": [Function],
@@ -269,15 +269,15 @@ Object {
       },
       "type": "treemap",
     },
-    Object {
+    {
       "beforeMount": [Function],
       "beforeUpdate": [Function],
       "destroyed": [Function],
       "key": "tooltip-qcm",
-      "layout": Object {
+      "layout": {
         "displayOrder": 3,
       },
-      "settings": Object {
+      "settings": {
         "afterHide": [Function],
         "afterShow": [Function],
         "appendTo": [Function],
@@ -289,18 +289,18 @@ Object {
         "placement": [Function],
       },
       "show": true,
-      "style": Object {
-        "arrow": Object {
+      "style": {
+        "arrow": {
           "color": "#404040",
         },
-        "cell": Object {
+        "cell": {
           "hyphens": "auto",
           "max-width": "180px",
           "overflow-wrap": "break-word",
           "word-break": "break-word",
           "word-wrap": "break-word",
         },
-        "content": Object {
+        "content": {
           "background": "rgba(64, 64, 64, 0.9)",
           "border-spacing": "4px",
           "display": "table",
@@ -312,41 +312,41 @@ Object {
       },
       "type": "tooltip",
     },
-    Object {
+    {
       "key": "lasso",
-      "layout": Object {
+      "layout": {
         "displayOrder": 99,
       },
-      "settings": Object {
-        "brush": Object {
-          "components": Array [
-            Object {
+      "settings": {
+        "brush": {
+          "components": [
+            {
               "action": "add",
-              "contexts": Array [
+              "contexts": [
                 "selection",
               ],
-              "data": Array [
+              "data": [
                 "select",
               ],
               "key": "treemap",
             },
           ],
         },
-        "lasso": Object {
+        "lasso": {
           "fill": "rgba(0, 0, 0, 0)",
           "opacity": 0.7,
           "stroke": "black",
-          "strokeDasharray": Array [],
+          "strokeDasharray": [],
           "strokeWidth": 2,
         },
-        "snapIndicator": Object {
+        "snapIndicator": {
           "opacity": 0.7,
           "stroke": "black",
           "strokeDasharray": "5, 5",
           "strokeWidth": 2,
           "threshold": 75,
         },
-        "startPoint": Object {
+        "startPoint": {
           "opacity": 1,
           "r": 10,
           "stroke": "rgba(77, 192, 78, 1)",
@@ -356,9 +356,9 @@ Object {
       "type": "brush-lasso",
     },
   ],
-  "interactions": Array [
-    Object {
-      "events": Object {
+  "interactions": [
+    {
+      "events": {
         "mouseleave": [Function],
         "mousemove": [Function],
         "mouseup": [Function],
@@ -366,14 +366,14 @@ Object {
       },
       "type": "native",
     },
-    Object {
-      "gestures": Array [
-        Object {
-          "events": Object {
+    {
+      "gestures": [
+        {
+          "events": {
             "tap": [Function],
           },
           "key": "event:tap",
-          "options": Object {
+          "options": {
             "enable": [Function],
             "event": "tap",
             "interval": 10,
@@ -383,14 +383,14 @@ Object {
           "requireFailure": undefined,
           "type": "Tap",
         },
-        Object {
-          "events": Object {
+        {
+          "events": {
             "lassoend": [Function],
             "lassomove": [Function],
             "lassostart": [Function],
           },
           "key": "event:lasso",
-          "options": Object {
+          "options": {
             "enable": [Function],
             "event": "lasso",
           },
@@ -398,12 +398,12 @@ Object {
           "requireFailure": undefined,
           "type": "Pan",
         },
-        Object {
-          "events": Object {
+        {
+          "events": {
             "tooltipTap": [Function],
           },
           "key": "event:tooltipTap",
-          "options": Object {
+          "options": {
             "enable": [Function],
             "event": "tooltipTap",
           },
@@ -416,14 +416,14 @@ Object {
     },
   ],
   "palettes": undefined,
-  "scales": Object {
-    "color": Object {
-      "data": Object {
-        "extract": Object {
+  "scales": {
+    "color": {
+      "data": {
+        "extract": {
           "field": "qMeasureInfo/0",
         },
       },
-      "range": Array [
+      "range": [
         "#ec983d",
         "#deb357",
         "#d0ce71",
@@ -435,29 +435,29 @@ Object {
       "type": "color",
     },
   },
-  "strategy": Object {
-    "center": Object {
+  "strategy": {
+    "center": {
       "minHeightRatio": 0,
       "minWidthRatio": 0,
     },
-    "layoutModes": Object {
-      "FULL": Object {
+    "layoutModes": {
+      "FULL": {
         "height": 450,
         "width": 550,
       },
-      "MEDIUM": Object {
+      "MEDIUM": {
         "height": 220,
         "width": 400,
       },
-      "SMALL": Object {
+      "SMALL": {
         "height": 150,
         "width": 300,
       },
-      "SPARK": Object {
+      "SPARK": {
         "height": 0,
         "width": 0,
       },
-      "XSMALL": Object {
+      "XSMALL": {
         "height": 75,
         "width": 150,
       },
