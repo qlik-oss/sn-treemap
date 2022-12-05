@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/qlik-oss/sn-treemap/compare/v1.0.1...v1.1.0) (2022-12-05)
+
+
+### Bug Fixes
+
+* lint ([31a24ea](https://github.com/qlik-oss/sn-treemap/commit/31a24ea56ff4f3219c37eaee10b17ca0b85c5c28))
+* linting ([372f6f5](https://github.com/qlik-oss/sn-treemap/commit/372f6f5aaf901c360faa015e9397f1302abebb1a))
+* tests ([9c6d4b7](https://github.com/qlik-oss/sn-treemap/commit/9c6d4b73d226413b3f524fd38d4f5db8c1e540f6))
+* tests ([ea5afc4](https://github.com/qlik-oss/sn-treemap/commit/ea5afc48bf008c62c90d59cc0f97e8d5818c23ad))
+
+
+### Features
+
+* rtl ([fca8284](https://github.com/qlik-oss/sn-treemap/commit/fca828431341a0602ef07da59dfe7a0df3ec3c2d))
+
 ## [1.0.1](https://github.com/qlik-oss/sn-treemap/compare/v1.0.0...v1.0.1) (2022-12-02)
 
 
