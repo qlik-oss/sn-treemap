@@ -63,7 +63,7 @@ export const getSections = ({ layout, custom, formatter }) => {
         })
       );
 
-      const valueText = formatter[0].formatValue(node.data.value);
+      const valueText = formatter[0].formatValue(node.data.size.value);
       section.push(
         create.measure({
           label: valueLabel,

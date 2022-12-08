@@ -36,7 +36,7 @@ export const createTextLabels = ({
     const fontFamily = theme.getStyle('object.treemap', 'leaf.label', 'fontFamily') || 'Source Sans Pro';
     const fontSize = theme.getStyle('object.treemap', 'leaf.label', 'fontSize') || TREEMAP_LABEL_FONTSIZE + 'px';
     const top = node.y0 + 4;
-    const valueText = formatter[0].formatValue(node.data.value);
+    const valueText = formatter[0].formatValue(node.data.size.value);
     const labelTextSize = processText({
       text: labelText,
       fontSize,

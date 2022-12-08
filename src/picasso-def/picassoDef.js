@@ -106,30 +106,24 @@ export const picassoDef = ({
             return datum?.qText ? datum.qText : undefined;
           },
           value(datum) {
-            if (datum?.qType === 'N' && datum?.qSubNodes?.length > 1) {
-              return 'NaN';
-            }
-            if (datum?.qType === 'N' && datum?.qSubNodes?.length === 1) {
-              let sb = datum.qSubNodes;
-              while (sb.length > 1) {
-                sb = sb.qSubNodes;
-              }
-              if (sb[0].qType !== 'V') {
-                return 0;
-              }
-              return datum.qMaxPos;
-            }
-            if (datum.qType === 'O' && datum?.qSubNodes?.length === 1) {
-              return datum?.qSubNodes[0].qValue || 0;
-            }
-
-            return 0;
+            return datum.qElemNo;
           },
           props: {
+            size: {
+              value: (d, node) => {
+                const type = node.data.qType;
+                const validType = type === 'N' || type === 'O' || type === 'U';
+                if (validType && node.data.qSubNodes?.length === 1 && node.data.qSubNodes[0]?.qType === 'V') {
+                  return node.data.qSubNodes[0].qValue;
+                }
+                return 0;
+              },
+            },
             select: {
               field: `qDimensionInfo/${selectLevel}`,
               reduce: (values) => (values.length === 1 ? values[0] : undefined),
             },
+            isNull: { value: (d, node) => node.data.qElemNo === -2 },
             ...colorService.getDatumProps(),
             isOther: { value: (d, node) => node.data.qElemNo === -3 },
             customTooltipAttrExps:
@@ -143,7 +137,6 @@ export const picassoDef = ({
   const brushSettings = {
     consume: [
       {
-        filter: (d) => d?.data?.select?.value > -1,
         context: 'selection',
         data: ['select', 'fill'],
         style: {

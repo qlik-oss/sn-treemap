@@ -49,7 +49,7 @@ export const treemap = () => ({
       });
     }
     const dataset = data.root
-      .sum((d) => (isNaN(d.value) ? 0 : d.value))
+      .sum((d) => (isNaN(d.size.value) ? 0 : d.size.value))
       .sort((a, b) => {
         if (a.data.isOther.value !== b.data.isOther.value) {
           return a.data.isOther.value ? 1 : -1;
