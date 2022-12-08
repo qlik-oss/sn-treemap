@@ -28,8 +28,11 @@ import setupSnapshot from './snapshot';
 import ext from './ext/ext';
 import createCustomTooltipService from './custom-tooltip/service';
 import customTooltipMigrators from './custom-tooltip/migrators';
+import disclaimer from './picasso-def/disclaimer-component';
+import locale from './locale';
 
 const supernova = (env) => {
+  locale(env.translator);
   const { pic, picassoQ } = createPicasso({ renderer: env.renderer });
   let showLegend = true;
   let invalidMessage = 'This chart cannot be displayed.';
@@ -39,6 +42,8 @@ const supernova = (env) => {
     pic.component('nativeLegend', nativeLegend());
     showLegend = env.showLegend;
     invalidMessage = env.invalidMessage;
+  } else {
+    pic.component('disclaimer', disclaimer);
   }
 
   return {

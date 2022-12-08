@@ -7,6 +7,7 @@ import createTooltipService from './tooltip/service';
 import { active, inactive } from './brushStyles';
 import { dockLayout } from './dock-layout';
 import gesturesToInteractions from './gesturesToInteractions';
+import { getBlockingDisclaimer, getInfoDisclaimer } from './disclaimers';
 
 const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {
   let measure;
@@ -58,6 +59,14 @@ export const picassoDef = ({
   properties,
   rtl,
 }) => {
+  const blockingDisclaimer = getBlockingDisclaimer(layout, translator);
+  if (blockingDisclaimer) {
+    return {
+      components: [blockingDisclaimer],
+      strategy: dockLayout(layout, options),
+    };
+  }
+
   if (!layout.qHyperCube) {
     return {};
   }
@@ -186,6 +195,11 @@ export const picassoDef = ({
   gestures.push(...tooltipInteractions.gestures);
 
   components.push(...selectables.components);
+
+  const infoDiscalimer = getInfoDisclaimer(layout, translator);
+  if (infoDiscalimer) {
+    components.push(infoDiscalimer);
+  }
 
   const interactions = [tooltipInteractions.native, gesturesToInteractions(interactionType, gestures)];
 
