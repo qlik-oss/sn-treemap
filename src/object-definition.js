@@ -335,14 +335,14 @@ export default objectDefinition;
 
 /**
  * Color information structure. Holds the actual color and index in palette.
- * @typedef {object} paletteColor
+ * @interface paletteColor
  * @property {string} color - Color as hex string (mandatory if index: -1)
  * @property {number} index - Index in palette
  */
 
 /**
  * Extends `NxDimension`, see Engine API: `NxDimension`.
- * @typedef {object} DimensionProperties
+ * @interface DimensionProperties
  * @extends NxDimension
  * @property {AttributeDimensionProperties[]} qAttributeDimensions
  * @property {InlineDimensionDef} qDef
@@ -350,7 +350,7 @@ export default objectDefinition;
 
 /**
  * Extends `NxInlineDimensionDef`, see Engine API: `NxInlineDimensionDef`.
- * @typedef {object} InlineDimensionDef
+ * @interface InlineDimensionDef
  * @extends NxInlineDimensionDef
  * @property {boolean=} autoSort Set to automatically sort the dimension.
  * @property {string=} cId ID used by the Qlik Sense. Must be unique within the current chart.
@@ -359,7 +359,7 @@ export default objectDefinition;
 
 /**
  * Extends `NxMeasure`, see Engine API: `NxMeasure`.
- * @typedef {object} MeasureProperties
+ * @interface MeasureProperties
  * @extends NxMeasure
  * @property {AttributeExpressionProperties[]} qAttributeExpressions
  * @property {InlineMeasureDef} qDef
@@ -367,7 +367,7 @@ export default objectDefinition;
 
 /**
  * Extends `NxInlineMeasureDef`, see Engine API: `NxInlineMeasureDef`.
- * @typedef {object} InlineMeasureDef
+ * @interface InlineMeasureDef
  * @extends NxInlineMeasureDef
  * @property {boolean=} autoSort Set to automatically sort the measure.
  * @property {string=} cId ID used by the Qlik Sense. Must be unique within the current chart.
@@ -378,7 +378,7 @@ export default objectDefinition;
 
 /**
  * Extends `NxAttrDimDef`, see Engine API: `NxAttrDimDef`.
- * @typedef {object} AttributeDimensionProperties
+ * @interface AttributeDimensionProperties
  * @extends NxAttrDimDef
  * @property {string} id - One of: `colorByAlternative`: colors the chart using different dimensions (can be used together with color.mode="byDimension") or `colorByExpression` together with color.mode="byExpression".
  */
@@ -389,14 +389,14 @@ export default objectDefinition;
 
 /**
  * Extends `NxAttrExprDef`, see Engine API: `NxAttrExprDef`.
- * @typedef {object} ColorAttributes
+ * @interface ColorAttributes
  * @extends NxAttrExprDef
  * @property {string} id - One of: `colorByAlternative`: colors the chart using different dimensions (can be used together with color.mode="byDimension") or `colorByExpression` together with color.mode="byExpression".
  */
 
 /**
  * Extends `NxAttrExprDef`, see Engine API: `NxAttrExprDef`.
- * @typedef {object} CustomTooltipAttributes
+ * @interface CustomTooltipAttributes
  * @extends NxAttrExprDef
  * @property {'customTooltipTitle' | 'customTooltipDescription' | 'customTooltipExpression'} id - Indicates how the attribute expression will be interpreted by the chart.
  * `customTooltipTitle`: additional title displayed on the custom tooltip
@@ -479,4 +479,44 @@ export default objectDefinition;
  *   "id": "customTooltipImages"
  * }]
  * ```
+ */
+
+/**
+ * Chart component information structure.
+ * @interface MasterVisualizationChart
+ * @property {MasterVisualizationChartStyle} style - Object containing the styles of the chart such as 'size'
+ * @property {MasterVisualizationChartObject} object - Object containing the information fo the visualization, such as refId in case of master visualization
+ */
+
+/**
+ * Chart component information structure.
+ * @interface MasterVisualizationChartStyle
+ * @property {string} size - Input type as 'small' or 'medium' or 'large'
+ */
+
+/**
+ * Chart component information structure.
+ * @interface MasterVisualizationChartObject
+ * @property {string} refId - Input field containing the qExtendsId of the visualization, where qExtendsId is the unique id of the master visualization
+ */
+
+/**
+ * Image component information structure.
+ * @interface ImageComponent
+ * @property {string} type - Input type as 'url' or 'media library'
+ * @property {string} size - Size as 'small','medium','large' or 'original'
+ * @property {string} cId - Identifier of the image component - used as a link with an attribute expression
+ * @property {string|StringExpression|MediaLibraryRef} ref - The reference value of the image
+ */
+
+/**
+ * Media Library Reference structure.
+ * @interface MediaLibraryRef
+ * @property {object} qStaticContentUrlDef - Media library structure
+ */
+
+/**
+ * Media Library structure that will be evaluated by the engine.
+ * @interface qStaticContentUrlDef
+ * @property {string} qUrl - Value of media library image
  */
