@@ -11,7 +11,7 @@ const getLabel = (node, create) => {
   });
 };
 
-export const getSections = ({ layout, custom, formatter }) => {
+export const getSections = ({ layout, custom, formatter, chart, colorService }) => {
   const { qHyperCube } = layout;
   const { qMeasureInfo } = qHyperCube;
   const valueLabel = qMeasureInfo[0].qFallbackTitle;
@@ -21,6 +21,22 @@ export const getSections = ({ layout, custom, formatter }) => {
 
     if (node.data.depth !== layout.qHyperCube.qDimensionInfo.length) {
       section.push(getLabel(node, create));
+
+      if (!hideBasic) {
+        const colorSettings = colorService.getSettings();
+        if (colorSettings.fieldType && colorSettings.field === node.data.source.field) {
+          const color = colorService.getColor()({ datum: node.data, resources: chart });
+
+          section.push(
+            create.color({
+              nodes,
+              property: 'fill',
+              fillColor: color,
+            })
+          );
+        }
+      }
+
       return section;
     }
 
