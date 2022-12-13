@@ -51,7 +51,7 @@ export default function createTooltipService({
             placement: 'collectible',
           },
         ],
-        section: getSections({ layout, custom, formatter }),
+        section: getSections({ layout, custom, formatter, chart, colorService }),
         layout: {
           grouping: true,
           single: () => !!(custom.isEnabled() && custom.hasImages()) || custom.chart.isEnabled(),
