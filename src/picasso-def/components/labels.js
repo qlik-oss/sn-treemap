@@ -3,6 +3,7 @@ import { truncate, cram } from './text-helper';
 const TREEMAP_LABEL_FONTSIZE = 14;
 const TREEMAP_VALUE_FONTSIZE = 12;
 const TREEMAP_MESSAGE_SIZE = 16;
+const MIN_AREA_FOR_LABELS = 4000;
 
 export const createTextLabels = ({
   node,
@@ -17,6 +18,11 @@ export const createTextLabels = ({
   rtl,
 }) => {
   const area = width * height;
+
+  if (area < MIN_AREA_FOR_LABELS) {
+    return;
+  }
+
   if (area && node?.data?.label) {
     if (node.header) {
       headerText({
