@@ -50,7 +50,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
             "style": {
               "active": {
                 "opacity": [Function],
-                "stroke": "black",
+                "stroke": [Function],
                 "strokeWidth": [Function],
               },
               "inactive": {
