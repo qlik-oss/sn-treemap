@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/qlik-oss/sn-treemap/compare/v1.1.1...v1.2.0) (2022-12-14)
+
+
+### Bug Fixes
+
+* only change opacity on brushed text ([#87](https://github.com/qlik-oss/sn-treemap/issues/87)) ([7f615b4](https://github.com/qlik-oss/sn-treemap/commit/7f615b42c1a8d06670a1f62ef8f38403742260c5))
+* **tooltip:** add color when relevant and measure not shown ([#86](https://github.com/qlik-oss/sn-treemap/issues/86)) ([48a84b0](https://github.com/qlik-oss/sn-treemap/commit/48a84b03d32a823351f80eff7e7d13d2fa48028c))
+
+
+### Features
+
+* add min area for labels from ond treemap ([#88](https://github.com/qlik-oss/sn-treemap/issues/88)) ([93d659a](https://github.com/qlik-oss/sn-treemap/commit/93d659a8ac94c82208f423cdf4a9f9ab815fe0cc))
+
 ## [1.1.1](https://github.com/qlik-oss/sn-treemap/compare/v1.1.0...v1.1.1) (2022-12-08)
 
 
