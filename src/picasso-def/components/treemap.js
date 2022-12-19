@@ -3,6 +3,7 @@ import { createTextLabels, displayInvalidMessage, createOverlayLabel } from './l
 import { TREEMAP_DEFINES } from './defines';
 import { setupBrushes } from './setupBrushes.native';
 import { incrementColor, getAverageColor } from './colorUtils';
+import { getPattern } from './not-fetched-pattern';
 
 const buildPath = (root, node) => {
   const par = root.path(node);
@@ -18,9 +19,12 @@ const buildPath = (root, node) => {
   return path;
 };
 
-const getNodeColor = (node, headerColor, box, chart) => {
+const getNodeColor = (node, headerColor, box, chart, notFetchedPattern) => {
   if (node.header && !isNaN(node.value)) {
     return headerColor;
+  }
+  if (node.data.isNotFetchedOthers.value) {
+    return notFetchedPattern;
   }
   return box.fill({
     datum: node.data,
@@ -36,6 +40,8 @@ export const treemap = () => ({
     const { headerColor, labels, formatter, level, invalidMessage, translator, box, theme, rtl } =
       this.settings.settings;
     const boundingRect = this.rect;
+
+    const notFetchedPattern = getPattern(theme.getDataColorSpecials().others, 0.1);
 
     // this is needed for mobile to setup native selections
     setupBrushes(this.settings.brush, this.chart);
@@ -87,8 +93,8 @@ export const treemap = () => ({
       const width = node.x1 - node.x0;
       const area = height * width;
       if (area > 0) {
-        const fill = getNodeColor(node, headerColor, box, this.chart);
-        if (node.header || node.height === 1) {
+        const fill = getNodeColor(node, headerColor, box, this.chart, notFetchedPattern);
+        if (node.header || node.height === 0) {
           if (node.header && height) {
             if (labels.headers || labels.auto) {
               createTextLabels({
@@ -121,7 +127,7 @@ export const treemap = () => ({
             });
           }
 
-          if (node.depth === treeHeight - 1) {
+          if (node.depth === treeHeight) {
             // only consider for leaf nodes
             incrementColor(node, fill);
             const path = buildPath(root, node);
@@ -152,7 +158,7 @@ export const treemap = () => ({
             };
             rects.push(childRect);
           }
-        } else if (node.depth === 2 && treeHeight > 2 && node.data.label) {
+        } else if (node.depth === 2 && treeHeight > 1 && node.data.label) {
           // only show overlays if headers are disabled, other wise the headers
           // take precedence
           node.data.next = node?.parent?.data;

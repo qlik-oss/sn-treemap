@@ -6,6 +6,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
     {
       "data": {
         "hierarchy": {
+          "children": [Function],
           "label": [Function],
           "props": {
             "color": {
@@ -17,6 +18,9 @@ exports[`Treemap picassodef render should render ok 1`] = `
             },
             "expressionColor": undefined,
             "expressionColorText": undefined,
+            "isNotFetchedOthers": {
+              "value": [Function],
+            },
             "isNull": {
               "value": [Function],
             },
