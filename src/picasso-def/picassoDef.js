@@ -1,4 +1,3 @@
-import customTooltipNodes from '../custom-tooltip/picasso-definitions/nodes';
 import { getLevel, getNextSelecteDim } from './getLevel';
 import ChartFormatting from './formatting/chart-formatting';
 import { legend } from './legend';
@@ -8,6 +7,7 @@ import { active, inactive } from './brushStyles';
 import { dockLayout } from './dock-layout';
 import gesturesToInteractions from './gesturesToInteractions';
 import { getBlockingDisclaimer, getInfoDisclaimer } from './disclaimers';
+import { getTreeDataCollection } from './tree-data-collection';
 
 const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {
   let measure;
@@ -105,43 +105,7 @@ export const picassoDef = ({
     formatter,
   });
 
-  const dimensionCount = layout.qHyperCube.qDimensionInfo.length;
-  const collections = [
-    {
-      key: 'hierarchy',
-      data: {
-        hierarchy: {
-          label(datum) {
-            return datum?.qText ? datum.qText : undefined;
-          },
-          value(datum) {
-            return datum.qElemNo;
-          },
-          props: {
-            size: {
-              value: (d, node) => {
-                const type = node.data.qType;
-                const validType = type === 'N' || type === 'O' || type === 'U';
-                if (validType && node.data.qSubNodes?.length === 1 && node.data.qSubNodes[0]?.qType === 'V') {
-                  return node.data.qSubNodes[0].qValue;
-                }
-                return 0;
-              },
-            },
-            select: {
-              field: `qDimensionInfo/${selectLevel}`,
-              reduce: (values) => (values.length === 1 ? values[0] : undefined),
-            },
-            isNull: { value: (d, node) => node.data.qElemNo === -2 },
-            ...colorService.getDatumProps(),
-            isOther: { value: (d, node) => node.data.qElemNo === -3 },
-            customTooltipAttrExps:
-              dimensionCount !== 0 ? customTooltipNodes.getNode(layout, { dimensionCount }) : undefined,
-          },
-        },
-      },
-    },
-  ];
+  const collections = [getTreeDataCollection({ colorService, layout, selectLevel })];
 
   const brushSettings = {
     consume: [
