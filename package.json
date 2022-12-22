@@ -35,6 +35,7 @@
     "@nebula.js/cli-build": "^3.0.0-rc.2",
     "@nebula.js/cli-sense": "^3.0.0-rc.2",
     "@nebula.js/cli-serve": "^3.0.0-rc.2",
+    "@playwright/test": "1.29.0",
     "@scriptappy/cli": "0.2.0",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
@@ -81,19 +82,21 @@
     }
   },
   "scripts": {
-    "test": "jest",
-    "lint": "eslint src",
-    "ci:install": "yarn install --frozen-lockfile",
     "build": "node ./tools/build.js --core --ext",
     "build:dev": "node ./tools/build.js --core --ext --mode development",
     "build:watch": "node ./tools/build.js --mode development -w",
     "build:rn": "node ./tools/build.js --reactNative",
     "build:rn:watch": "node ./tools/react-native-dev.js -w",
+    "ci:install": "yarn install --frozen-lockfile",
+    "ios": "cd example/NativeTreemap && yarn ios --simulator=\"iPhone 14\"",
+    "lint": "eslint src",
+    "prepare-mobile": "yarn && node ./tools/react-native-dev.js && cd example/NativeTreemap && yarn && cd ios && bundle install && pod install",
+    "release": "release-it",
     "spec": "sy from-jsdoc -c ./api-spec/props.conf.js",
     "start": "nebula serve --build false --type treemap",
-    "prepare-mobile": "yarn && node ./tools/react-native-dev.js && cd example/NativeTreemap && yarn && cd ios && bundle install && pod install",
-    "ios": "cd example/NativeTreemap && yarn ios --simulator=\"iPhone 14\"",
-    "release": "release-it"
+    "test": "jest",
+    "test:rendering": "playwright test --config=./test/rendering/playwright.config.rendering.js --quiet",
+    "test:rendering:debug": "cross-env DEBUG=true playwright test --config=./test/rendering/playwright.config.rendering.js --headed"
   },
   "peerDependencies": {
     "@nebula.js/stardust": ">=1.0.0"

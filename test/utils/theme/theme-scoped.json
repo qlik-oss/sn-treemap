@@ -1,0 +1,25 @@
+{
+  "_inherit": false,
+  "color": "#ffffff",
+  "fontSize": "20px",
+  "fontFamily": "Helvetica",
+  "backgroundColor": "#272822",
+  "object": {
+    "label": {
+      "name": {
+        "color": "black",
+        "fontSize": "30px"
+      },
+      "value": {
+        "color": "black",
+        "fontSize": "30px"
+      }
+    }
+  },
+  "dataColors": {
+    "primaryColor": "#a6e22e",
+    "othersColor": "#a5a5a5",
+    "errorColor": "#ff4444",
+    "nullColor": "#d2d2d2"
+  }
+}

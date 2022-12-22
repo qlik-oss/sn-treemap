@@ -18,9 +18,9 @@ sn-treemap-ext
 
 # testing
 coverage
-test/rendering/artifacts
-test/rendering/test-report
-test/rendering/state.json
+test-results
+test/rendering/reports
+test/rendering/baselines-local
 
 #pack files
 *.tgz

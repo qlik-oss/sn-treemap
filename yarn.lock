@@ -2545,6 +2545,14 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@playwright/test@1.29.0":
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.29.0.tgz#c41155e6c43561653b235c32493aaeb0858df773"
+  integrity sha512-gp5PVBenxTJsm2bATWDNc2CCnrL5OaA/MXQdJwwkGQtqTjmY+ZOqAdLqo49O9MLTDh2vYh+tHWDnmFsILnWaeA==
+  dependencies:
+    "@types/node" "*"
+    playwright-core "1.29.0"
+
 "@rollup/plugin-commonjs@22.0.2":
   version "22.0.2"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-22.0.2.tgz#ee8ca8415cda30d383b4096aad5222435b4b69b6"
@@ -7887,6 +7895,11 @@ pkg-dir@^5.0.0:
   integrity sha512-NPE8TDbzl/3YQYY7CSS228s3g2ollTFnc+Qi3tqmqJp9Vg2ovUpixcJEo2HJScN2Ez+kEaal6y70c0ehqJBJeA==
   dependencies:
     find-up "^5.0.0"
+
+playwright-core@1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.29.0.tgz#314653618395afef5031156d691c7aa0826e5d05"
+  integrity sha512-pboOm1m0RD6z1GtwAbEH60PYRfF87vKdzOSRw2RyO0Y0a7utrMyWN2Au1ojGvQr4umuBMODkKTv607YIRypDSQ==
 
 please-upgrade-node@^3.2.0:
   version "3.2.0"
