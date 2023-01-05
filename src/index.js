@@ -47,7 +47,7 @@ const supernova = (env) => {
   }
 
   return {
-    qae,
+    qae: qae(env),
     ext: ext(env),
     component() {
       const theme = useTheme();
