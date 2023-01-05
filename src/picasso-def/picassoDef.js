@@ -59,7 +59,7 @@ export const picassoDef = ({
   properties,
   rtl,
 }) => {
-  const blockingDisclaimer = getBlockingDisclaimer(layout, translator);
+  const blockingDisclaimer = getBlockingDisclaimer(layout, translator, rtl);
   if (blockingDisclaimer) {
     return {
       components: [blockingDisclaimer],
@@ -160,7 +160,7 @@ export const picassoDef = ({
 
   components.push(...selectables.components);
 
-  const infoDiscalimer = getInfoDisclaimer(layout, translator);
+  const infoDiscalimer = getInfoDisclaimer(layout, translator, rtl);
   if (infoDiscalimer) {
     components.push(infoDiscalimer);
   }
