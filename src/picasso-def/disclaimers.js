@@ -1,4 +1,4 @@
-function blockingComponent(disclaimerLabel, translator) {
+function blockingComponent(disclaimerLabel, translator, rtl) {
   return {
     key: 'blocking-disclaimer',
     type: 'disclaimer',
@@ -8,7 +8,7 @@ function blockingComponent(disclaimerLabel, translator) {
     },
     settings: {
       label: translator.get(`Object.Disclaimer.${disclaimerLabel}`),
-      rtl: false,
+      rtl,
     },
   };
 }
@@ -29,15 +29,15 @@ function onlyNegativeOrZeroValues(layout) {
   return layout.qHyperCube.qMeasureInfo[0]?.qMax <= 0;
 }
 
-export function getBlockingDisclaimer(layout, translator) {
+export function getBlockingDisclaimer(layout, translator, rtl) {
   if (noDataExist(layout)) {
-    return blockingComponent('NoDataExist', translator);
+    return blockingComponent('NoDataExist', translator, rtl);
   }
   if (onlyNanData(layout)) {
-    return blockingComponent('OnlyNanData', translator);
+    return blockingComponent('OnlyNanData', translator, rtl);
   }
   if (onlyNegativeOrZeroValues(layout)) {
-    return blockingComponent('OnlyNegativeOrZeroValues', translator);
+    return blockingComponent('OnlyNegativeOrZeroValues', translator, rtl);
   }
   return null;
 }
@@ -46,7 +46,7 @@ function negativeOrZeroValues(layout) {
   return layout.qHyperCube.qMeasureInfo[0]?.qMin <= 0;
 }
 
-function infoComponent(disclaimerLabel, translator) {
+function infoComponent(disclaimerLabel, translator, rtl) {
   return {
     key: 'info-disclaimer',
     type: 'disclaimer',
@@ -56,17 +56,17 @@ function infoComponent(disclaimerLabel, translator) {
     },
     settings: {
       label: translator.get(`Object.Disclaimer.${disclaimerLabel}`),
-      rtl: false,
+      rtl,
     },
   };
 }
 
-export function getInfoDisclaimer(layout, translator) {
+export function getInfoDisclaimer(layout, translator, rtl) {
   if (layout.showDisclaimer === false) {
     return undefined;
   }
   if (negativeOrZeroValues(layout)) {
-    return infoComponent('NegativeOrZeroValues', translator);
+    return infoComponent('NegativeOrZeroValues', translator, rtl);
   }
   return undefined;
 }
