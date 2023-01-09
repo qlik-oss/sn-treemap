@@ -1,3 +1,16 @@
+# [1.3.0](https://github.com/qlik-oss/sn-treemap/compare/v1.2.0...v1.3.0) (2023-01-09)
+
+
+### Bug Fixes
+
+* pass in correct rtl setting to disclaimer component ([#99](https://github.com/qlik-oss/sn-treemap/issues/99)) ([ae3e3af](https://github.com/qlik-oss/sn-treemap/commit/ae3e3afc2f4ae375a751dff74c70596df9e7fd12))
+
+
+### Features
+
+* add dimension and measure descriptions ([#98](https://github.com/qlik-oss/sn-treemap/issues/98)) ([cbf4d3a](https://github.com/qlik-oss/sn-treemap/commit/cbf4d3a50ae635ebc43d87de968b34588a2712db))
+* render not fetched data ([#90](https://github.com/qlik-oss/sn-treemap/issues/90)) ([d996b9d](https://github.com/qlik-oss/sn-treemap/commit/d996b9dc8897631c5e367f0102b5a259fd9f5b89))
+
 # [1.2.0](https://github.com/qlik-oss/sn-treemap/compare/v1.1.1...v1.2.0) (2022-12-14)
 
 
