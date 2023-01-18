@@ -15,7 +15,7 @@ export default async ({ logLevel } = {}) => {
      * Test case life-cycle
      */
     async after() {
-      await page.close();
+      // await page.close();
     },
     beforeEach() {
       logger.addListeners(page);

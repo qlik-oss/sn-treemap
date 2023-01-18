@@ -38,8 +38,8 @@ export default ({ suiteName, serveConfig, fixturePath, styles = [], debug = unde
     });
 
     test.afterAll(async () => {
-      await s.close();
-      await testAssistant.afterEach();
+      // await s.close();
+      // await testAssistant.afterEach();
     });
 
     test.beforeEach(() => {

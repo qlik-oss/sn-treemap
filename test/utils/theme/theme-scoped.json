@@ -3,16 +3,48 @@
   "color": "#ffffff",
   "fontSize": "20px",
   "fontFamily": "Helvetica",
-  "backgroundColor": "#272822",
+  "backgroundColor": "#849c10",
   "object": {
     "label": {
-      "name": {
-        "color": "black",
-        "fontSize": "30px"
+      "color": "red",
+      "fontFamily": "Arial",
+      "fontSize": "5px"
+    },
+    "branch": {
+      "backgroundColor": "red",
+      "label": {
+        "color": "red",
+        "fontFamily": "Helvetica",
+        "fontSize": "10px"
+      }
+    },
+    "leaf": {
+      "label": {
+        "color": "red",
+        "fontFamily": "Helvetica",
+        "fontSize": "10px"
+      }
+    },
+    "treemap": {
+      "label": {
+        "color": "blue",
+        "fontFamily": "Arial",
+        "fontSize": "5px"
       },
-      "value": {
-        "color": "black",
-        "fontSize": "30px"
+      "branch": {
+        "backgroundColor": "blue",
+        "label": {
+          "color": "green",
+          "fontFamily": "Arial",
+          "fontSize": "50px"
+        }
+      },
+      "leaf": {
+        "label": {
+          "color": "green",
+          "fontFamily": "Arial",
+          "fontSize": "24px"
+        }
       }
     }
   },
