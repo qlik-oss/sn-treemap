@@ -92,6 +92,7 @@ const objectDefinition = () => {
       useDimColVal: true,
       /**
        * Set to true if you want to apply the colors defined for library measures when used. Only applicable if `"mode": "byMeasure"`.
+       * @type {boolean}
        * @default
        */
       useMeasureGradient: true,
@@ -335,14 +336,16 @@ export default objectDefinition;
 
 /**
  * Color information structure. Holds the actual color and index in palette.
- * @interface paletteColor
+ * @name paletteColor
+ * @type object
  * @property {string} color - Color as hex string (mandatory if index: -1)
  * @property {number} index - Index in palette
  */
 
 /**
  * Extends `NxDimension`, see Engine API: `NxDimension`.
- * @interface DimensionProperties
+ * @name DimensionProperties
+ * @type object
  * @extends NxDimension
  * @property {AttributeDimensionProperties[]} qAttributeDimensions
  * @property {InlineDimensionDef} qDef
@@ -350,7 +353,8 @@ export default objectDefinition;
 
 /**
  * Extends `NxInlineDimensionDef`, see Engine API: `NxInlineDimensionDef`.
- * @interface InlineDimensionDef
+ * @name InlineDimensionDef
+ * @type object
  * @extends NxInlineDimensionDef
  * @property {boolean=} autoSort Set to automatically sort the dimension.
  * @property {string=} cId ID used by the Qlik Sense. Must be unique within the current chart.
@@ -359,7 +363,8 @@ export default objectDefinition;
 
 /**
  * Extends `NxMeasure`, see Engine API: `NxMeasure`.
- * @interface MeasureProperties
+ * @name MeasureProperties
+ * @type object
  * @extends NxMeasure
  * @property {AttributeExpressionProperties[]} qAttributeExpressions
  * @property {InlineMeasureDef} qDef
@@ -367,7 +372,8 @@ export default objectDefinition;
 
 /**
  * Extends `NxInlineMeasureDef`, see Engine API: `NxInlineMeasureDef`.
- * @interface InlineMeasureDef
+ * @name InlineMeasureDef
+ * @type object
  * @extends NxInlineMeasureDef
  * @property {boolean=} autoSort Set to automatically sort the measure.
  * @property {string=} cId ID used by the Qlik Sense. Must be unique within the current chart.
@@ -378,7 +384,8 @@ export default objectDefinition;
 
 /**
  * Extends `NxAttrDimDef`, see Engine API: `NxAttrDimDef`.
- * @interface AttributeDimensionProperties
+ * @name AttributeDimensionProperties
+ * @type object
  * @extends NxAttrDimDef
  * @property {string} id - One of: `colorByAlternative`: colors the chart using different dimensions (can be used together with color.mode="byDimension") or `colorByExpression` together with color.mode="byExpression".
  */
@@ -389,14 +396,16 @@ export default objectDefinition;
 
 /**
  * Extends `NxAttrExprDef`, see Engine API: `NxAttrExprDef`.
- * @interface ColorAttributes
+ * @name ColorAttributes
+ * @type object
  * @extends NxAttrExprDef
  * @property {string} id - One of: `colorByAlternative`: colors the chart using different dimensions (can be used together with color.mode="byDimension") or `colorByExpression` together with color.mode="byExpression".
  */
 
 /**
  * Extends `NxAttrExprDef`, see Engine API: `NxAttrExprDef`.
- * @interface CustomTooltipAttributes
+ * @name CustomTooltipAttributes
+ * @type object
  * @extends NxAttrExprDef
  * @property {'customTooltipTitle' | 'customTooltipDescription' | 'customTooltipExpression'} id - Indicates how the attribute expression will be interpreted by the chart.
  * `customTooltipTitle`: additional title displayed on the custom tooltip
@@ -483,26 +492,30 @@ export default objectDefinition;
 
 /**
  * Chart component information structure.
- * @interface MasterVisualizationChart
+ * @name MasterVisualizationChart
+ * @type object
  * @property {MasterVisualizationChartStyle} style - Object containing the styles of the chart such as 'size'
  * @property {MasterVisualizationChartObject} object - Object containing the information fo the visualization, such as refId in case of master visualization
  */
 
 /**
  * Chart component information structure.
- * @interface MasterVisualizationChartStyle
+ * @name MasterVisualizationChartStyle
+ * @type object
  * @property {string} size - Input type as 'small' or 'medium' or 'large'
  */
 
 /**
  * Chart component information structure.
- * @interface MasterVisualizationChartObject
+ * @name MasterVisualizationChartObject
+ * @type object
  * @property {string} refId - Input field containing the qExtendsId of the visualization, where qExtendsId is the unique id of the master visualization
  */
 
 /**
  * Image component information structure.
- * @interface ImageComponent
+ * @name ImageComponent
+ * @type object
  * @property {string} type - Input type as 'url' or 'media library'
  * @property {string} size - Size as 'small','medium','large' or 'original'
  * @property {string} cId - Identifier of the image component - used as a link with an attribute expression
@@ -511,12 +524,14 @@ export default objectDefinition;
 
 /**
  * Media Library Reference structure.
- * @interface MediaLibraryRef
+ * @name MediaLibraryRef
+ * @type object
  * @property {object} qStaticContentUrlDef - Media library structure
  */
 
 /**
  * Media Library structure that will be evaluated by the engine.
- * @interface qStaticContentUrlDef
+ * @name qStaticContentUrlDef
+ * @type object
  * @property {string} qUrl - Value of media library image
  */

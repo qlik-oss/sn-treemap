@@ -3,7 +3,7 @@
   "info": {
     "name": "@nebula.js/sn-treemap",
     "description": "Treemap supernova that is DOM independent",
-    "version": "1.1.1",
+    "version": "1.3.0",
     "license": "MIT",
     "stability": "stable"
   },
@@ -11,10 +11,6 @@
     "properties": {
       "kind": "namespace",
       "entries": {
-        "version": {
-          "description": "Current version of this generic object definition",
-          "type": "string"
-        },
         "color": {
           "description": "Color settings.\nMost color options for visualizations are set in the color object in the options. You activate custom coloring by setting `\"auto\": false` which turns off auto-coloring.\nIf `\"auto\": true`, no other properties need to be defined in the color object.\nNote: Some of the color properties are depending on which theme is currently being used.",
           "entries": {
@@ -22,6 +18,97 @@
               "description": "Set to use automatic coloring.\nWhen `\"auto\": true`, color settings are based on the visualization used and the number of dimensions\nand measures, that is, the settings are not fixed, but are dependent on the data input.",
               "defaultValue": true,
               "type": "boolean"
+            },
+            "autoMinMax": {
+              "description": "Set to false to define custom color range. Custom color range is only applicable when coloring is by measure (`\"mode\": \"byMeasure\"`) or by expression (`\"mode\": \"byExpression\"`).\nWhen coloring is by expression, `\"expressionIsColor\": \"false\"` must be set for custom color range to work.",
+              "defaultValue": true,
+              "type": "boolean"
+            },
+            "dimensionScheme": {
+              "description": "Color scheme when `\"mode\": \"byDimension\"` or `\"mode\": \"byMultiple\"` (`\"12\"` or `\"100\"` for most themes).",
+              "defaultValue": "12",
+              "kind": "union",
+              "items": [
+                {
+                  "kind": "literal",
+                  "value": "'12'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'100'"
+                }
+              ]
+            },
+            "expressionIsColor": {
+              "description": "Set to define whether the result of the expression is a valid CSS3 color.\nOnly applicable when `\"mode\": \"byExpression\"`.",
+              "defaultValue": true,
+              "type": "boolean"
+            },
+            "expressionLabel": {
+              "description": "Label to be defined on tool tips when using a coloring expression.\nOnly used if `'expressionIsColor': false`.",
+              "defaultValue": "",
+              "type": "string"
+            },
+            "formatting": {
+              "description": "Color by measure number formatting options",
+              "kind": "object",
+              "entries": {
+                "numFormatFromTemplate": {
+                  "description": "When enabled, the number format to use can be selected from multiple predefined formats based on the desired type (number, date).",
+                  "optional": true,
+                  "defaultValue": true,
+                  "type": "boolean"
+                }
+              }
+            },
+            "measureMax": {
+              "description": "Set the max value for the color range.\nOnly applicable if `\"autoMinMax\": false`.",
+              "defaultValue": 10,
+              "kind": "union",
+              "items": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "ValueExpression"
+                }
+              ]
+            },
+            "measureMin": {
+              "description": "Set the min value for the color range.\nOnly applicable if `\"autoMinMax\": false`.",
+              "defaultValue": 0,
+              "kind": "union",
+              "items": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "ValueExpression"
+                }
+              ]
+            },
+            "measureScheme": {
+              "description": "Color scheme when `\"mode\": \"byMeasure\"`. Can be one of:\n* `sg`: (sequential gradient) the transition between the different color groups is made using different shades of colors. High measure values have darker hues\n* `sc`: (sequential classes) the transition between the different color groups is made using distinctly different colors.\n* `dg`: (diverging gradient) used when working with data that is ordered from low to high, for instance, to show the relationship between different areas on a map. Low and high values have dark colors, mid-range colors are light.\n* `dc`: (diverging classes) can be seen as two sequential classes combined, with the mid-range shared. The two extremes, high and low, are emphasized with dark colors with contrasting hues, and the mid-range critical values are emphasized with light colors.",
+              "defaultValue": "sg",
+              "kind": "union",
+              "items": [
+                {
+                  "kind": "literal",
+                  "value": "'sg'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'sc'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'dg'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'dc'"
+                }
+              ]
             },
             "mode": {
               "description": "Sets the coloring mode for the visualization when auto-coloring has been switched off (`\"auto\": false`). Can be one of:\n* `primary`: a single color (by default blue) is used for all items in the chart. In visualizations that do not benefit from multiple colors (bar charts with one dimension and scatter plots), single color is the default setting.\n* `byDimension`: coloring is based upon the amount of dimension values. Details are set in the `\"byDimDef\"` property.\n!Note: `byDimension` can only be used in conjunction with an attribute dimension on the dimension to color by, as shown in the example below.\n```json\n{\n    \"qDef\": {\n      \"qFieldDefs\": [\n        \"NetScoreName\"\n      ]\n    },\n    \"qAttributeDimensions\": [\n      {\n        \"qDef\": \"NetScoreName\",\n        \"id\": \"colorByAlternative\",\n        \"label\": \"Year\"\n      }\n    ]\n}\n```\n* `byExpression`: coloring is based on an expression, which in most cases is a color code. Details are set in the `\"expressionIsColor\"`, `\"expressionLabel`\" and `\"colorExpression\"` properties.\n* `byMeasure`: coloring is based on the measure value. Details are set in the `\"byMeasureDef\"` property.\n* `byMultiple`: can be used when more than one measure is used. By default, 12 colors are used for the dimensions. The colors are reused when there are more than 12 dimension values.",
@@ -50,17 +137,20 @@
                 }
               ]
             },
-            "formatting": {
-              "description": "Color by measure number formatting options",
-              "kind": "object",
-              "entries": {
-                "numFormatFromTemplate": {
-                  "description": "When enabled, the number format to use can be selected from multiple predefined formats based on the desired type (number, date).",
-                  "optional": true,
-                  "defaultValue": true,
-                  "type": "boolean"
-                }
-              }
+            "paletteColor": {
+              "description": "The paletteColor object is used to define the color when you color by single color `(\"mode\": \"primary\")`.",
+              "defaultValue": "{ index: 6 }",
+              "type": "#/definitions/paletteColor"
+            },
+            "persistent": {
+              "description": "Set to use persistent colors on data points between selections. Only applicable when using one dimension and when `\"mode\": \"byDimension\"` or when `\"mode\": \"byMultiple\"`.",
+              "defaultValue": false,
+              "type": "boolean"
+            },
+            "reverseScheme": {
+              "description": "Set to reverse the color scheme.",
+              "defaultValue": false,
+              "type": "boolean"
             },
             "useBaseColors": {
               "description": "Use colors encoded in master items.\nOnly applicable when `\"mode\": \"primary\"` or `\"mode\": \"byMultiple\"` has been defined.",
@@ -81,11 +171,6 @@
                 }
               ]
             },
-            "paletteColor": {
-              "description": "The paletteColor object is used to define the color when you color by single color `(\"mode\": \"primary\")`.",
-              "defaultValue": "{ index: 6 }",
-              "type": "#/definitions/paletteColor"
-            },
             "useDimColVal": {
               "description": "Set to true if you want to apply the colors defined for library dimensions when used.\nOnly applicable if `'colorMode': 'byDimension'`.",
               "defaultValue": true,
@@ -93,97 +178,8 @@
             },
             "useMeasureGradient": {
               "description": "Set to true if you want to apply the colors defined for library measures when used. Only applicable if `\"mode\": \"byMeasure\"`.",
-              "value": true,
-              "kind": "literal"
-            },
-            "persistent": {
-              "description": "Set to use persistent colors on data points between selections. Only applicable when using one dimension and when `\"mode\": \"byDimension\"` or when `\"mode\": \"byMultiple\"`.",
-              "defaultValue": false,
-              "type": "boolean"
-            },
-            "expressionIsColor": {
-              "description": "Set to define whether the result of the expression is a valid CSS3 color.\nOnly applicable when `\"mode\": \"byExpression\"`.",
               "defaultValue": true,
               "type": "boolean"
-            },
-            "expressionLabel": {
-              "description": "Label to be defined on tool tips when using a coloring expression.\nOnly used if `'expressionIsColor': false`.",
-              "defaultValue": "",
-              "type": "string"
-            },
-            "measureScheme": {
-              "description": "Color scheme when `\"mode\": \"byMeasure\"`. Can be one of:\n* `sg`: (sequential gradient) the transition between the different color groups is made using different shades of colors. High measure values have darker hues\n* `sc`: (sequential classes) the transition between the different color groups is made using distinctly different colors.\n* `dg`: (diverging gradient) used when working with data that is ordered from low to high, for instance, to show the relationship between different areas on a map. Low and high values have dark colors, mid-range colors are light.\n* `dc`: (diverging classes) can be seen as two sequential classes combined, with the mid-range shared. The two extremes, high and low, are emphasized with dark colors with contrasting hues, and the mid-range critical values are emphasized with light colors.",
-              "defaultValue": "sg",
-              "kind": "union",
-              "items": [
-                {
-                  "kind": "literal",
-                  "value": "'sg'"
-                },
-                {
-                  "kind": "literal",
-                  "value": "'sc'"
-                },
-                {
-                  "kind": "literal",
-                  "value": "'dg'"
-                },
-                {
-                  "kind": "literal",
-                  "value": "'dc'"
-                }
-              ]
-            },
-            "reverseScheme": {
-              "description": "Set to reverse the color scheme.",
-              "defaultValue": false,
-              "type": "boolean"
-            },
-            "dimensionScheme": {
-              "description": "Color scheme when `\"mode\": \"byDimension\"` or `\"mode\": \"byMultiple\"` (`\"12\"` or `\"100\"` for most themes).",
-              "defaultValue": "12",
-              "kind": "union",
-              "items": [
-                {
-                  "kind": "literal",
-                  "value": "'12'"
-                },
-                {
-                  "kind": "literal",
-                  "value": "'100'"
-                }
-              ]
-            },
-            "autoMinMax": {
-              "description": "Set to false to define custom color range. Custom color range is only applicable when coloring is by measure (`\"mode\": \"byMeasure\"`) or by expression (`\"mode\": \"byExpression\"`).\nWhen coloring is by expression, `\"expressionIsColor\": \"false\"` must be set for custom color range to work.",
-              "defaultValue": true,
-              "type": "boolean"
-            },
-            "measureMin": {
-              "description": "Set the min value for the color range.\nOnly applicable if `\"autoMinMax\": false`.",
-              "defaultValue": 0,
-              "kind": "union",
-              "items": [
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "ValueExpression"
-                }
-              ]
-            },
-            "measureMax": {
-              "description": "Set the max value for the color range.\nOnly applicable if `\"autoMinMax\": false`.",
-              "defaultValue": 10,
-              "kind": "union",
-              "items": [
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "ValueExpression"
-                }
-              ]
             }
           },
           "kind": "object"
@@ -216,13 +212,13 @@
               "defaultValue": true,
               "type": "boolean"
             },
-            "overlay": {
-              "description": "Show overlay labels.",
+            "leaves": {
+              "description": "Show labels on leafs.",
               "defaultValue": true,
               "type": "boolean"
             },
-            "leaves": {
-              "description": "Show labels on leafs.",
+            "overlay": {
+              "description": "Show overlay labels.",
               "defaultValue": true,
               "type": "boolean"
             },
@@ -353,24 +349,10 @@
               "defaultValue": true,
               "type": "boolean"
             },
-            "hideBasic": {
-              "description": "Toggle for hiding basic information from custom tooltip",
-              "defaultValue": false,
-              "type": "boolean"
-            },
-            "title": {
-              "description": "Custom tooltip title.",
-              "optional": true,
-              "defaultValue": "",
-              "kind": "union",
-              "items": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "StringExpression"
-                }
-              ]
+            "chart": {
+              "description": "The chart object is used to define the chart displayed by the custom tooltip.",
+              "defaultValue": "undefined",
+              "type": "#/definitions/MasterVisualizationChart"
             },
             "description": {
               "description": "Custom tooltip description.",
@@ -386,10 +368,10 @@
                 }
               ]
             },
-            "chart": {
-              "description": "The chart object is used to define the chart displayed by the custom tooltip.",
-              "defaultValue": "undefined",
-              "type": "#/definitions/MasterVisualizationChart"
+            "hideBasic": {
+              "description": "Toggle for hiding basic information from custom tooltip",
+              "defaultValue": false,
+              "type": "boolean"
             },
             "imageComponents": {
               "description": "The imageComponents objects are used to define the images displayed by the custom tooltip.",
@@ -398,141 +380,32 @@
               "items": {
                 "type": "#/definitions/ImageComponent"
               }
+            },
+            "title": {
+              "description": "Custom tooltip title.",
+              "optional": true,
+              "defaultValue": "",
+              "kind": "union",
+              "items": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "StringExpression"
+                }
+              ]
             }
           },
           "kind": "object"
+        },
+        "version": {
+          "description": "Current version of this generic object definition",
+          "type": "string"
         }
       }
     }
   },
   "definitions": {
-    "paletteColor": {
-      "description": "Color information structure. Holds the actual color and index in palette.",
-      "kind": "interface",
-      "entries": {
-        "color": {
-          "description": "Color as hex string (mandatory if index: -1)",
-          "type": "string"
-        },
-        "index": {
-          "description": "Index in palette",
-          "type": "string"
-        }
-      }
-    },
-    "DimensionProperties": {
-      "description": "Extends `NxDimension`, see Engine API: `NxDimension`.",
-      "extends": [
-        {
-          "type": "NxDimension"
-        }
-      ],
-      "kind": "interface",
-      "entries": {
-        "qAttributeDimensions": {
-          "kind": "array",
-          "items": {
-            "type": "#/definitions/AttributeDimensionProperties"
-          }
-        },
-        "qDef": {
-          "type": "#/definitions/InlineDimensionDef"
-        }
-      }
-    },
-    "InlineDimensionDef": {
-      "description": "Extends `NxInlineDimensionDef`, see Engine API: `NxInlineDimensionDef`.",
-      "extends": [
-        {
-          "type": "NxInlineDimensionDef"
-        }
-      ],
-      "kind": "interface",
-      "entries": {
-        "autoSort": {
-          "description": "Set to automatically sort the dimension.",
-          "optional": true,
-          "type": "boolean"
-        },
-        "cId": {
-          "description": "ID used by the Qlik Sense. Must be unique within the current chart.",
-          "optional": true,
-          "type": "string"
-        },
-        "othersLabel": {
-          "kind": "union",
-          "items": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "StringExpression"
-            }
-          ]
-        }
-      }
-    },
-    "MeasureProperties": {
-      "description": "Extends `NxMeasure`, see Engine API: `NxMeasure`.",
-      "extends": [
-        {
-          "type": "NxMeasure"
-        }
-      ],
-      "kind": "interface",
-      "entries": {
-        "qAttributeExpressions": {
-          "kind": "array",
-          "items": {
-            "type": "#/definitions/AttributeExpressionProperties"
-          }
-        },
-        "qDef": {
-          "type": "#/definitions/InlineMeasureDef"
-        }
-      }
-    },
-    "InlineMeasureDef": {
-      "description": "Extends `NxInlineMeasureDef`, see Engine API: `NxInlineMeasureDef`.",
-      "extends": [
-        {
-          "type": "NxInlineMeasureDef"
-        }
-      ],
-      "kind": "interface",
-      "entries": {
-        "autoSort": {
-          "description": "Set to automatically sort the measure.",
-          "optional": true,
-          "type": "boolean"
-        },
-        "cId": {
-          "description": "ID used by the Qlik Sense. Must be unique within the current chart.",
-          "optional": true,
-          "type": "string"
-        },
-        "isCustomFormatted": {
-          "description": "Set to true to toggle off the default client formatting.",
-          "type": "boolean"
-        },
-        "numFormatFromTemplate": {
-          "description": "When enabled, the number format to use can be selected from multiple predefined formats based on the desired type (number, date).",
-          "defaultValue": true,
-          "type": "boolean"
-        },
-        "othersLabel": {
-          "kind": "union",
-          "items": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "StringExpression"
-            }
-          ]
-        }
-      }
-    },
     "AttributeDimensionProperties": {
       "description": "Extends `NxAttrDimDef`, see Engine API: `NxAttrDimDef`.",
       "extends": [
@@ -540,7 +413,7 @@
           "type": "NxAttrDimDef"
         }
       ],
-      "kind": "interface",
+      "kind": "object",
       "entries": {
         "id": {
           "description": "One of: `colorByAlternative`: colors the chart using different dimensions (can be used together with color.mode=\"byDimension\") or `colorByExpression` together with color.mode=\"byExpression\".",
@@ -569,7 +442,7 @@
           "type": "NxAttrExprDef"
         }
       ],
-      "kind": "interface",
+      "kind": "object",
       "entries": {
         "id": {
           "description": "One of: `colorByAlternative`: colors the chart using different dimensions (can be used together with color.mode=\"byDimension\") or `colorByExpression` together with color.mode=\"byExpression\".",
@@ -584,7 +457,7 @@
           "type": "NxAttrExprDef"
         }
       ],
-      "kind": "interface",
+      "kind": "object",
       "entries": {
         "id": {
           "description": "Indicates how the attribute expression will be interpreted by the chart.\n`customTooltipTitle`: additional title displayed on the custom tooltip\n`customTooltipDescription`: description displayed on the custom tooltip\n`customTooltipExpression`: measures displayed on the custom tooltip",
@@ -609,52 +482,30 @@
         "```json\n\"qAttributeExpressions\": [{\n  \"qExpression\": \"\",\n  \"qLibraryId\": \"\",\n  \"qAttribute\": true,\n  \"qNumFormat\": {\n     \"qType\": \"U\",\n     \"qnDec\": 10,\n     \"qUseThou\": 0,\n     \"qFmt\": \"\",\n     \"qDec\": \"\",\n     \"qThou\": \"\",\n   }\n  \"qLabel\": \"custom title\",\n  \"qLabelExpression\": \"\",\n  \"id\": \"customTooltipTitle\"\n},\n{\n  \"qExpression\": \"avg(population)\",\n  \"qLibraryId\": \"\",\n  \"qAttribute\": true,\n  \"qNumFormat\": {\n     \"qType\": \"U\",\n     \"qnDec\": 10,\n     \"qUseThou\": 0,\n     \"qFmt\": \"\",\n     \"qDec\": \"\",\n     \"qThou\": \"\",\n   }\n  \"qLabel\": \"\",\n  \"qLabelExpression\": \"\",\n  \"id\": \"customTooltipDescription\"\n},\n{\n  \"qExpression\": \"\",\n  \"qLibraryId\": \"zpDNMcg\",\n  \"qAttribute\": true,\n  \"qNumFormat\": {\n     \"qType\": \"U\",\n     \"qnDec\": 10,\n     \"qUseThou\": 0,\n     \"qFmt\": \"\",\n     \"qDec\": \"\",\n     \"qThou\": \"\",\n   }\n  \"qLabel\": \"\",\n  \"qLabelExpression\": \"\",\n  \"id\": \"customTooltipExpression\"\n},\n{\n  \"qExpression\": \"sum(population)\",\n  \"qLibraryId\": \"\",\n  \"qAttribute\": true,\n  \"qNumFormat\": {\n     \"qType\": \"M\",\n     \"qnDec\": 2,\n     \"qUseThou\": 0,\n     \"qFmt\": \"$#,##0.00;-$#,##0.00\",\n     \"qDec\": \".\",\n     \"qThou\": \",\",\n   }\n  \"qLabel\": \"\",\n  \"qLabelExpression\": \"=avg(population)\",\n  \"id\": \"customTooltipExpression\"\n},\n{\n  \"qExpression\": \"'https://my_url/'+sum(population)\",\n  \"qLibraryId\": \"\",\n  \"qAttribute\": true,\n  \"qNumFormat\": null,\n  \"qLabel\": \"\",\n  \"qLabelExpression\": \"\",\n  \"cId\": \"generatedUniqueId\",\n  \"id\": \"customTooltipImages\"\n}]\n```"
       ]
     },
-    "MasterVisualizationChart": {
-      "description": "Chart component information structure.",
-      "kind": "interface",
+    "DimensionProperties": {
+      "description": "Extends `NxDimension`, see Engine API: `NxDimension`.",
+      "extends": [
+        {
+          "type": "NxDimension"
+        }
+      ],
+      "kind": "object",
       "entries": {
-        "style": {
-          "description": "Object containing the styles of the chart such as 'size'",
-          "type": "#/definitions/MasterVisualizationChartStyle"
+        "qAttributeDimensions": {
+          "kind": "array",
+          "items": {
+            "type": "#/definitions/AttributeDimensionProperties"
+          }
         },
-        "object": {
-          "description": "Object containing the information fo the visualization, such as refId in case of master visualization",
-          "type": "#/definitions/MasterVisualizationChartObject"
-        }
-      }
-    },
-    "MasterVisualizationChartStyle": {
-      "description": "Chart component information structure.",
-      "kind": "interface",
-      "entries": {
-        "size": {
-          "description": "Input type as 'small' or 'medium' or 'large'",
-          "type": "string"
-        }
-      }
-    },
-    "MasterVisualizationChartObject": {
-      "description": "Chart component information structure.",
-      "kind": "interface",
-      "entries": {
-        "refId": {
-          "description": "Input field containing the qExtendsId of the visualization, where qExtendsId is the unique id of the master visualization",
-          "type": "string"
+        "qDef": {
+          "type": "#/definitions/InlineDimensionDef"
         }
       }
     },
     "ImageComponent": {
       "description": "Image component information structure.",
-      "kind": "interface",
+      "kind": "object",
       "entries": {
-        "type": {
-          "description": "Input type as 'url' or 'media library'",
-          "type": "string"
-        },
-        "size": {
-          "description": "Size as 'small','medium','large' or 'original'",
-          "type": "string"
-        },
         "cId": {
           "description": "Identifier of the image component - used as a link with an attribute expression",
           "type": "string"
@@ -673,12 +524,147 @@
               "type": "#/definitions/MediaLibraryRef"
             }
           ]
+        },
+        "size": {
+          "description": "Size as 'small','medium','large' or 'original'",
+          "type": "string"
+        },
+        "type": {
+          "description": "Input type as 'url' or 'media library'",
+          "type": "string"
+        }
+      }
+    },
+    "InlineDimensionDef": {
+      "description": "Extends `NxInlineDimensionDef`, see Engine API: `NxInlineDimensionDef`.",
+      "extends": [
+        {
+          "type": "NxInlineDimensionDef"
+        }
+      ],
+      "kind": "object",
+      "entries": {
+        "othersLabel": {
+          "kind": "union",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "StringExpression"
+            }
+          ]
+        },
+        "autoSort": {
+          "description": "Set to automatically sort the dimension.",
+          "optional": true,
+          "type": "boolean"
+        },
+        "cId": {
+          "description": "ID used by the Qlik Sense. Must be unique within the current chart.",
+          "optional": true,
+          "type": "string"
+        }
+      }
+    },
+    "InlineMeasureDef": {
+      "description": "Extends `NxInlineMeasureDef`, see Engine API: `NxInlineMeasureDef`.",
+      "extends": [
+        {
+          "type": "NxInlineMeasureDef"
+        }
+      ],
+      "kind": "object",
+      "entries": {
+        "isCustomFormatted": {
+          "description": "Set to true to toggle off the default client formatting.",
+          "type": "boolean"
+        },
+        "numFormatFromTemplate": {
+          "description": "When enabled, the number format to use can be selected from multiple predefined formats based on the desired type (number, date).",
+          "defaultValue": true,
+          "type": "boolean"
+        },
+        "othersLabel": {
+          "kind": "union",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "StringExpression"
+            }
+          ]
+        },
+        "autoSort": {
+          "description": "Set to automatically sort the measure.",
+          "optional": true,
+          "type": "boolean"
+        },
+        "cId": {
+          "description": "ID used by the Qlik Sense. Must be unique within the current chart.",
+          "optional": true,
+          "type": "string"
+        }
+      }
+    },
+    "MasterVisualizationChart": {
+      "description": "Chart component information structure.",
+      "kind": "object",
+      "entries": {
+        "object": {
+          "description": "Object containing the information fo the visualization, such as refId in case of master visualization",
+          "type": "#/definitions/MasterVisualizationChartObject"
+        },
+        "style": {
+          "description": "Object containing the styles of the chart such as 'size'",
+          "type": "#/definitions/MasterVisualizationChartStyle"
+        }
+      }
+    },
+    "MasterVisualizationChartObject": {
+      "description": "Chart component information structure.",
+      "kind": "object",
+      "entries": {
+        "refId": {
+          "description": "Input field containing the qExtendsId of the visualization, where qExtendsId is the unique id of the master visualization",
+          "type": "string"
+        }
+      }
+    },
+    "MasterVisualizationChartStyle": {
+      "description": "Chart component information structure.",
+      "kind": "object",
+      "entries": {
+        "size": {
+          "description": "Input type as 'small' or 'medium' or 'large'",
+          "type": "string"
+        }
+      }
+    },
+    "MeasureProperties": {
+      "description": "Extends `NxMeasure`, see Engine API: `NxMeasure`.",
+      "extends": [
+        {
+          "type": "NxMeasure"
+        }
+      ],
+      "kind": "object",
+      "entries": {
+        "qAttributeExpressions": {
+          "kind": "array",
+          "items": {
+            "type": "#/definitions/AttributeExpressionProperties"
+          }
+        },
+        "qDef": {
+          "type": "#/definitions/InlineMeasureDef"
         }
       }
     },
     "MediaLibraryRef": {
       "description": "Media Library Reference structure.",
-      "kind": "interface",
+      "kind": "object",
       "entries": {
         "qStaticContentUrlDef": {
           "description": "Media library structure",
@@ -686,9 +672,23 @@
         }
       }
     },
+    "paletteColor": {
+      "description": "Color information structure. Holds the actual color and index in palette.",
+      "kind": "object",
+      "entries": {
+        "color": {
+          "description": "Color as hex string (mandatory if index: -1)",
+          "type": "string"
+        },
+        "index": {
+          "description": "Index in palette",
+          "type": "number"
+        }
+      }
+    },
     "qStaticContentUrlDef": {
       "description": "Media Library structure that will be evaluated by the engine.",
-      "kind": "interface",
+      "kind": "object",
       "entries": {
         "qUrl": {
           "description": "Value of media library image",

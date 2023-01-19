@@ -6,7 +6,7 @@ module.exports = {
     },
     output: {
       sort: {
-        alpha: false,
+        alpha: true,
       },
       file: './api-spec/spec.json',
     },
