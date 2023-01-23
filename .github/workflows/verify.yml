@@ -22,3 +22,13 @@ jobs:
             test/rendering/reports/html/
             test-results/
           retention-days: 3
+      - run: yarn run test:integration
+        id: integration
+      - uses: actions/upload-artifact@v3
+        if: ${{ failure() && steps.integration.conclusion == 'failure' }}
+        with:
+          name: integration-output
+          path: |
+            test/integration/reports/html/
+            test-results/
+          retention-days: 3
