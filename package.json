@@ -96,7 +96,8 @@
     "start": "nebula serve --build false --type treemap",
     "test": "jest",
     "test:rendering": "playwright test --config=./test/rendering/playwright.config.rendering.js --quiet",
-    "test:rendering:debug": "cross-env DEBUG=true playwright test --config=./test/rendering/playwright.config.rendering.js --headed"
+    "test:rendering:debug": "cross-env DEBUG=true playwright test --config=./test/rendering/playwright.config.rendering.js --headed",
+    "test:integration": "playwright test --config=./test/integration/playwright.config.integration.js"
   },
   "peerDependencies": {
     "@nebula.js/stardust": ">=1.0.0"
