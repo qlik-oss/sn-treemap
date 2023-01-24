@@ -224,43 +224,6 @@ function wordWrap(lines, width, maxNumLines, ellipsis, renderer, fontSize, fontF
 
   return result;
 }
-/* function getLines(text, width, measureText) {
-  let n;
-
-  let r;
-  const textLines = text ? text.split(/\n+|\r+|\r\n/) : [];
-  const lines = [];
-  let testLine;
-  let testWidth;
-  let words = text ? text.split(/\s+/) : [];
-  let line = textLines[0];
-  let remainder;
-  let textLine;
-  if (typeof width !== 'number' || width <= 0) {
-    return [text];
-  }
-
-  for (r = 0; r < textLines.length; r++) {
-    textLine = textLines[r] || '';
-    words = textLine.split(/\s+/);
-    line = words[0];
-    remainder = '';
-    for (n = 1; n < words.length; n++) {
-      testLine = `${line} ${words[n]}`;
-      testWidth = measureText(testLine).width;
-      if (testWidth > width) {
-        lines.push(line);
-        line = words[n];
-      } else {
-        line = testLine;
-      }
-    }
-
-    lines[Math.max(0, lines.length - 1)] = `${lines[Math.max(0, lines.length - 1)] || ''} ${line} ${remainder}`;
-  }
-
-  return lines;
-} */
 
 function wrapText(text, maxWidth, maxNumLines, ellipsis, renderer, fontSize, fontFamily) {
   let lines;
