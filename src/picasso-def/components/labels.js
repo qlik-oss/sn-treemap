@@ -89,27 +89,6 @@ export const createTextLabels = ({
       wordBreak: 'break-word',
       data: { ...node.data, depth: node.depth },
     });
-
-    /* if (
-        valueTextSize.textSize.width < width &&
-        valueTextSize.textSize.height + valueTextSize.maxheight < height - 8
-      ) {
-        valueLables.push({
-          type: 'text',
-          text: valueText,
-          fontFamily,
-          fontSize,
-          fontWeight: 'normal',
-          x: rtl
-            ? node.x1 - valueTextSize.textSize.width - Math.abs(parseInt(fontSize, 10) / 2)
-            : node.x0 + Math.abs(parseInt(fontSize, 10) / 2),
-          y: top + valueTextSize.textSize.height,
-          fill: fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
-          baseline: 'text-before-edge',
-          wordBreak: 'break-word',
-          data: { ...node.data, depth: node.depth },
-        });
-      } */
   }
 };
 

@@ -1,6 +1,13 @@
 const defaultHyphen = '-';
 const defaultEllipsis = '…';
 
+/**
+ * Truncates a single line of text if the text does not fit inside the given width.
+ * @param text
+ * @param {Number} width
+ * @param {String} font
+ * @returns {{text: String, rest: String}}
+ */
 function truncate(text, width, ellipsis, renderer, fontSize, fontFamily) {
   let s = text;
   let i;
@@ -138,6 +145,7 @@ function wordWrap(lines, width, maxNumLines, ellipsis, renderer, fontSize, fontF
 
     remainder = null;
     if (!line) {
+      // eslint-disable-next-line no-continue
       continue;
     } else if (
       line.length <= 1 ||
@@ -148,12 +156,14 @@ function wordWrap(lines, width, maxNumLines, ellipsis, renderer, fontSize, fontF
       }).width <= width
     ) {
       result.push(line);
+      // eslint-disable-next-line no-continue
       continue;
     } else {
       exploded = splitWord(line, width, maxNumLines - result.length, renderer, fontSize, fontFamily);
       if (exploded.length <= 1) {
         // could not shorten current line -> add it to results
         result.push(exploded[0]);
+        // eslint-disable-next-line no-continue
         continue;
       }
 
@@ -182,8 +192,8 @@ function wordWrap(lines, width, maxNumLines, ellipsis, renderer, fontSize, fontF
     }
   }
 
-  result.forEach((s, i, arr) => {
-    arr[i] = s ? s.trim() : s;
+  result.forEach((s, j, arr) => {
+    arr[j] = s ? s.trim() : s;
   });
 
   if (result.length > maxNumLines) {
