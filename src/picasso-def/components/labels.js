@@ -1,9 +1,10 @@
-import { truncate, cram } from './text-helper';
+import { wrapText } from './text-helper';
 
 const TREEMAP_LABEL_FONTSIZE = 14;
 const TREEMAP_VALUE_FONTSIZE = 12;
 const TREEMAP_MESSAGE_SIZE = 16;
 const MIN_AREA_FOR_LABELS = 4000;
+const ellipsis = '…';
 
 export const createTextLabels = ({
   node,
@@ -34,7 +35,6 @@ export const createTextLabels = ({
         valueLables,
         labels,
         theme,
-        rtl,
       });
       return;
     }
@@ -43,23 +43,45 @@ export const createTextLabels = ({
     const fontSize = theme.getStyle('object.treemap', 'leaf.label', 'fontSize') || TREEMAP_LABEL_FONTSIZE + 'px';
     const top = node.y0 + 4;
     const valueText = formatter[0].formatValue(node.data.size.value);
-    const labelTextSize = processText({
-      text: labelText,
-      fontSize,
-      fontFamily,
-      renderer,
-      width,
-      height,
+    let finalTextArray = [];
+    let lines = [];
+
+    if (labels.values) {
+      finalTextArray = processText({
+        text: [labelText, valueText],
+        fontSize,
+        fontFamily,
+        renderer,
+        width,
+        height,
+        labels,
+      });
+      lines = finalTextArray.lines;
+    } else {
+      finalTextArray = processText({
+        text: labelText,
+        fontSize,
+        fontFamily,
+        renderer,
+        width,
+        height,
+        labels,
+      });
+      lines = finalTextArray.lines;
+    }
+    let finalText = '';
+    Array.from(lines).forEach((line) => {
+      finalText = finalText + line + '\n';
     });
 
     valueLables.push({
       type: 'text',
-      text: labelText,
+      text: finalText,
       fontFamily,
       fontSize,
       fontWeight: 'normal',
       x: rtl
-        ? node.x1 - labelTextSize.textSize.width - Math.abs(parseInt(fontSize, 10) / 2)
+        ? node.x1 - finalTextArray.textSize.width - Math.abs(parseInt(fontSize, 10) / 2)
         : node.x0 + Math.abs(parseInt(fontSize, 10) / 2),
       y: top,
       fill: fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
@@ -67,16 +89,8 @@ export const createTextLabels = ({
       wordBreak: 'break-word',
       data: { ...node.data, depth: node.depth },
     });
-    if (labels.values) {
-      const valueTextSize = processText({
-        text: valueText,
-        fontSize,
-        fontFamily,
-        renderer,
-        width,
-        height,
-      });
-      if (
+
+    /* if (
         valueTextSize.textSize.width < width &&
         valueTextSize.textSize.height + valueTextSize.maxheight < height - 8
       ) {
@@ -95,13 +109,19 @@ export const createTextLabels = ({
           wordBreak: 'break-word',
           data: { ...node.data, depth: node.depth },
         });
-      }
-    }
+      } */
   }
 };
 
-const processText = ({ text, fontSize, fontFamily, renderer, width, height }) => {
-  const texts = text.split(/(\s+)/).filter((s) => s !== ' ');
+const processText = ({ text, fontSize, fontFamily, renderer, width, height, labels }) => {
+  let maxLines = [];
+  let totalMaxNumLines = 0;
+  let lines = [];
+
+  // allow break if white space in label
+  const texts = text[0].split(/(\s+)/).filter((s) => s !== ' ');
+  const maxNumLines = labels.values ? [-1, 1] : [-1];
+
   // find maxLength
   const maxChars = texts.reduce((prev, current) => (prev.length > current.length ? prev : current));
   const textSize = renderer.measureText({
@@ -109,10 +129,26 @@ const processText = ({ text, fontSize, fontFamily, renderer, width, height }) =>
     fontSize,
     fontFamily,
   });
+  const maxAllowedLines = height ? Math.max(1, Math.floor(parseInt(height / textSize.height, 10))) : maxNumLines || 1;
+
+  if (Array.isArray(maxNumLines)) {
+    maxNumLines.forEach((v) => {
+      totalMaxNumLines += Number.isNaN(+v) || v <= 0 ? 0 : v;
+    });
+
+    maxNumLines.forEach((v) => {
+      maxLines.push(Number.isNaN(+v) || v <= 0 ? maxAllowedLines - totalMaxNumLines : v); // if v < 0 then use the number of lines that are available
+    });
+  } else {
+    maxLines = [
+      Number.isNaN(+maxNumLines) || maxNumLines <= 0 ? maxAllowedLines : Math.min(maxAllowedLines, maxNumLines),
+    ];
+  }
 
   const verticalPadding = 12;
+  const maxWidth = width - verticalPadding;
   let maxheight = 0;
-  if (textSize.width < width - verticalPadding) {
+  if (textSize.width < maxWidth) {
     // now calc maxheight
     maxheight = texts.reduce(
       (acc, cur) =>
@@ -124,18 +160,19 @@ const processText = ({ text, fontSize, fontFamily, renderer, width, height }) =>
         }).height,
       0
     );
-    if (maxheight < height - 8) {
-      text = cram(
-        text,
-        { width: width - 8, height },
-        (val) => renderer.measureText({ text: val, fontFamily, fontSize }),
-        renderer,
-        fontSize,
-        fontFamily
-      );
-    }
   }
-  return { textSize, maxheight };
+
+  if (Array.isArray(text)) {
+    text.forEach((s, i) => {
+      if (lines.length < maxAllowedLines) {
+        lines = lines.concat(wrapText(s, maxWidth, maxLines[i], ellipsis, renderer, fontSize, fontFamily));
+      }
+    }, this);
+  } else {
+    lines = wrapText(text, maxWidth, maxLines[0], ellipsis, renderer, fontSize, fontFamily);
+  }
+
+  return { lines, textSize, maxheight };
 };
 
 const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl }) => {
@@ -153,7 +190,7 @@ const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl }) =>
     return;
   }
   if (textSize.width > width - 8) {
-    text = truncate(text, width - 10, renderer, fontSize, fontFamily);
+    text = wrapText(text, width - 10, undefined, undefined, renderer, fontSize, fontFamily);
   }
   valueLables.push({
     type: 'text',
