@@ -70,7 +70,7 @@ export const treemap = () => ({
       .paddingOuter(TREEMAP_DEFINES.OUTER_PADDING)
       .paddingTop((node) => {
         // only want headers at level 1
-        if (node.depth === 1 && node.height !== 1) {
+        if (node.depth === 1) {
           const nodeHeight = node.y1 - node.y0;
           const showLable = nodeHeight > TREEMAP_DEFINES.HEADER_HEIGHT * 2;
           node.header = true;
