@@ -21,6 +21,8 @@ coverage
 test-results
 test/rendering/reports
 test/rendering/baselines-local
+test/integration/reports
+test/integration/baselines-local
 
 #pack files
 *.tgz
