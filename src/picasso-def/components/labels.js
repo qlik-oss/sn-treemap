@@ -222,11 +222,31 @@ export const displayInvalidMessage = ({ rect, text, renderer, theme }) => {
   ];
 };
 
-export const createOverlayLabel = ({ node, avgColor, width, height, theme }) => {
+export const createOverlayLabel = ({ node, avgColor, width, height, renderer, theme }) => {
+  let lines = [];
   const text = node.data.label;
+  const maxNumLines = /\s+/.test(text) ? 2 : 1; // allow break if white space in label
   const fontFamily = theme.getStyle('object.treemap', 'label.value', 'fontFamily') || 'Source Sans Pro';
   const optimal = Math.round(0.1 * Math.sqrt(2 * width * height));
   const fontSize = `${optimal}px`;
+
+  const textSize = renderer.measureText({
+    text,
+    fontSize,
+    fontFamily,
+  });
+
+  let finalText = '';
+  if (textSize.width > width - 8) {
+    lines = wrapText(text, width - 10, maxNumLines, ellipsis, renderer, fontSize, fontFamily);
+    if (Array.isArray(lines) && lines.length > 0) {
+      lines.forEach((line) => {
+        finalText = finalText + line + '\n';
+      });
+    }
+  } else {
+    finalText = text;
+  }
   const x = node.x0 + Math.abs(width / 2);
   const y = node.y0 + height / 2;
   const fontHeight = parseInt(fontSize, 10);
@@ -234,7 +254,7 @@ export const createOverlayLabel = ({ node, avgColor, width, height, theme }) => 
   if (fontHeight > 8) {
     return {
       type: 'text',
-      text,
+      text: finalText,
       fontFamily,
       fontSize,
       fontWeight: 'bold',
@@ -245,6 +265,8 @@ export const createOverlayLabel = ({ node, avgColor, width, height, theme }) => 
       strokeWidth: 1,
       opacity: 0.5,
       anchor: 'center',
+      baseline: 'text-before-edge',
+      wordBreak: 'break-word',
       data: {
         ...node.data,
         depth: node.depth,
