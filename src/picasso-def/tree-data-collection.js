@@ -1,8 +1,8 @@
 import customTooltipNodes from '../custom-tooltip/picasso-definitions/nodes';
 
 const NOT_FETCHED_ELEM_NO = -11;
-const hasValidType = ({ qType }) => qType === 'N' || qType === 'O' || qType === 'U';
-const isValidNode = (node) => hasValidType(node) && node.qSubNodes?.length >= 1;
+const hasValidType = ({ qType }) => qType === 'N' || qType === 'O' || qType === 'U' || qType === 'V';
+const isValidNode = (node) => hasValidType(node);
 
 export const getTreeDataCollection = ({ colorService, layout, selectLevel }) => {
   const dimensionCount = layout.qHyperCube.qDimensionInfo.length;
@@ -27,7 +27,12 @@ export const getTreeDataCollection = ({ colorService, layout, selectLevel }) => 
               qType: 'Fake',
               qElemNo: NOT_FETCHED_ELEM_NO,
               qMaxPos: missingValue,
-              qSubNodes: [],
+              qSubNodes: [
+                {
+                  qType: 'V',
+                  qSubNodes: [],
+                },
+              ],
             });
           }
           return children;

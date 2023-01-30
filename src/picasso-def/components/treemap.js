@@ -70,7 +70,7 @@ export const treemap = () => ({
       .paddingOuter(TREEMAP_DEFINES.OUTER_PADDING)
       .paddingTop((node) => {
         // only want headers at level 1
-        if (node.depth === 1) {
+        if (node.depth === 1 && node.height > 1) {
           const nodeHeight = node.y1 - node.y0;
           const showLable = nodeHeight > TREEMAP_DEFINES.HEADER_HEIGHT * 2;
           node.header = true;
@@ -87,14 +87,17 @@ export const treemap = () => ({
     const overlayNodes = [];
     const rects = [];
     const parentRects = [];
-    const treeHeight = root.height;
+    const treeHeight = root.height - 1;
     const visit = (node) => {
+      if (node.height === 0) {
+        return;
+      }
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
       const area = height * width;
       if (area > 0) {
         const fill = getNodeColor(node, headerColor, box, this.chart, notFetchedPattern);
-        if (node.header || node.height === 0) {
+        if (node.header || node.height === 1) {
           if (node.header && height) {
             if (labels.headers || labels.auto) {
               createTextLabels({
@@ -193,7 +196,7 @@ export const treemap = () => ({
         }
       }
 
-      if (node.children) {
+      if (node.children && node.height > 1) {
         node.children.forEach((child, childIndex) => visit(child, childIndex));
       }
     };
