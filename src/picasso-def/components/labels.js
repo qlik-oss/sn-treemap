@@ -265,7 +265,6 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, th
       strokeWidth: 1,
       opacity: 0.5,
       anchor: 'center',
-      baseline: 'text-before-edge',
       wordBreak: 'break-word',
       data: {
         ...node.data,
