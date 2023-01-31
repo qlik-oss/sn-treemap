@@ -1,3 +1,19 @@
+## [1.3.1](https://github.com/qlik-oss/sn-treemap/compare/v1.3.0...v1.3.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* add back measure nodes, needed for some color settings ([#113](https://github.com/qlik-oss/sn-treemap/issues/113)) ([6ca8c85](https://github.com/qlik-oss/sn-treemap/commit/6ca8c85d7b5acf9c6cd26f70483b4f6c769d7d0e))
+* auto mode for three dimensions or more ([68cbb70](https://github.com/qlik-oss/sn-treemap/commit/68cbb704f163ed8aaf1bc502047d4b02411e3c0e))
+* handle null measure value ([#106](https://github.com/qlik-oss/sn-treemap/issues/106)) ([547e36a](https://github.com/qlik-oss/sn-treemap/commit/547e36a85667fb2568634c48fded33b73efbdbb2))
+* labels and values for tree nodes fixed to support text wrapping and splitting ([de32993](https://github.com/qlik-oss/sn-treemap/commit/de32993326e107b721672da30fc257f41b93859a))
+* missing headers ([b1e773e](https://github.com/qlik-oss/sn-treemap/commit/b1e773e3eab226611158bc79182d2afae22f56e8))
+* overlapping overlay labels ([6d64ab1](https://github.com/qlik-oss/sn-treemap/commit/6d64ab169c4f6c636e52cd659e6efbe83be294b3))
+* remove baseline attribute from overlay labels ([26ccf10](https://github.com/qlik-oss/sn-treemap/commit/26ccf10b1830091f6532f55e2406203d28025108))
+* update baselines for rendering tests. ([413180d](https://github.com/qlik-oss/sn-treemap/commit/413180d8a01776cc2d4f6e59c471ff05b34b7d54))
+* update integration test baselines ([6371720](https://github.com/qlik-oss/sn-treemap/commit/63717205f77e7bfa2799756c99fdbcdbfcf6217c))
+* updated baselines for integration tests ([5718770](https://github.com/qlik-oss/sn-treemap/commit/5718770814246b070f5d9f3bce06a1c6589efff2))
+
 # [1.3.0](https://github.com/qlik-oss/sn-treemap/compare/v1.2.0...v1.3.0) (2023-01-09)
 
 
