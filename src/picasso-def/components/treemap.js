@@ -158,7 +158,12 @@ export const treemap = () => ({
             };
             rects.push(childRect);
           }
-        } else if (node.depth === 2 && treeHeight > 1 && node.data.label && labels.headers && labels.overlay) {
+        } else if (
+          node.depth === 2 &&
+          treeHeight > 1 &&
+          node.data.label &&
+          ((labels.headers && labels.overlay) || labels.auto)
+        ) {
           // only show overlays if headers are disabled, other wise the headers
           // take precedence
           node.data.next = node?.parent?.data;
