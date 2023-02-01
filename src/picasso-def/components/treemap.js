@@ -89,7 +89,7 @@ export const treemap = () => ({
     const parentRects = [];
     const treeHeight = root.height - 1;
     const visit = (node) => {
-      if (node.height === 0) {
+      if (node.height === 0 && !node.data.isNotFetchedOthers.value) {
         return;
       }
       const height = node.y1 - node.y0;
@@ -97,7 +97,26 @@ export const treemap = () => ({
       const area = height * width;
       if (area > 0) {
         const fill = getNodeColor(node, headerColor, box, this.chart, notFetchedPattern);
-        if (node.header || node.height === 1) {
+        if (node.data.isNotFetchedOthers.value) {
+          incrementColor(node, fill);
+          const path = buildPath(root, node);
+          const childRect = {
+            type: 'rect',
+            width,
+            height,
+            fill,
+            x: node.x0,
+            y: node.y0,
+            data: {
+              ...node.data,
+              depth: node.depth,
+              next: { ...node?.parent?.data },
+              child: true,
+              path,
+            },
+          };
+          rects.push(childRect);
+        } else if (node.header || node.height === 1) {
           if (node.header && height) {
             if (labels.headers || labels.auto) {
               createTextLabels({
@@ -196,7 +215,7 @@ export const treemap = () => ({
         }
       }
 
-      if (node.children && node.height > 1) {
+      if (node.children) {
         node.children.forEach((child, childIndex) => visit(child, childIndex));
       }
     };

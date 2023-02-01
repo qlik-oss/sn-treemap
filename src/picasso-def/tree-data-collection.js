@@ -27,12 +27,7 @@ export const getTreeDataCollection = ({ colorService, layout, selectLevel }) => 
               qType: 'Fake',
               qElemNo: NOT_FETCHED_ELEM_NO,
               qMaxPos: missingValue,
-              qSubNodes: [
-                {
-                  qType: 'V',
-                  qSubNodes: [],
-                },
-              ],
+              qSubNodes: [],
             });
           }
           return children;
