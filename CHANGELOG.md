@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/qlik-oss/sn-treemap/compare/v1.3.1...v1.3.2) (2023-02-03)
+
+
+### Bug Fixes
+
+* Not all data fetched and multiple dims ([#116](https://github.com/qlik-oss/sn-treemap/issues/116)) ([7729d99](https://github.com/qlik-oss/sn-treemap/commit/7729d99168d49b8397b5e04112a3c2202e4d3517))
+
 ## [1.3.1](https://github.com/qlik-oss/sn-treemap/compare/v1.3.0...v1.3.1) (2023-01-31)
 
 
