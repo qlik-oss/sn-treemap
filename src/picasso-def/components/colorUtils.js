@@ -1,5 +1,7 @@
 import { color as d3Color } from 'd3-color';
 
+export const isValidColor = (text) => d3Color(text) !== null;
+
 const getOverlayParent = (node, overlayLevel) => {
   let parent = node;
   while (parent.depth > overlayLevel) {

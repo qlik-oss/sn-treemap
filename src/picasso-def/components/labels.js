@@ -149,6 +149,9 @@ const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl }) =>
   let truncatedText;
   const fontFamily = theme.getStyle('object.treemap', 'branch.label', 'fontFamily') || 'Source Sans Pro';
   const fontSize = theme.getStyle('object.treemap', 'branch.label', 'fontSize') || TREEMAP_VALUE_FONTSIZE + 'px';
+  const headerFillColor =
+    theme.getStyle('object.treemap', 'branch.label', 'color') ||
+    (fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)');
   const textSize = renderer.measureText({
     text,
     fontSize,
@@ -170,7 +173,7 @@ const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl }) =>
     fontWeight: 'normal',
     x: rtl ? node.x1 - parseInt(fontSize, 10) / 2 : node.x0 + parseInt(fontSize, 10) / 2,
     y: top + parseInt(fontSize, 10) / 2,
-    fill: fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
+    fill: headerFillColor,
     anchor: rtl ? 'right' : 'left',
     baseline: 'central',
     maxWidth: width - verticalPadding,
