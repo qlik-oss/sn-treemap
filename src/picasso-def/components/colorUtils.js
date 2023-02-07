@@ -1,9 +1,17 @@
 import { color as d3Color } from 'd3-color';
 
-export const incrementColor = (node, fill) => {
+const getOverlayParent = (node, overlayLevel) => {
+  let parent = node;
+  while (parent.depth > overlayLevel) {
+    parent = parent.parent;
+  }
+  return parent;
+};
+
+export const incrementColor = (node, fill, overlayLevel) => {
   const sumColor = d3Color(fill);
-  if (sumColor) {
-    const parent = node.depth === 4 ? node.parent.parent : node.parent;
+  if (sumColor && overlayLevel !== -1) {
+    const parent = getOverlayParent(node, overlayLevel);
     const parentSumColor = parent?.sumColor || {
       r: 0,
       g: 0,
