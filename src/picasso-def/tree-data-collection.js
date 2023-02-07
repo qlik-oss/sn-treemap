@@ -1,10 +1,16 @@
 import customTooltipNodes from '../custom-tooltip/picasso-definitions/nodes';
+import getLabel from './label';
 
 const NOT_FETCHED_ELEM_NO = -11;
 const hasValidType = ({ qType }) => qType === 'N' || qType === 'O' || qType === 'U' || qType === 'V';
 const isValidNode = (node) => hasValidType(node);
 
-export const getTreeDataCollection = ({ colorService, layout, selectLevel }) => {
+export const getTreeDataCollection = ({ colorService, layout, selectLevel, dataset }) => {
+  const labelFn = getLabel({
+    dataset,
+    minor: 'qMeasureInfo/0',
+  });
+
   const dimensionCount = layout.qHyperCube.qDimensionInfo.length;
   return {
     key: 'hierarchy',
@@ -47,6 +53,13 @@ export const getTreeDataCollection = ({ colorService, layout, selectLevel }) => 
                 return node.data.qMaxPos;
               }
               return 0;
+            },
+            label: (d, node) => {
+              const validType = hasValidType(node.data);
+              if (validType && node.data.qSubNodes?.length === 1 && node.data.qSubNodes[0]?.qType === 'V') {
+                return labelFn(node.data.qSubNodes[0]);
+              }
+              return '';
             },
           },
           select: {

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { breadCrumb } from './breadCrumb';
 
-export const tooltip = ({ level, layout, formatter }) => ({
+export const tooltip = ({ level, layout }) => ({
   type: 'floating',
   key: 'tooltip',
   level,
@@ -14,7 +14,7 @@ export const tooltip = ({ level, layout, formatter }) => ({
       const { qMeasureInfo } = qHyperCube;
       const result = breadCrumb({ data: data[dataIndex].data });
       const valueLabel = `${qMeasureInfo[0].qFallbackTitle}:`;
-      const valueText = formatter[0].formatValue(data[dataIndex].data.size.value);
+      const valueText = data[dataIndex].data.size.label;
       return (
         <View style={{ maxWidth: 400 }}>
           {result.map((text, index) => (

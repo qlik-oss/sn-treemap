@@ -37,8 +37,7 @@ const getNodeColor = (node, headerColor, box, chart, notFetchedPattern) => {
 export const treemap = () => ({
   require: ['chart', 'renderer', 'element'],
   render({ data }) {
-    const { headerColor, labels, formatter, level, invalidMessage, translator, box, theme, rtl } =
-      this.settings.settings;
+    const { headerColor, labels, level, invalidMessage, translator, box, theme, rtl } = this.settings.settings;
     const boundingRect = this.rect;
 
     const notFetchedPattern = getPattern(theme.getDataColorSpecials().others, 0.1);
@@ -126,7 +125,6 @@ export const treemap = () => ({
                 fill,
                 valueLables,
                 labels,
-                formatter,
                 renderer: this.renderer,
                 theme,
                 rtl,
@@ -142,7 +140,6 @@ export const treemap = () => ({
               fill,
               valueLables,
               labels,
-              formatter,
               renderer: this.renderer,
               theme,
               rtl,
