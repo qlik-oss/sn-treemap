@@ -6,18 +6,7 @@ const TREEMAP_MESSAGE_SIZE = 16;
 const MIN_AREA_FOR_LABELS = 4000;
 const ellipsis = '…';
 
-export const createTextLabels = ({
-  node,
-  width,
-  height,
-  fill,
-  valueLables,
-  labels,
-  formatter,
-  renderer,
-  theme,
-  rtl,
-}) => {
+export const createTextLabels = ({ node, width, height, fill, valueLables, labels, renderer, theme, rtl }) => {
   const area = width * height;
 
   if (area < MIN_AREA_FOR_LABELS) {
@@ -42,7 +31,7 @@ export const createTextLabels = ({
     const fontFamily = theme.getStyle('object.treemap', 'leaf.label', 'fontFamily') || 'Source Sans Pro';
     const fontSize = theme.getStyle('object.treemap', 'leaf.label', 'fontSize') || TREEMAP_LABEL_FONTSIZE + 'px';
     const top = node.y0 + 4;
-    const valueText = formatter[0].formatValue(node.data.size.value);
+    const valueText = node.data.size.label;
     let finalTextArray = [];
     let lines = [];
 

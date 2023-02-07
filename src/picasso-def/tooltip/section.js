@@ -11,7 +11,7 @@ const getLabel = (node, create) => {
   });
 };
 
-export const getSections = ({ layout, custom, formatter, chart, colorService }) => {
+export const getSections = ({ layout, custom, chart, colorService }) => {
   const { qHyperCube } = layout;
   const { qMeasureInfo } = qHyperCube;
   const valueLabel = qMeasureInfo[0].qFallbackTitle;
@@ -79,7 +79,7 @@ export const getSections = ({ layout, custom, formatter, chart, colorService }) 
         })
       );
 
-      const valueText = formatter[0].formatValue(node.data.size.value);
+      const valueText = node.data.size.label;
       section.push(
         create.measure({
           label: valueLabel,

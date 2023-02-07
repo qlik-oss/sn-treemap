@@ -34,7 +34,13 @@ describe('Treemap picassodef render', () => {
       getPalettes: () => undefined,
       getSettings: () => ({}),
     };
-    const data = picassoDef({ layout, theme: _theme.externalAPI, env: {}, colorService, options });
+    const field = {
+      raw: () => ({ isCustomFormatted: true }),
+    };
+    const dataset = {
+      field: () => field,
+    };
+    const data = picassoDef({ layout, theme: _theme.externalAPI, env: {}, colorService, options, dataset });
     expect(data).toMatchSnapshot();
   });
 });

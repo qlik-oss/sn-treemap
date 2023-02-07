@@ -137,6 +137,18 @@ const supernova = (env) => {
 
         customTooltipMigrators.attrExpr.updateProperties(model, layout);
 
+        const data = [
+          {
+            type: 'q',
+            key: 'qHyperCube',
+            data: layout.qHyperCube,
+            config: {
+              localeInfo,
+            },
+          },
+          ...colorService.getData(),
+        ];
+        const dataset = pic.data('q')(data[0]);
         const settings = picassoDef({
           layout,
           theme,
@@ -154,18 +166,8 @@ const supernova = (env) => {
           customTooltipService,
           properties,
           rtl: options.direction === 'rtl',
+          dataset,
         });
-        const data = [
-          {
-            type: 'q',
-            key: 'qHyperCube',
-            data: layout.qHyperCube,
-            config: {
-              localeInfo,
-            },
-          },
-          ...colorService.getData(),
-        ];
         chart.update({ data, settings });
         // state.selectBrush.end();
       }, [layout, chart, selectionService, theme.name(), selections, options, actions]);

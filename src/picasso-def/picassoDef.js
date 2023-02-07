@@ -1,5 +1,4 @@
 import { getLevel, getNextSelecteDim } from './getLevel';
-import ChartFormatting from './formatting/chart-formatting';
 import { legend } from './legend';
 import createSelectables from './selectables';
 import createTooltipService from './tooltip/service';
@@ -8,40 +7,6 @@ import { dockLayout } from './dock-layout';
 import gesturesToInteractions from './gesturesToInteractions';
 import { getBlockingDisclaimer, getInfoDisclaimer } from './disclaimers';
 import { getTreeDataCollection } from './tree-data-collection';
-
-const getFormatterForMeasures = (localeInfo, nrMeasures, qMeasureInfo) => {
-  let measure;
-  const chartFormatter = new ChartFormatting(localeInfo, qMeasureInfo);
-  let f;
-  let formatters = [];
-
-  for (let i = 0; i < nrMeasures; i++) {
-    measure = qMeasureInfo[i];
-    f = chartFormatter.getMeasureFormatter(i);
-    if (f && f.type === 'U') {
-      f.pattern = f.createPatternFromRange(measure.qMax, measure.qMax, true);
-      if (Math.floor(Math.log(Math.abs(measure.qMax)) / Math.log(10)) % 3 === 2) {
-        f.pattern = f.pattern.substr(0, f.pattern.length - 2);
-        f.pattern += 'A';
-      }
-      f.prepare();
-    }
-
-    formatters.push(f);
-  }
-
-  // the api importing returns  undefined formatters, filter them out, then
-  // add a default one if necessary.
-  formatters = formatters.filter((formatter) => formatter !== undefined);
-
-  if (formatters.length === 0) {
-    // add default formatter
-    formatters.push({
-      formatValue: (v) => v,
-    });
-  }
-  return formatters;
-};
 
 export const picassoDef = ({
   layout,
@@ -58,6 +23,7 @@ export const picassoDef = ({
   customTooltipService,
   properties,
   rtl,
+  dataset,
 }) => {
   const blockingDisclaimer = getBlockingDisclaimer(layout, translator, rtl);
   if (blockingDisclaimer) {
@@ -74,9 +40,6 @@ export const picassoDef = ({
   const dimLevel = getNextSelecteDim(layout);
   const selectLevel = Math.min(level, dimLevel);
   const interactionType = env.carbon ? 'kinesics' : 'hammer';
-  const { qMeasureInfo } = layout.qHyperCube;
-
-  const formatter = getFormatterForMeasures('', qMeasureInfo.length, qMeasureInfo);
 
   const scales = colorService.getScales();
 
@@ -102,10 +65,9 @@ export const picassoDef = ({
     properties,
     level,
     layout,
-    formatter,
   });
 
-  const collections = [getTreeDataCollection({ colorService, layout, selectLevel })];
+  const collections = [getTreeDataCollection({ colorService, layout, selectLevel, dataset })];
 
   const brushSettings = {
     consume: [
@@ -126,7 +88,6 @@ export const picassoDef = ({
       key: 'treemap',
       data: { collection: { key: 'hierarchy' } },
       settings: {
-        formatter,
         labels: layout.labels,
         box: {
           fill: colorService.getColor(),

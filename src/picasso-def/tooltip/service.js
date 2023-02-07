@@ -18,7 +18,6 @@ export default function createTooltipService({
   custom,
   properties,
   layout,
-  formatter,
 }) {
   const major = ({ data }) => data.value;
 
@@ -51,7 +50,7 @@ export default function createTooltipService({
             placement: 'collectible',
           },
         ],
-        section: getSections({ layout, custom, formatter, chart, colorService }),
+        section: getSections({ layout, custom, chart, colorService }),
         layout: {
           grouping: true,
           single: () => !!(custom.isEnabled() && custom.hasImages()) || custom.chart.isEnabled(),
