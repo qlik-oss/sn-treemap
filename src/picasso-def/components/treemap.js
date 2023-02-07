@@ -87,6 +87,7 @@ export const treemap = () => ({
     const overlayNodes = [];
     const rects = [];
     const parentRects = [];
+    const nodeFill = [];
     const treeHeight = root.height - 1;
     const visit = (node) => {
       if (node.height === 0 && !node.data.isNotFetchedOthers.value) {
@@ -133,6 +134,14 @@ export const treemap = () => ({
               });
             } else if (labels.overlay) {
               overlayNodes.push(node);
+              nodeFill.push(
+                box.fill({
+                  datum: node.data,
+                  resources: {
+                    scale: (key) => this.chart.scale(key),
+                  },
+                })
+              );
             }
           } else if ((labels.leaves || labels.auto) && !node.header) {
             createTextLabels({
@@ -239,10 +248,16 @@ export const treemap = () => ({
     });
 
     const overlayLabels = [];
+    let i = 0;
     overlayNodes.forEach((node) => {
       const height = node.y1 - node.y0;
       const width = node.x1 - node.x0;
-      const avgColor = getAverageColor(node);
+      let avgColor = getAverageColor(node);
+      if (avgColor === 'rgb(0, 0, 0)' && nodeFill.length > 0) {
+        avgColor = nodeFill[i];
+        i++;
+      }
+
       const label = createOverlayLabel({
         node,
         avgColor,
