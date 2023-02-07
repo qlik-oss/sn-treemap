@@ -1,4 +1,4 @@
-import { wrapText } from './text-helper';
+import { wrapText, truncate } from './text-helper';
 
 const TREEMAP_LABEL_FONTSIZE = 14;
 const TREEMAP_VALUE_FONTSIZE = 12;
@@ -157,6 +157,7 @@ const processText = ({ text, fontSize, fontFamily, renderer, width, height, labe
 const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl }) => {
   const verticalPadding = 12;
   let text = node.data.label;
+  let truncatedText;
   const fontFamily = theme.getStyle('object.treemap', 'branch.label', 'fontFamily') || 'Source Sans Pro';
   const fontSize = theme.getStyle('object.treemap', 'branch.label', 'fontSize') || TREEMAP_VALUE_FONTSIZE + 'px';
   const textSize = renderer.measureText({
@@ -169,7 +170,8 @@ const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl }) =>
     return;
   }
   if (textSize.width > width - 8) {
-    text = wrapText(text, width - 10, undefined, undefined, renderer, fontSize, fontFamily);
+    truncatedText = truncate(text, width - 10, ellipsis, renderer, fontSize, fontFamily);
+    text = truncatedText.text;
   }
   valueLables.push({
     type: 'text',
