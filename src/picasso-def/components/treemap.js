@@ -88,6 +88,8 @@ export const treemap = () => ({
     const rects = [];
     const parentRects = [];
     const treeHeight = root.height - 1;
+    const overlayLevel = labels.auto ? 2 : !labels.overlay ? -1 : labels.header ? 2 : 1;
+
     const visit = (node) => {
       if (node.height === 0 && !node.data.isNotFetchedOthers.value) {
         return;
@@ -98,7 +100,7 @@ export const treemap = () => ({
       if (area > 0) {
         const fill = getNodeColor(node, headerColor, box, this.chart, notFetchedPattern);
         if (node.data.isNotFetchedOthers.value) {
-          incrementColor(node, fill);
+          incrementColor(node, fill, overlayLevel);
           const path = buildPath(root, node);
           const childRect = {
             type: 'rect',
@@ -151,7 +153,7 @@ export const treemap = () => ({
 
           if (node.depth === treeHeight) {
             // only consider for leaf nodes
-            incrementColor(node, fill);
+            incrementColor(node, fill, overlayLevel);
             const path = buildPath(root, node);
             const childRect = {
               type: 'rect',
