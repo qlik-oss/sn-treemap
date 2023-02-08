@@ -8315,10 +8315,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@2.8.3:
-  version "2.8.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.3.tgz#ab697b1d3dd46fb4626fbe2f543afe0cc98d8632"
-  integrity sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==
+prettier@2.8.4:
+  version "2.8.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.4.tgz#34dd2595629bfbb79d344ac4a91ff948694463c3"
+  integrity sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==
 
 pretty-error@^4.0.0:
   version "4.0.0"
@@ -8433,10 +8433,10 @@ qlik-modifiers@0.5.1:
   resolved "https://registry.yarnpkg.com/qlik-modifiers/-/qlik-modifiers-0.5.1.tgz#df81fe57e24fc88f7271e91bc23ab960144667a4"
   integrity sha512-jQXt3oH7UwO5mhwUf0fHiUMRNutb1Fsq2jjN4NQ5Q0ZvBzhjrJPGcIpMMIcU4tmrYabkXS/GaVMA3Oa38jzpsw==
 
-qlik-object-conversion@0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/qlik-object-conversion/-/qlik-object-conversion-0.15.0.tgz#e578de5538ebac4b2d73723674adf6d4950909c4"
-  integrity sha512-nN43H8mZJkHZIL/Yw3Sr3thZYyvBguAvIK3K8Y7DIBT5j0KRq9iOSdrwU5IjigGs3uV3QTBLt12Y2GA5B07MGw==
+qlik-object-conversion@0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/qlik-object-conversion/-/qlik-object-conversion-0.16.0.tgz#799767e511c02c5d937603499623e223ff5d9ee6"
+  integrity sha512-/jhGSs3ft7KfKlkx/YPrNxKP7Ctlqz+eF1Yk0bMactqgU2Dx6OgmAPPgNBr/2hSMxf0aw7v67lHcjwj5qoFb+g==
   dependencies:
     qlik-modifiers "0.5.1"
 
