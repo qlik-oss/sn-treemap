@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/qlik-oss/sn-treemap/compare/v1.3.2...v1.4.0) (2023-02-08)
+
+
+### Bug Fixes
+
+* add fake attr dim value to fix VIZ-2343 ([#119](https://github.com/qlik-oss/sn-treemap/issues/119)) ([e654d5c](https://github.com/qlik-oss/sn-treemap/commit/e654d5ccfe63556b12b92fa4cc9b414b1fb6ab45))
+* contrast color for overlay labels based on node color ([#123](https://github.com/qlik-oss/sn-treemap/issues/123)) ([dd08549](https://github.com/qlik-oss/sn-treemap/commit/dd08549d39b05cd91f86c48abd0c688321a94548))
+* truncate long header text ([bdbf158](https://github.com/qlik-oss/sn-treemap/commit/bdbf158857c92752542564c7e2ca360cb1cdf688))
+
+
+### Features
+
+* use number formatting from picasso.js ([#121](https://github.com/qlik-oss/sn-treemap/issues/121)) ([694cfae](https://github.com/qlik-oss/sn-treemap/commit/694cfaedd773882fb3bb90bc60587c9bc65dba93))
+
 ## [1.3.2](https://github.com/qlik-oss/sn-treemap/compare/v1.3.1...v1.3.2) (2023-02-03)
 
 
