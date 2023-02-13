@@ -1,5 +1,5 @@
 # Run on a branch to update rendering test snapshots
-name: Update Snapshots [Experimental]
+name: Update Snapshots
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
