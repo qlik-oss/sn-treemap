@@ -158,7 +158,7 @@ const supernova = (env) => {
           showLegend,
           invalidMessage,
           translator,
-          viewState,
+          viewStates,
           colorService,
           chart,
           options,
