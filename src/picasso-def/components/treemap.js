@@ -1,9 +1,12 @@
 import { treemap as d3Treemap } from 'd3-hierarchy';
 import { createTextLabels, displayInvalidMessage, createOverlayLabel } from './labels';
 import { TREEMAP_DEFINES } from './defines';
+import { LAYOUT_MODES } from '../dock-layout/layout-modes';
 import { setupBrushes } from './setupBrushes.native';
 import { incrementColor, getAverageColor } from './colorUtils';
 import { getPattern } from './not-fetched-pattern';
+
+const MIN_AREA_FOR_HEADERS = 8000;
 
 const buildPath = (root, node) => {
   const par = root.path(node);
@@ -34,11 +37,14 @@ const getNodeColor = (node, headerColor, box, chart, notFetchedPattern) => {
   });
 };
 
+const isSmallLayoutMode = (width, height) => width <= LAYOUT_MODES.SMALL.width || height <= LAYOUT_MODES.SMALL.height;
+
 export const treemap = () => ({
   require: ['chart', 'renderer', 'element'],
   render({ data }) {
     const { headerColor, labels, level, invalidMessage, translator, box, theme, rtl } = this.settings.settings;
     const boundingRect = this.rect;
+    const smallLayoutMode = isSmallLayoutMode(boundingRect.width, boundingRect.height);
 
     const notFetchedPattern = getPattern(theme.getDataColorSpecials().others, 0.1);
 
@@ -70,11 +76,21 @@ export const treemap = () => ({
       .paddingTop((node) => {
         // only want headers at level 1
         if (node.depth === 1 && node.height > 1) {
+          const nodeWidth = node.x1 - node.x0;
           const nodeHeight = node.y1 - node.y0;
-          const showLable = nodeHeight > TREEMAP_DEFINES.HEADER_HEIGHT * 2;
+          const nodeArea = nodeWidth * nodeHeight;
+          const showLable = nodeArea > MIN_AREA_FOR_HEADERS;
           node.header = true;
           node.showLable = showLable;
-          return (labels.headers || labels.auto) && showLable ? TREEMAP_DEFINES.HEADER_HEIGHT : 1;
+          if (labels.headers || labels.auto) {
+            if (smallLayoutMode) {
+              return 0;
+            } else if (showLable && !smallLayoutMode) {
+              return TREEMAP_DEFINES.HEADER_HEIGHT;
+            } else if (!showLable) {
+              return TREEMAP_DEFINES.COLLAPSED_HEADER_HEIGHT;
+            }
+          }
         }
         return 1;
       })(dataset);
@@ -119,7 +135,7 @@ export const treemap = () => ({
           rects.push(childRect);
         } else if (node.header || node.height === 1) {
           if (node.header && height) {
-            if (labels.headers || labels.auto) {
+            if ((labels.headers || labels.auto) && !smallLayoutMode) {
               createTextLabels({
                 node,
                 width,
@@ -131,8 +147,10 @@ export const treemap = () => ({
                 theme,
                 rtl,
               });
-            } else if (labels.overlay) {
-              overlayNodes.push(node);
+            } else if (labels.overlay || smallLayoutMode) {
+              if (labels.overlay || labels.auto) {
+                overlayNodes.push(node);
+              }
             }
           } else if ((labels.leaves || labels.auto) && !node.header) {
             createTextLabels({
@@ -189,7 +207,9 @@ export const treemap = () => ({
           // take precedence
           node.data.next = node?.parent?.data;
           node.data.depth = node.depth;
-          overlayNodes.push(node);
+          if (!smallLayoutMode) {
+            overlayNodes.push(node);
+          }
         }
         if (node.depth - 1 === level) {
           // this is a decorator rect
