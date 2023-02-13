@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/qlik-oss/sn-treemap/compare/v1.4.0...v1.4.1) (2023-02-13)
+
+
+### Bug Fixes
+
+* get header color from theme ([#124](https://github.com/qlik-oss/sn-treemap/issues/124)) ([f84e964](https://github.com/qlik-oss/sn-treemap/commit/f84e9641aae263e19daa854e52c56de8e19202da))
+* hide headers when treemap size is small ([583060b](https://github.com/qlik-oss/sn-treemap/commit/583060b5da60c0f1fb2dcedbbd5f13ce1e32c795))
+* top padding ([7ef82d5](https://github.com/qlik-oss/sn-treemap/commit/7ef82d56b4c1ce6d0cb03153990fa2cc1aa62001))
+
 # [1.4.0](https://github.com/qlik-oss/sn-treemap/compare/v1.3.2...v1.4.0) (2023-02-08)
 
 
