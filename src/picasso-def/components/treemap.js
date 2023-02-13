@@ -92,7 +92,7 @@ export const treemap = () => ({
             }
           }
         }
-        return 0;
+        return 1;
       })(dataset);
 
     // clean up data returned from plugin-q
