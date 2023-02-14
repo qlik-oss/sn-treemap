@@ -1,10 +1,10 @@
 import { treemap as d3Treemap } from 'd3-hierarchy';
 import { createTextLabels, displayInvalidMessage, createOverlayLabel } from './labels';
 import { TREEMAP_DEFINES } from './defines';
-import { LAYOUT_MODES } from '../dock-layout/layout-modes';
 import { setupBrushes } from './setupBrushes.native';
 import { incrementColor, getAverageColor } from './colorUtils';
 import { getPattern } from './not-fetched-pattern';
+import getLabelSettings from './label-settings';
 
 const MIN_AREA_FOR_HEADERS = 8000;
 
@@ -37,14 +37,12 @@ const getNodeColor = (node, headerColor, box, chart, notFetchedPattern) => {
   });
 };
 
-const isSmallLayoutMode = (width, height) => width <= LAYOUT_MODES.SMALL.width || height <= LAYOUT_MODES.SMALL.height;
-
 export const treemap = () => ({
   require: ['chart', 'renderer', 'element'],
   render({ data }) {
-    const { headerColor, labels, level, invalidMessage, translator, box, theme, rtl } = this.settings.settings;
+    const { headerColor, level, invalidMessage, translator, box, theme, rtl } = this.settings.settings;
     const boundingRect = this.rect;
-    const smallLayoutMode = isSmallLayoutMode(boundingRect.width, boundingRect.height);
+    const labels = getLabelSettings(this);
 
     const notFetchedPattern = getPattern(theme.getDataColorSpecials().others, 0.1);
 
@@ -82,10 +80,8 @@ export const treemap = () => ({
           const showLable = nodeArea > MIN_AREA_FOR_HEADERS;
           node.header = true;
           node.showLable = showLable;
-          if (labels.headers || labels.auto) {
-            if (smallLayoutMode) {
-              return 0;
-            } else if (showLable && !smallLayoutMode) {
+          if (labels.headers) {
+            if (showLable) {
               return TREEMAP_DEFINES.HEADER_HEIGHT;
             } else if (!showLable) {
               return TREEMAP_DEFINES.COLLAPSED_HEADER_HEIGHT;
@@ -103,7 +99,7 @@ export const treemap = () => ({
     const rects = [];
     const parentRects = [];
     const treeHeight = root.height - 1;
-    const overlayLevel = labels.auto ? 2 : !labels.overlay ? -1 : labels.header ? 2 : 1;
+    const overlayLevel = !labels.overlay ? -1 : labels.headers ? 2 : 1;
 
     const visit = (node) => {
       if (node.height === 0 && !node.data.isNotFetchedOthers.value) {
@@ -135,7 +131,7 @@ export const treemap = () => ({
           rects.push(childRect);
         } else if (node.header || node.height === 1) {
           if (node.header && height) {
-            if ((labels.headers || labels.auto) && !smallLayoutMode) {
+            if (labels.headers) {
               createTextLabels({
                 node,
                 width,
@@ -147,12 +143,10 @@ export const treemap = () => ({
                 theme,
                 rtl,
               });
-            } else if (labels.overlay || smallLayoutMode) {
-              if (labels.overlay || labels.auto) {
-                overlayNodes.push(node);
-              }
+            } else if (labels.overlay) {
+              overlayNodes.push(node);
             }
-          } else if ((labels.leaves || labels.auto) && !node.header) {
+          } else if (labels.leaves && !node.header) {
             createTextLabels({
               node,
               width,
@@ -197,19 +191,12 @@ export const treemap = () => ({
             };
             rects.push(childRect);
           }
-        } else if (
-          node.depth === 2 &&
-          treeHeight > 1 &&
-          node.data.label &&
-          ((labels.headers && labels.overlay) || labels.auto)
-        ) {
+        } else if (node.depth === 2 && treeHeight > 1 && node.data.label && labels.headers && labels.overlay) {
           // only show overlays if headers are disabled, other wise the headers
           // take precedence
           node.data.next = node?.parent?.data;
           node.data.depth = node.depth;
-          if (!smallLayoutMode) {
-            overlayNodes.push(node);
-          }
+          overlayNodes.push(node);
         }
         if (node.depth - 1 === level) {
           // this is a decorator rect
