@@ -1,3 +1,11 @@
+## [1.4.2](https://github.com/qlik-oss/sn-treemap/compare/v1.4.1...v1.4.2) (2023-02-14)
+
+
+### Bug Fixes
+
+* improved centering of overlay labels ([#131](https://github.com/qlik-oss/sn-treemap/issues/131)) ([1f395db](https://github.com/qlik-oss/sn-treemap/commit/1f395db3ff4e1341b580956f93d2285cbbd2e33d))
+* refactor and fix labels settings ([#132](https://github.com/qlik-oss/sn-treemap/issues/132)) ([6cf1a4c](https://github.com/qlik-oss/sn-treemap/commit/6cf1a4ccd57f74d83323835301cf2bab5df1029d))
+
 ## [1.4.1](https://github.com/qlik-oss/sn-treemap/compare/v1.4.0...v1.4.1) (2023-02-13)
 
 
