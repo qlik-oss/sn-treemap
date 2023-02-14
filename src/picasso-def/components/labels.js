@@ -231,9 +231,11 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, th
   });
 
   let finalText = '';
+  let lineCount = 1;
   if (textSize.width > width - 8) {
     lines = wrapText(text, width - 10, maxNumLines, ellipsis, renderer, fontSize, fontFamily);
     if (Array.isArray(lines) && lines.length > 0) {
+      lineCount = lines.length;
       lines.forEach((line) => {
         finalText = finalText + line + '\n';
       });
@@ -242,8 +244,8 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, th
     finalText = text;
   }
   const x = node.x0 + Math.abs(width / 2);
-  const y = node.y0 + height / 2;
   const fontHeight = parseInt(fontSize, 10);
+  const y = node.y0 + (height - lineCount * fontHeight) / 2;
   const fill = theme.getContrastingColorTo(avgColor);
   if (fontHeight > 8) {
     return {
@@ -259,6 +261,7 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, th
       strokeWidth: 1,
       opacity: 0.5,
       anchor: 'center',
+      baseline: 'text-before-edge',
       wordBreak: 'break-word',
       data: {
         ...node.data,
