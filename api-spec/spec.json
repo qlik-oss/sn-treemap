@@ -3,7 +3,7 @@
   "info": {
     "name": "@nebula.js/sn-treemap",
     "description": "Treemap supernova that is DOM independent",
-    "version": "1.3.0",
+    "version": "1.4.2",
     "license": "MIT",
     "stability": "stable"
   },
@@ -299,7 +299,7 @@
         "showDetails": {
           "description": "Show visualization details toggle",
           "optional": true,
-          "defaultValue": false,
+          "defaultValue": true,
           "type": "boolean"
         },
         "showDisclaimer": {
