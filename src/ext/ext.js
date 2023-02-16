@@ -35,6 +35,7 @@ export default function ext(env) {
           defaultMeasure: extension.getDefaultMeasureProperties(),
         },
       });
+      propertyTree.qProperty.qHyperCubeDef.qAlwaysFullyExpanded = true;
       return propertyTree;
     },
     exportProperties: (propertyTree) => conversion.colorChart.exportProperties({ propertyTree }),
