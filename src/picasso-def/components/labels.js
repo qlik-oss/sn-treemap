@@ -18,12 +18,12 @@ export const createTextLabels = ({ node, width, height, fill, valueLables, label
       headerText({
         node,
         width,
-        height,
         fill,
         renderer,
         valueLables,
         labels,
         theme,
+        rtl,
       });
       return;
     }
@@ -69,11 +69,10 @@ export const createTextLabels = ({ node, width, height, fill, valueLables, label
       fontFamily,
       fontSize,
       fontWeight: 'normal',
-      x: rtl
-        ? node.x1 - finalTextArray.textSize.width - Math.abs(parseInt(fontSize, 10) / 2)
-        : node.x0 + Math.abs(parseInt(fontSize, 10) / 2),
+      x: rtl ? node.x1 - 4 : node.x0 + 4,
       y: top,
       fill: fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)',
+      anchor: rtl ? 'right' : 'left',
       baseline: 'text-before-edge',
       wordBreak: 'break-word',
       data: { ...node.data, depth: node.depth },
