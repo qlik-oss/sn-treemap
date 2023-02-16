@@ -92,6 +92,23 @@ export default function propertyDefinition(env) {
       simpleLabels,
       general: {
         items: {
+          showDetails: {
+            translation: 'properties.showDetails',
+            type: 'boolean',
+            ref: 'showDetails',
+            component: 'switch',
+            defaultValue: true,
+            options: [
+              {
+                value: true,
+                translation: 'Common.Show',
+              },
+              {
+                value: false,
+                translation: 'properties.hide',
+              },
+            ],
+          },
           showDisclaimer: {
             translation: 'properties.showDisclaimer',
             type: 'boolean',
