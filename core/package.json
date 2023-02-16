@@ -3,8 +3,8 @@
   "peerDependencies": {
     "@nebula.js/stardust": "2.x || ^3.0.0-alpha",
     "hammerjs": "^2.0.8",
-    "picasso-plugin-hammer": ">=1.5.0",
-    "picasso-plugin-q": ">=1.5.0",
-    "picasso.js": ">=1.5.0"
+    "picasso-plugin-hammer": ">=2.1.1",
+    "picasso-plugin-q": ">=2.1.1",
+    "picasso.js": ">=2.1.1"
   }
 }
