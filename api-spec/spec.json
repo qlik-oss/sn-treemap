@@ -299,7 +299,7 @@
         "showDetails": {
           "description": "Show visualization details toggle",
           "optional": true,
-          "defaultValue": false,
+          "defaultValue": true,
           "type": "boolean"
         },
         "showDisclaimer": {
