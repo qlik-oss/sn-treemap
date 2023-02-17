@@ -1,4 +1,4 @@
-import { getLevel, getNextSelecteDim } from './getLevel';
+import { getNextSelectLevel } from './getLevel';
 import { legend } from './legend';
 import createSelectables from './selectables';
 import createTooltipService from './tooltip/service';
@@ -37,9 +37,7 @@ export const picassoDef = ({
   if (!layout.qHyperCube) {
     return {};
   }
-  const level = getLevel(layout);
-  const dimLevel = getNextSelecteDim(layout);
-  const selectLevel = Math.min(level, dimLevel);
+  const selectLevel = getNextSelectLevel(layout);
   const interactionType = env.carbon ? 'kinesics' : 'hammer';
 
   const scales = colorService.getScales();
@@ -48,8 +46,8 @@ export const picassoDef = ({
   const selectables = createSelectables({
     actions,
     colorService,
-    isDimensionLocked: false,
-    isSingleSelectionmodels: false,
+    isDimensionLocked: selectLevel === -1,
+    isSingleSelection: selectLevel !== -1 && layout.qHyperCube.qDimensionInfo[selectLevel].qIsOneAndOnlyOne,
     scales,
     legendComponent: treemapLegend?.components[0],
   });
@@ -64,7 +62,7 @@ export const picassoDef = ({
     theme,
     custom: customTooltipService,
     properties,
-    level,
+    level: selectLevel,
     layout,
   });
 
@@ -105,7 +103,7 @@ export const picassoDef = ({
         },
         showHeaders: layout.qHyperCube.qDimensionInfo.length > 1,
         headerColor: headerBackgroundColor,
-        level,
+        selectLevel,
         invalidMessage,
         translator,
         theme,

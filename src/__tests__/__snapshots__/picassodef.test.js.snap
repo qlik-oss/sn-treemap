@@ -90,8 +90,8 @@ exports[`Treemap picassodef render should render ok 1`] = `
           "overlay": true,
           "values": true,
         },
-        "level": 0,
         "rtl": false,
+        "selectLevel": 0,
         "showHeaders": false,
         "theme": {
           "_events": {},
