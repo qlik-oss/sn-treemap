@@ -364,6 +364,45 @@ const oneNoramlAndNull = toHyperCube([
   },
 ]);
 
+const oldSnapshot = toHyperCube([
+  {
+    qCardinal: 3,
+    qStateCounts: {
+      qLocked: 0,
+      qSelected: 0,
+      qOption: 3,
+      qDeselected: 0,
+      qAlternative: 0,
+      qExcluded: 0,
+      qSelectedExcluded: 0,
+      qLockedExcluded: 0,
+    },
+    qCardinalities: {
+      qCardinal: 0,
+      qHypercubeCardinal: 0,
+      qAllValuesCardinal: -1,
+    },
+  },
+  {
+    qCardinal: 26,
+    qStateCounts: {
+      qLocked: 0,
+      qSelected: 0,
+      qOption: 26,
+      qDeselected: 0,
+      qAlternative: 0,
+      qExcluded: 0,
+      qSelectedExcluded: 0,
+      qLockedExcluded: 0,
+    },
+    qCardinalities: {
+      qCardinal: 0,
+      qHypercubeCardinal: 0,
+      qAllValuesCardinal: -1,
+    },
+  },
+]);
+
 describe('getNextSelectLevel', () => {
   it('skip locked dims', () => {
     const selectLevel = getNextSelectLevel(lockedDims);
@@ -415,5 +454,10 @@ describe('getNextSelectLevel', () => {
   it('color if only null and a single other value', () => {
     const selectLevel = getAutoColorLevel(oneNoramlAndNull);
     expect(selectLevel).toEqual(1);
+  });
+
+  it('color on onld snapshot dim with wrong qHypercubeCardinal', () => {
+    const selectLevel = getAutoColorLevel(oldSnapshot);
+    expect(selectLevel).toEqual(0);
   });
 });

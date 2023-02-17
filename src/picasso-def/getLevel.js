@@ -24,8 +24,17 @@ export const getNextSelectLevel = ({ qHyperCube }) => {
   return qDimensionInfo.findIndex(isSelectableDim);
 };
 
+const colorOnDim = (info, index) => {
+  if (info.qCardinalities?.qCardinal !== info.qCardinal) {
+    // old snapshot
+    const { qLocked, qSelected } = info.qStateCounts;
+    return qLocked + qSelected !== 1;
+  }
+  return info.qCardinalities.qHypercubeCardinal > 1 + index; // + index is for total nodes
+};
+
 export const getAutoColorLevel = ({ qHyperCube }) => {
   const { qDimensionInfo } = qHyperCube;
-  const dim = qDimensionInfo.findIndex((info, index) => info.qCardinalities.qHypercubeCardinal > 1 + index);
+  const dim = qDimensionInfo.findIndex(colorOnDim);
   return dim === -1 ? qDimensionInfo.length - 1 : dim;
 };
