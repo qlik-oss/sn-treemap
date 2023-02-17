@@ -17,7 +17,7 @@ describe('auto color', () => {
     const defaultAuto = () => 'defaultAuto';
     const layout = {
       qHyperCube: {
-        qDimensionInfo: [{ qStateCounts: { qSelected: 0 } }, { qStateCounts: { qSelected: 0 } }],
+        qDimensionInfo: [{ qCardinalities: { qHypercubeCardinal: 4 } }, { qCardinalities: { qHypercubeCardinal: 6 } }],
         qMeasureInfo: [],
       },
     };

@@ -62,10 +62,13 @@ export const getTreeDataCollection = ({ colorService, layout, selectLevel, datas
               return '';
             },
           },
-          select: {
-            field: `qDimensionInfo/${selectLevel}`,
-            reduce: (values) => (values.length === 1 ? values[0] : undefined),
-          },
+          select:
+            selectLevel === -1
+              ? undefined
+              : {
+                  field: `qDimensionInfo/${selectLevel}`,
+                  reduce: (values) => (values.length === 1 ? values[0] : undefined),
+                },
           isNull: { value: (d, node) => node.data.qElemNo === -2 },
           ...colorService.getDatumProps(),
           isOther: { value: (d, node) => node.data.qElemNo === -3 || node.data.qElemNo === NOT_FETCHED_ELEM_NO },

@@ -1,5 +1,6 @@
 import { useAction, useConstraints, useEffect, useLayout, useState, useTranslator } from '@nebula.js/stardust';
 import lassoIcon from './lasso-icon';
+import { getNextSelectLevel } from '../../picasso-def/getLevel';
 
 export default function useLasso(options) {
   const { lassoIsAlwaysActive = false } = options || {};
@@ -8,8 +9,10 @@ export default function useLasso(options) {
   const [active, setActive] = useState(false);
   const layout = useLayout();
   const translator = useTranslator();
+
   const isInSelections = !!layout.qSelectionInfo.qInSelections;
-  // TODO: isSingleSelection?
+  const selectLevel = getNextSelectLevel(layout);
+  const isSingleSelection = selectLevel !== -1 && !!layout.qHyperCube.qDimensionInfo[selectLevel].qIsOneAndOnlyOne;
 
   useEffect(() => {
     if (!constraints) {
@@ -29,7 +32,7 @@ export default function useLasso(options) {
       key: 'lasso',
       label: translator.get(active ? 'Tooltip.ToggleOffLassoSelection' : 'Tooltip.ToggleOnLassoSelection'),
       icon: lassoIcon,
-      hidden: lassoIsAlwaysActive || !enabled || !isInSelections,
+      hidden: lassoIsAlwaysActive || !enabled || !isInSelections || isSingleSelection,
       active,
       action,
     }),

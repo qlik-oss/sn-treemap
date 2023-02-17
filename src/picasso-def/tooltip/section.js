@@ -11,6 +11,18 @@ const getLabel = (node, create) => {
   });
 };
 
+const getColorData = (colorSettings, node) => {
+  if (!colorSettings.fieldType) {
+    return null;
+  }
+  for (let data = node.data; data; data = data.next) {
+    if (colorSettings.field === data.source.field) {
+      return data;
+    }
+  }
+  return null;
+};
+
 export const getSections = ({ layout, custom, chart, colorService }) => {
   const { qHyperCube } = layout;
   const { qMeasureInfo } = qHyperCube;
@@ -24,8 +36,9 @@ export const getSections = ({ layout, custom, chart, colorService }) => {
 
       if (!hideBasic) {
         const colorSettings = colorService.getSettings();
-        if (colorSettings.fieldType && colorSettings.field === node.data.source.field) {
-          const color = colorService.getColor()({ datum: node.data, resources: chart });
+        const colorData = getColorData(colorSettings, node);
+        if (colorData) {
+          const color = colorService.getColor()({ datum: colorData, resources: chart });
 
           section.push(
             create.color({

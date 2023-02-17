@@ -40,7 +40,7 @@ const getNodeColor = (node, headerColor, box, chart, notFetchedPattern) => {
 export const treemap = () => ({
   require: ['chart', 'renderer', 'element'],
   render({ data }) {
-    const { headerColor, level, invalidMessage, translator, box, theme, rtl } = this.settings.settings;
+    const { headerColor, selectLevel, invalidMessage, translator, box, theme, rtl } = this.settings.settings;
     const boundingRect = this.rect;
     const labels = getLabelSettings(this);
 
@@ -198,7 +198,7 @@ export const treemap = () => ({
           node.data.depth = node.depth;
           overlayNodes.push(node);
         }
-        if (node.depth - 1 === level) {
+        if (selectLevel !== -1 && node.depth - 1 === selectLevel) {
           // this is a decorator rect
           const path = buildPath(root, node);
           node.data.next = node?.parent?.data;
