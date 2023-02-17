@@ -260,7 +260,7 @@ const objectDefinition = () => {
      * @type {boolean=}
      * @default
      */
-    showDetails: false,
+    showDetails: true,
     /**
      * Show visualization disclaimer toggle
      * @type {boolean}
