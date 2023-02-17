@@ -1,3 +1,16 @@
+## [1.4.3](https://github.com/qlik-oss/sn-treemap/compare/v1.4.2...v1.4.3) (2023-02-17)
+
+
+### Bug Fixes
+
+* added property show details ([44c9276](https://github.com/qlik-oss/sn-treemap/commit/44c927625f0f9fd81bb93269f7f909980a855bc5))
+* api-spec ([3796843](https://github.com/qlik-oss/sn-treemap/commit/37968431e1e9990c85200004461391d9b2863d19))
+* inner padding for treemap ([c32a9ad](https://github.com/qlik-oss/sn-treemap/commit/c32a9add14e293c59d555b180086ebc59ae1f64f))
+* rtl for headers and leaves ([212c804](https://github.com/qlik-oss/sn-treemap/commit/212c804913b35c31fd54d0655766d9f169e67421))
+* select & (auto) color level ([#138](https://github.com/qlik-oss/sn-treemap/issues/138)) ([2e89563](https://github.com/qlik-oss/sn-treemap/commit/2e89563c197f64f2870d7595458ca3165c50dbab))
+* set qAlwaysFullyExpanded on conversion ([#135](https://github.com/qlik-oss/sn-treemap/issues/135)) ([ef5fb03](https://github.com/qlik-oss/sn-treemap/commit/ef5fb03f56092e699551be66d436854c73215794))
+* show details property set to true by default ([769fd20](https://github.com/qlik-oss/sn-treemap/commit/769fd20640a1c188bdbc5a756afcd2d6e7381eda))
+
 ## [1.4.2](https://github.com/qlik-oss/sn-treemap/compare/v1.4.1...v1.4.2) (2023-02-14)
 
 
