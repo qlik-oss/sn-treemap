@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/qlik-oss/sn-treemap/compare/v1.4.3...v1.4.4) (2023-02-17)
+
+
+### Bug Fixes
+
+* color in old snapshots ([#140](https://github.com/qlik-oss/sn-treemap/issues/140)) ([3755194](https://github.com/qlik-oss/sn-treemap/commit/37551945d686d0c4f36945a29ffb0db5ed161c0e))
+
 ## [1.4.3](https://github.com/qlik-oss/sn-treemap/compare/v1.4.2...v1.4.3) (2023-02-17)
 
 
