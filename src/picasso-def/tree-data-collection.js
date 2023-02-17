@@ -30,10 +30,6 @@ export const getTreeDataCollection = ({ colorService, layout, selectLevel, datas
               missingValue -= childNode.qMaxPos;
             });
             children.push({
-              qAttrDims: {
-                // Fake attr dim, to prevent javascript error in some cases of color by dim
-                qValues: [{ qText: '', qElemNo: -2 }],
-              },
               qType: 'Fake',
               qElemNo: NOT_FETCHED_ELEM_NO,
               qMaxPos: missingValue,
