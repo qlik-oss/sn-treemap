@@ -215,6 +215,12 @@ exports[`Treemap picassodef render should render ok 1`] = `
       "type": "native",
     },
     {
+      "events": {
+        "wheel": [Function],
+      },
+      "type": "native",
+    },
+    {
       "gestures": [
         {
           "events": {
