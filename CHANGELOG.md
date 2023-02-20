@@ -1,3 +1,10 @@
+## [1.4.6](https://github.com/qlik-oss/sn-treemap/compare/v1.4.5...v1.4.6) (2023-02-20)
+
+
+### Bug Fixes
+
+* allow release of new version ([c7cedc7](https://github.com/qlik-oss/sn-treemap/commit/c7cedc715a0092449e5830a04397613c0fbc8deb))
+
 ## [1.4.5](https://github.com/qlik-oss/sn-treemap/compare/v1.4.4...v1.4.5) (2023-02-20)
 
 
