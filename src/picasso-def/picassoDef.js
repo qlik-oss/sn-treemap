@@ -42,7 +42,7 @@ export const picassoDef = ({
 
   const scales = colorService.getScales();
 
-  const treemapLegend = legend({ colorService, chart, layout, rtl, viewState });
+  const treemapLegend = legend({ colorService, chart, layout, rtl, viewState, actions });
   const selectables = createSelectables({
     actions,
     colorService,
