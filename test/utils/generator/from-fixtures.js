@@ -58,8 +58,6 @@ export default ({ suiteName, serveConfig, fixturePath, styles = [], debug = unde
       }
 
       test(name, async () => {
-        // testInfo.snapshotSuffix = process.env.CI ? 'baseline' : 'local';
-
         const url = `${s.url}/render?fixture=${file}`;
 
         if (DEBUG_MODE) {

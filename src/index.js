@@ -19,7 +19,6 @@ import { createPicasso } from './picasso-def/createPicasso';
 import { picassoDef } from './picasso-def';
 import { treemap, tooltip, nativeLegend } from './picasso-def/components';
 import { qae } from './qae';
-// import { picassoSelections } from './picassoSelections';
 import { auto } from './colors/auto';
 import useActions from './hooks/use-actions';
 import useSelectionService from './hooks/use-selections';
@@ -169,7 +168,6 @@ const supernova = (env) => {
           dataset,
         });
         chart.update({ data, settings });
-        // state.selectBrush.end();
       }, [layout, chart, selectionService, theme.name(), selections, options, actions]);
 
       if (error) {

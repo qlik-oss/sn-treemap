@@ -1,4 +1,3 @@
-// import propertyResolver from '../../../assets/client/utils/property-resolver';
 import { setValue, getValue } from 'qlik-chart-modules';
 
 export default function propertyDefinition(env) {

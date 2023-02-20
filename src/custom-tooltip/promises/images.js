@@ -178,7 +178,7 @@ async function handleFieldImage(app, attrExpr, size, nodeValue) {
   const value = nodeValue.label;
   const fieldName = attrExpr.qFallbackTitle;
   const qmemUrl = `qmem://${fieldName}/${value}`;
-  // }
+
   if (validateQmem(qmemUrl)) {
     try {
       const image = await app.getImage(qmemUrl);

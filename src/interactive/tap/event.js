@@ -74,13 +74,13 @@ const tap = ({ targets, requireFailure, recognizeWith, components, eventName = '
 
           if (shapes.length || !isLegend) {
             this.chart.brushSelectionIncludeMax = false;
-            opts.actions.select.brushSelectionIncludeMax = false; // eslint-disable-line no-param-reassign
+            opts.actions.select.brushSelectionIncludeMax = false;
             opts.actions.select.emit('start', eventName, compsAtPoint);
           }
 
           if (shapes.length && components) {
             this.chart.brushSelectionIncludeMax = false;
-            opts.actions.select.brushSelectionIncludeMax = false; // eslint-disable-line no-param-reassign
+            opts.actions.select.brushSelectionIncludeMax = false;
             const comps = typeof components === 'function' ? components(e, shapes) : components;
             this.chart.brushFromShapes(shapes, {
               components: comps,
