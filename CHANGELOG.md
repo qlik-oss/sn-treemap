@@ -1,3 +1,12 @@
+## [1.4.5](https://github.com/qlik-oss/sn-treemap/compare/v1.4.4...v1.4.5) (2023-02-20)
+
+
+### Bug Fixes
+
+* color legend scroll wheel ([#146](https://github.com/qlik-oss/sn-treemap/issues/146)) ([28ffaca](https://github.com/qlik-oss/sn-treemap/commit/28ffacaa82e0368c93a3c061793432cd41c09e86))
+* disable legend interaction on constraints.active ([#142](https://github.com/qlik-oss/sn-treemap/issues/142)) ([abb0981](https://github.com/qlik-oss/sn-treemap/commit/abb09815334f6165397e4046cce33f0e57fdf1de))
+* re-render on changed constraints ([#145](https://github.com/qlik-oss/sn-treemap/issues/145)) ([5948f40](https://github.com/qlik-oss/sn-treemap/commit/5948f40b941f8ba96a942946ef50570266113d84))
+
 ## [1.4.4](https://github.com/qlik-oss/sn-treemap/compare/v1.4.3...v1.4.4) (2023-02-17)
 
 
