@@ -32,7 +32,6 @@ export default async ({ logLevel } = {}) => {
       await page.evaluate((matrix) => {
         matrix.forEach((config) => {
           const [selector, property, value] = config;
-          // eslint-disable-next-line no-undef
           const element = document.querySelector(selector);
           if (element) {
             element.style[property] = value;
