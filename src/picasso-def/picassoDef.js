@@ -8,6 +8,7 @@ import gesturesToInteractions from './gesturesToInteractions';
 import { getBlockingDisclaimer, getInfoDisclaimer } from './disclaimers';
 import { getTreeDataCollection } from './tree-data-collection';
 import { isValidColor } from './components/colorUtils';
+import legendWheelScroll from './legend/wheel-scroll';
 
 export const picassoDef = ({
   layout,
@@ -129,7 +130,8 @@ export const picassoDef = ({
     components.push(infoDiscalimer);
   }
 
-  const interactions = [tooltipInteractions.native, gesturesToInteractions(interactionType, gestures)];
+  const wheelScroll = legendWheelScroll({ actions, chart });
+  const interactions = [tooltipInteractions.native, wheelScroll, gesturesToInteractions(interactionType, gestures)];
 
   return {
     collections,
