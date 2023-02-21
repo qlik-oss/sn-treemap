@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { chromium } from '@playwright/test';
 import createLogger from './log';
 
