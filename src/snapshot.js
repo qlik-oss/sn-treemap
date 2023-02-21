@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-underscore-dangle */
-
 import { onTakeSnapshot, useImperativeHandle, useElement } from '@nebula.js/stardust';
 import getLegendScrollOffset from './util/legend-scroll-offset';
 import attachSnapshotMeta from './util/attach-snapshot-meta';
