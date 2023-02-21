@@ -1,6 +1,6 @@
 /* eslint no-param-reassign:0 */
 
-export default function (layout, element) {
+export default (layout, element) => {
   const rect = element.getBoundingClientRect();
 
   layout.snapshotData = layout.snapshotData || {};
@@ -10,4 +10,4 @@ export default function (layout, element) {
     w: rect.width,
     h: rect.height,
   };
-}
+};

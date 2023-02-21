@@ -20,7 +20,6 @@ function getSenseServerUrl(app) {
     if (config.secure !== undefined) {
       isSecure = config.secure;
     } else {
-      // eslint-disable-next-line prefer-destructuring
       isSecure = config.isSecure;
     }
 
