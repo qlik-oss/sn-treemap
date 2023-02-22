@@ -14,12 +14,11 @@ function truncate(text, width, ellipsis, renderer, fontSize, fontFamily) {
   let temp;
   let tempEllipsis;
   let rest;
-  const minCharWidth =
-    renderer.measureText({
-      text: 'i',
-      fontSize,
-      fontFamily,
-    }).width <= width;
+  const minCharWidth = renderer.measureText({
+    text: 'i',
+    fontSize,
+    fontFamily,
+  }).width;
   const maxNumLetters = Math.ceil(width / minCharWidth);
   ellipsis = ellipsis || defaultEllipsis;
 
