@@ -16,7 +16,7 @@ const getColorData = (colorSettings, node) => {
     return null;
   }
   for (let data = node.data; data; data = data.next) {
-    if (colorSettings.field === data.source.field) {
+    if (colorSettings.field === data.source?.field) {
       return data;
     }
   }
@@ -30,6 +30,8 @@ export const getSections = ({ layout, custom, chart, colorService }) => {
   return ({ h, nodes, dataset, create }) => {
     const [node] = nodes;
     const section = [];
+
+    const hideBasic = custom.hideBasic();
 
     if (node.data.depth !== layout.qHyperCube.qDimensionInfo.length) {
       section.push(getLabel(node, create));
@@ -77,8 +79,6 @@ export const getSections = ({ layout, custom, chart, colorService }) => {
         })
       );
     }
-
-    const hideBasic = custom.hideBasic();
 
     if (!hideBasic || customMeasures.length || (!customTitle && !customDescription)) {
       section.push(getLabel(node, create));
