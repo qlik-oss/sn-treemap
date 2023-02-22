@@ -1,3 +1,12 @@
+## [1.4.7](https://github.com/qlik-oss/sn-treemap/compare/v1.4.6...v1.4.7) (2023-02-22)
+
+
+### Bug Fixes
+
+* tooltip color ([#152](https://github.com/qlik-oss/sn-treemap/issues/152)) ([8ea11f8](https://github.com/qlik-oss/sn-treemap/commit/8ea11f834857881bcfbfcbea2e668b940f07cfee))
+* truncate text performance ([#151](https://github.com/qlik-oss/sn-treemap/issues/151)) ([0d4fd89](https://github.com/qlik-oss/sn-treemap/commit/0d4fd890d5e9dc08ea587c12e2c83ac98769f74e))
+* update scpec on bump version ([#150](https://github.com/qlik-oss/sn-treemap/issues/150)) ([bfc2f86](https://github.com/qlik-oss/sn-treemap/commit/bfc2f8659deea9ee49011e128fa0cc76d6a65b18))
+
 ## [1.4.6](https://github.com/qlik-oss/sn-treemap/compare/v1.4.5...v1.4.6) (2023-02-20)
 
 

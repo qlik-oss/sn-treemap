@@ -3,7 +3,7 @@
   "info": {
     "name": "@nebula.js/sn-treemap",
     "description": "Treemap supernova that is DOM independent",
-    "version": "1.4.6",
+    "version": "1.4.7",
     "license": "MIT",
     "stability": "stable"
   },
