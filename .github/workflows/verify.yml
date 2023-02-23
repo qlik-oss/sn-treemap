@@ -12,6 +12,7 @@ jobs:
       - run: yarn build
       - run: yarn test
       - run: yarn playwright install --with-deps
+
       - run: yarn run test:rendering
         id: rendering
       - uses: actions/upload-artifact@v3
@@ -22,6 +23,7 @@ jobs:
             test/rendering/reports/html/
             test-results/
           retention-days: 3
+
       - run: yarn run test:integration
         id: integration
       - uses: actions/upload-artifact@v3
@@ -32,3 +34,29 @@ jobs:
             test/integration/reports/html/
             test-results/
           retention-days: 3
+
+      - name: Prepare API Compliance
+        run: |
+          VER=`node ./tools/get-pre-next-version.js`
+          echo "VER=${VER}" >> $GITHUB_ENV
+
+          # update spec and spec version
+          yarn version --new-version ${VER} --no-git-tag-version
+
+          docker pull ghcr.io/qlik-download/api-compliance
+          docker create -v /specs --name specs alpine:3.4 /bin/true
+          docker cp ./api-spec/spec.json  specs:/specs
+
+      - name: Run API Compliance
+        run: |
+          VER=${{ env.VER }}
+
+          docker run --volumes-from specs \
+            -e SPEC_PATHS="6ef0f3ff-3862-442b-8f18-789b5818bdd5@/specs/spec.json" \
+            -e COMMIT_SHA="$GITHUB_SHA" \
+            -e RELEASE_TAG="$VER" \
+            -e PRE_RELEASE="true" \
+            -e CREDENTIALS_S3_SECRETKEY="${{ secrets.APICULTURIST_S3 }}" \
+            -e CREDENTIALS_GITHUB="${{ secrets.APICULTURIST_GITHUB }}" \
+            -e CREDENTIALS_COLONY="${{ secrets.APICULTURIST_TOKEN }}" \
+            ghcr.io/qlik-download/api-compliance
