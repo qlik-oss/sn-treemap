@@ -1,11 +1,12 @@
 {
   "scriptappy": "1.1.0",
   "info": {
-    "name": "@nebula.js/sn-treemap",
-    "description": "Treemap supernova that is DOM independent",
+    "name": "@nebula.js/sn-treemap:properties",
+    "description": "Treemap generic object definition",
     "version": "1.4.7",
     "license": "MIT",
-    "stability": "stable"
+    "stability": "stable",
+    "x-qlik-visibility": "public"
   },
   "entries": {
     "properties": {
