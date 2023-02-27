@@ -1,6 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-empty-pattern */
 import { test, expect } from '@playwright/test';
 import fs from 'fs';
 import serve from '@nebula.js/cli-serve';
