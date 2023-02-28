@@ -29,3 +29,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_SECRET }}
         run: npx semantic-release
+
+      - name: Run API Compliance to Update Baseline
+        run: |
+          VER=$(node -p "require('./api-spec/spec.json').info.version")
+          SHA=$(git rev-parse HEAD)
+
+          docker pull ghcr.io/qlik-download/api-compliance
+          docker create -v /specs --name specs alpine:3.4 /bin/true
+          docker cp ./api-spec/spec.json  specs:/specs
+
+          docker run --volumes-from specs \
+            -e SPEC_PATHS="6ef0f3ff-3862-442b-8f18-789b5818bdd5@/specs/spec.json" \
+            -e COMMIT_SHA="$SHA" \
+            -e RELEASE_TAG="$VER" \
+            -e CREDENTIALS_S3_SECRETKEY="${{ secrets.APICULTURIST_S3 }}" \
+            -e CREDENTIALS_GITHUB="${{ secrets.APICULTURIST_GITHUB }}" \
+            -e CREDENTIALS_COLONY="${{ secrets.APICULTURIST_TOKEN }}" \
+            ghcr.io/qlik-download/api-compliance
