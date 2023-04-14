@@ -63,7 +63,7 @@ export default function createCustomTooltipService({
       return promises.handlePromises({
         customTooltipModel,
         nodes: modified,
-        attrExps: expressions,
+        attrExps: expressions.attrExps,
         opts: {
           flags,
           app,
