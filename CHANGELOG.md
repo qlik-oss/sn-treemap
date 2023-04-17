@@ -1,3 +1,16 @@
+# [1.5.0](https://github.com/qlik-oss/sn-treemap/compare/v1.4.7...v1.5.0) (2023-04-17)
+
+
+### Bug Fixes
+
+* review comments ([c938812](https://github.com/qlik-oss/sn-treemap/commit/c938812597c375c12fd7912917da72e7ebf815bb))
+* tooltip image not shown ([bad50c1](https://github.com/qlik-oss/sn-treemap/commit/bad50c159e2f78b6f6ad235ed18d9b742174741f))
+
+
+### Features
+
+* update api properties and mark it public ([#154](https://github.com/qlik-oss/sn-treemap/issues/154)) ([9e4acd7](https://github.com/qlik-oss/sn-treemap/commit/9e4acd77812ec9a65aa05afce7880bf0031811c3))
+
 ## [1.4.7](https://github.com/qlik-oss/sn-treemap/compare/v1.4.6...v1.4.7) (2023-02-22)
 
 
