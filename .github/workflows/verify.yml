@@ -10,9 +10,14 @@ jobs:
       - uses: ./.github/actions/yarn_install
       - run: yarn lint
       - run: yarn build
-      - run: yarn test
+      - name: Run unit tests and publish to Code Climate
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        run: |
+          ./test/bin/cc-test-reporter before-build
+          yarn test --maxWorkers=2 --coverage
+          ./test/bin/cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
       - run: yarn playwright install --with-deps
-
       - run: yarn run test:rendering
         id: rendering
       - uses: actions/upload-artifact@v3
