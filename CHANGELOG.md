@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/qlik-oss/sn-treemap/compare/v1.5.0...v1.5.1) (2023-04-24)
+
+
+### Bug Fixes
+
+* fix QB-19064 for treemap ([#165](https://github.com/qlik-oss/sn-treemap/issues/165)) ([22ed4c2](https://github.com/qlik-oss/sn-treemap/commit/22ed4c2f09a71037a12e75d42cdb5a5d2a1d1bcf))
+
 # [1.5.0](https://github.com/qlik-oss/sn-treemap/compare/v1.4.7...v1.5.0) (2023-04-17)
 
 
