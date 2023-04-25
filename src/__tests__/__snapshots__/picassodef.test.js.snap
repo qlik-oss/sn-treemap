@@ -113,6 +113,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
           "removeAllListeners": [Function],
           "removeListener": [Function],
           "setMaxListeners": [Function],
+          "validateColor": [Function],
         },
         "translator": undefined,
       },
