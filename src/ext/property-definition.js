@@ -1,9 +1,10 @@
 import { setValue, getValue } from 'qlik-chart-modules';
+import advancedStylingDef from './styling-definitions/advanced-styling-def';
 
 export default function propertyDefinition(env) {
-  // keep flags here for future use
-  // eslint-disable-next-line no-unused-vars
-  const { flags } = env;
+  const { flags, translator } = env || {};
+  const stylingPanelEnabled = flags.isEnabled('IM_3434_TREEMAP_STYLING');
+  const theme = env.anything?.sense?.theme;
 
   function hasDepth(data, handler) {
     const dims = handler.getDimensions();
@@ -113,8 +114,9 @@ export default function propertyDefinition(env) {
       presentation: {
         type: 'items',
         translation: 'properties.presentation',
-        grouped: false,
+        grouped: true,
         items: {
+          styleEditor: stylingPanelEnabled && advancedStylingDef(stylingPanelEnabled, translator, theme),
           labels: {
             type: 'items',
             items: {

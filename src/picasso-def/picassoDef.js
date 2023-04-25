@@ -26,6 +26,7 @@ export const picassoDef = ({
   properties,
   rtl,
   dataset,
+  styleService,
 }) => {
   const blockingDisclaimer = getBlockingDisclaimer(layout, translator, rtl);
   if (blockingDisclaimer) {
@@ -43,7 +44,7 @@ export const picassoDef = ({
 
   const scales = colorService.getScales();
 
-  const treemapLegend = legend({ colorService, chart, layout, rtl, viewState, actions });
+  const treemapLegend = legend({ colorService, chart, layout, rtl, viewState, actions, styleService });
   const selectables = createSelectables({
     actions,
     colorService,
@@ -82,7 +83,7 @@ export const picassoDef = ({
     ],
   };
 
-  let headerBackgroundColor = theme.getStyle('object.treemap', '', 'branch.backgroundColor') || '#F2F2F2';
+  let headerBackgroundColor = styleService?.branch?.bkgColor?.getStyle().backgroundColor.color || '#F2F2F2';
   if (!isValidColor(headerBackgroundColor)) {
     headerBackgroundColor = '#F2F2F2';
   }
@@ -109,6 +110,7 @@ export const picassoDef = ({
         translator,
         theme,
         rtl: options.direction === 'rtl',
+        styleService,
       },
       brush: brushSettings,
     },
