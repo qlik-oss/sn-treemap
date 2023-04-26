@@ -8,14 +8,14 @@ export default function createStyleService({ layoutService, themeService, flags 
     branch: {
       bkgColor: {
         getStyle: () => ({
-          backgroundColor: overrides('bkgColor')?.branch?.backgroundColor ?? styles.branch?.backgroundColor,
+          backgroundColor: overrides('bkgColor')?.branch?.backgroundColor.color ?? styles.branch?.backgroundColor,
         }),
       },
       label: {
         getStyle: () => ({
           fontFamily: overrides('branch')?.branch?.label?.fontFamily ?? styles.branch?.label.fontFamily,
           fontSize: overrides('branch')?.branch?.label?.fontSize ?? styles.branch?.label.fontSize,
-          color: overrides('branch')?.branch?.label?.color ?? styles.branch?.label.color,
+          color: overrides('branch')?.branch?.label?.color.color ?? styles.branch?.label.color,
         }),
       },
     },

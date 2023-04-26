@@ -158,7 +158,7 @@ const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl, styl
   const fontFamily = styleService.branch.label.getStyle().fontFamily;
   const fontSize = styleService.branch.label.getStyle().fontSize;
   const headerFillColor =
-    styleService?.branch?.label.getStyle().color.color || (fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)');
+    styleService?.branch?.label.getStyle().color || (fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)');
   const textSize = renderer.measureText({
     text,
     fontSize,

@@ -83,7 +83,7 @@ export const picassoDef = ({
     ],
   };
 
-  let headerBackgroundColor = styleService?.branch?.bkgColor?.getStyle().backgroundColor.color || '#F2F2F2';
+  let headerBackgroundColor = styleService?.branch?.bkgColor?.getStyle().backgroundColor || '#F2F2F2';
   if (!isValidColor(headerBackgroundColor)) {
     headerBackgroundColor = '#F2F2F2';
   }
