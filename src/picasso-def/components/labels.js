@@ -1,6 +1,5 @@
 import { wrapText, truncate } from './text-helper';
 
-// const TREEMAP_MESSAGE_SIZE = 16;
 const MIN_AREA_FOR_LABELS = 4000;
 const ellipsis = '…';
 

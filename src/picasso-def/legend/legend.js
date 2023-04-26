@@ -10,13 +10,11 @@ export const legend = ({ colorService, chart, layout, rtl, viewState, actions, s
       viewState,
       chart,
       styleReference: 'object.treemap',
-      rtl,
-      settings: {
-        item: {
-          label: styleService?.legend?.label.getStyle(),
-        },
-        title: styleService?.legend?.title.getStyle(),
+      styleOverrides: {
+        title: styleService.legend.title.getStyle(),
+        label: styleService.legend.label.getStyle(),
       },
+      rtl,
     },
     { actions, navigationDisabled }
   );

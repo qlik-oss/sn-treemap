@@ -32,14 +32,14 @@ export default function createStyleService({ layoutService, themeService, flags 
         getStyle: () => ({
           fontSize: overrides('legend-title')?.legend?.title?.fontSize ?? styles.legend?.title.fontSize,
           fontFamily: overrides('legend-title')?.legend?.title?.fontFamily ?? styles.legend?.title.fontFamily,
-          color: overrides('legend-title')?.legend?.title?.color ?? styles.legend?.title.color,
+          color: overrides('legend-title')?.legend?.title?.color.color ?? styles.legend?.title.color.color,
         }),
       },
       label: {
         getStyle: () => ({
           fontSize: overrides('legend-label')?.legend?.label?.fontSize ?? styles.legend?.label.fontSize,
           fontFamily: overrides('legend-label')?.legend?.label?.fontFamily ?? styles.legend?.label.fontFamily,
-          color: overrides('legend-label')?.legend?.label?.color ?? styles.legend?.label.color,
+          color: overrides('legend-label')?.legend?.label?.color.color ?? styles.legend?.label.color.color,
         }),
       },
     },
