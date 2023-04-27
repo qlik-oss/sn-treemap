@@ -11,8 +11,8 @@ export const legend = ({ colorService, chart, layout, rtl, viewState, actions, s
       chart,
       styleReference: 'object.treemap',
       styleOverrides: {
-        title: styleService?.legend.title.getStyle(),
-        label: styleService?.legend.label.getStyle(),
+        title: styleService?.legend?.title.getStyle(),
+        label: styleService?.legend?.label.getStyle(),
       },
       rtl,
     },

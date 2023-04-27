@@ -121,13 +121,12 @@ const supernova = (env) => {
           config: {
             id: 'object.treemap',
             resolve: [
-              ['object', 'branch.label', 'color'],
-              ['object', 'branch.label', 'fontFamily'],
-              ['object', 'branch.label', 'fontSize'],
-              ['object', 'branch', 'backgroundColor'],
-              ['object', 'leaf.label', 'color'],
-              ['object', 'leaf.label', 'fontFamily'],
-              ['object', 'leaf.label', 'fontSize'],
+              ['object.treemap', 'branch.label', 'color'],
+              ['object.treemap', 'branch.label', 'fontFamily'],
+              ['object.treemap', 'branch.label', 'fontSize'],
+              ['object.treemap', 'branch', 'backgroundColor'],
+              ['object.treemap', 'leaf.label', 'fontFamily'],
+              ['object.treemap', 'leaf.label', 'fontSize'],
             ],
           },
         });

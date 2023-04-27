@@ -8,14 +8,14 @@ export default function createStyleService({ layoutService, themeService, flags 
     branch: {
       bkgColor: {
         getStyle: () => ({
-          backgroundColor: overrides('bkgColor')?.branch?.backgroundColor.color ?? styles.branch?.backgroundColor,
+          backgroundColor: overrides('bkgColor')?.branch?.backgroundColor?.color ?? styles.branch?.backgroundColor,
         }),
       },
       label: {
         getStyle: () => ({
           fontFamily: overrides('branch')?.branch?.label?.fontFamily ?? styles.branch?.label.fontFamily,
           fontSize: overrides('branch')?.branch?.label?.fontSize ?? styles.branch?.label.fontSize,
-          color: overrides('branch')?.branch?.label?.color.color ?? styles.branch?.label.color,
+          color: overrides('branch')?.branch?.label?.color?.color ?? styles.branch?.label.color,
         }),
       },
     },
@@ -30,16 +30,16 @@ export default function createStyleService({ layoutService, themeService, flags 
     legend: {
       title: {
         getStyle: () => ({
-          fontSize: overrides('legend-title')?.legend?.title?.fontSize ?? styles.legend?.title.fontSize,
-          fontFamily: overrides('legend-title')?.legend?.title?.fontFamily ?? styles.legend?.title.fontFamily,
-          color: overrides('legend-title')?.legend?.title?.color.color ?? styles.legend?.title.color.color,
+          fontFamily: overrides('legend')?.legend?.title?.fontFamily ?? styles.legend?.title.fontFamily,
+          fontSize: overrides('legend')?.legend?.title?.fontSize ?? styles.legend?.title.fontSize,
+          color: overrides('legend')?.legend?.title?.color?.color ?? styles.legend?.title.color,
         }),
       },
       label: {
         getStyle: () => ({
-          fontSize: overrides('legend-label')?.legend?.label?.fontSize ?? styles.legend?.label.fontSize,
-          fontFamily: overrides('legend-label')?.legend?.label?.fontFamily ?? styles.legend?.label.fontFamily,
-          color: overrides('legend-label')?.legend?.label?.color.color ?? styles.legend?.label.color.color,
+          fontFamily: overrides('legend')?.legend?.label?.fontFamily ?? styles.legend?.label.fontFamily,
+          fontSize: overrides('legend')?.legend?.label?.fontSize ?? styles.legend?.label.fontSize,
+          color: overrides('legend')?.legend?.label?.color?.color ?? styles.legend?.label.color,
         }),
       },
     },

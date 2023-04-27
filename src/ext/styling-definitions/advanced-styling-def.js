@@ -134,7 +134,7 @@ function advancedStylingDef(stylingPanelEnabled, translator, theme) {
           legendTitlelItems: {
             component: 'items',
             ref: 'components',
-            key: 'legend-title',
+            key: 'legend',
             items: {
               fontFamilyItem: {
                 component: 'dropdown',
@@ -172,7 +172,7 @@ function advancedStylingDef(stylingPanelEnabled, translator, theme) {
           legendLabelItems: {
             component: 'items',
             ref: 'components',
-            key: 'legend-label',
+            key: 'legend',
             items: {
               fontFamilyItem: {
                 component: 'dropdown',

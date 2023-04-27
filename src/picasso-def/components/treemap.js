@@ -2,7 +2,7 @@ import { treemap as d3Treemap } from 'd3-hierarchy';
 import { createTextLabels, displayInvalidMessage, createOverlayLabel } from './labels';
 import { TREEMAP_DEFINES } from './defines';
 import { setupBrushes } from './setupBrushes.native';
-import { incrementColor, getAverageColor } from './colorUtils';
+import { incrementColor, getAverageColor, isValidColor } from './colorUtils';
 import { getPattern } from './not-fetched-pattern';
 import getLabelSettings from './label-settings';
 
@@ -40,12 +40,9 @@ const getNodeColor = (node, headerColor, box, chart, notFetchedPattern) => {
 export const treemap = () => ({
   require: ['chart', 'renderer', 'element'],
   render({ data }) {
-    const { headerColor, selectLevel, invalidMessage, translator, box, theme, rtl, styleService } =
-      this.settings.settings;
+    const { selectLevel, invalidMessage, translator, box, theme, rtl, styleService } = this.settings.settings;
     const boundingRect = this.rect;
     const labels = getLabelSettings(this);
-
-    const notFetchedPattern = getPattern(theme.getDataColorSpecials().others, 0.1);
 
     // this is needed for mobile to setup native selections
     setupBrushes(this.settings.brush, this.chart);
@@ -101,6 +98,13 @@ export const treemap = () => ({
     const parentRects = [];
     const treeHeight = root.height - 1;
     const overlayLevel = !labels.overlay ? -1 : labels.headers ? 2 : 1;
+
+    let headerColor = styleService?.branch?.bkgColor?.getStyle().backgroundColor || '#F2F2F2';
+    if (!isValidColor(headerColor)) {
+      headerColor = '#F2F2F2';
+    }
+
+    const notFetchedPattern = getPattern(headerColor, 0.1);
 
     const visit = (node) => {
       if (node.height === 0 && !node.data.isNotFetchedOthers.value) {

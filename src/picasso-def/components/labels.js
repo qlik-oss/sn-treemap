@@ -41,8 +41,8 @@ export const createTextLabels = ({
     const valueText = node.data.size.label;
     let finalTextArray = [];
     let lines = [];
-    const fontFamily = styleService.leaf.label.getStyle().fontFamily;
-    const fontSize = styleService.leaf.label.getStyle().fontSize;
+    const fontFamily = styleService?.leaf?.label?.getStyle().fontFamily;
+    const fontSize = styleService?.leaf?.label?.getStyle().fontSize;
 
     if (labels.values) {
       finalTextArray = processText({
@@ -155,10 +155,10 @@ const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl, styl
   const verticalPadding = 12;
   let text = node.data.label;
   let truncatedText;
-  const fontFamily = styleService.branch.label.getStyle().fontFamily;
-  const fontSize = styleService.branch.label.getStyle().fontSize;
+  const fontFamily = styleService?.branch?.label?.getStyle().fontFamily;
+  const fontSize = styleService?.branch?.label?.getStyle().fontSize;
   const headerFillColor =
-    styleService?.branch?.label.getStyle().color || (fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)');
+    styleService?.branch?.label?.getStyle().color || (fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)');
   const textSize = renderer.measureText({
     text,
     fontSize,
@@ -189,8 +189,8 @@ const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl, styl
 };
 
 export const displayInvalidMessage = ({ rect, text, renderer, styleService }) => {
-  const fontFamily = styleService.branch.label.getStyle().fontFamily;
-  const fontSize = styleService.branch.label.getStyle().fontSize;
+  const fontFamily = styleService?.branch?.label.getStyle().fontFamily;
+  const fontSize = styleService?.branch?.label?.getStyle().fontSize;
   const textSize = renderer.measureText({
     text,
     fontSize,
@@ -227,7 +227,7 @@ export const createOverlayLabel = ({ node, avgColor, width, height, renderer, th
   let lines = [];
   const text = node.data.label;
   const maxNumLines = /\s+/.test(text) ? 2 : 1; // allow break if white space in label
-  const fontFamily = styleService.branch.label.getStyle().fontFamily;
+  const fontFamily = styleService?.branch?.label?.getStyle().fontFamily;
   const optimal = Math.round(0.1 * Math.sqrt(2 * width * height));
   const fontSize = `${optimal}px`;
 
