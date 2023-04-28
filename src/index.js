@@ -124,7 +124,7 @@ const supernova = (env) => {
               ['object.treemap', 'branch.label', 'color'],
               ['object.treemap', 'branch.label', 'fontFamily'],
               ['object.treemap', 'branch.label', 'fontSize'],
-              ['object.treemap', 'branch', 'backgroundColor'],
+              ['object.treemap', '', 'branch.backgroundColor'],
               ['object.treemap', 'leaf.label', 'fontFamily'],
               ['object.treemap', 'leaf.label', 'fontSize'],
             ],

@@ -314,7 +314,7 @@ export default () => ({
           legend: {
             show: true,
             dock: 'left',
-            showTitle: false,
+            showTitle: true,
           },
           tooltip: {
             auto: true,
@@ -329,9 +329,84 @@ export default () => ({
           },
           visualization: 'treemap',
           version: '1.2.0',
+          components: [
+            {
+              key: 'general',
+              title: {
+                main: {
+                  color: {
+                    index: -1,
+                    color: '#e01139',
+                  },
+                },
+                footer: {
+                  color: {
+                    index: -1,
+                    color: '#e01139',
+                  },
+                },
+                subTitle: {
+                  color: {
+                    index: -1,
+                    color: '#e01139',
+                  },
+                },
+              },
+            },
+            {
+              key: 'branch',
+              label: {
+                value: {
+                  color: {
+                    index: -1,
+                    color: '#ff1631',
+                  },
+                  fontSize: '20px',
+                  fontFamily: "Bradley Hand, cursive",
+                },
+              },
+            },
+            {
+              key: 'bkgColor',
+              branch: {
+                value: {
+                  backgroundColor: {
+                    index: 10, 
+                    color: "#f93f17"
+                  },
+                  },
+                },
+              },
+            {
+              key: 'leaf',
+              label: {
+                value: {
+                  fontSize: '15px',
+                  fontFamily: "Luminari, fantasy",
+                },
+              },
+            },
+            {
+              key: 'legend',
+              label: {
+                value: {
+                  color: {index: 8, color: "#ffcf02"},
+                  fontSize: '15px',
+                  fontFamily: "Luminari, fantasy",
+                },
+              },
+              title: {
+                value: {
+                  color: {index: 3, color: "#276e27"},
+                  fontSize: '20px',
+                  fontFamily: "Bradley Hand, cursive",
+                },
+              },
+            },
+          ],
         };
       },
       getEffectiveProperties: {},
-    },
+      },
   ],
 });
