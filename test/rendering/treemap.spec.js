@@ -6,6 +6,9 @@ TestGenerator.fromFixtures({
   serveConfig: {
     type: 'treemap',
     entry: path.resolve(__dirname, '../../dist/sn-treemap.js'),
+    flags: {
+      IM_3434_TREEMAP_STYLING: true,
+    },
     port: 8017,
   },
   fixturePath: path.join(__dirname, '__fixtures__'),
