@@ -355,42 +355,48 @@ export default () => ({
             },
             {
               key: 'branch',
-              label: {
+              branch: {
+                label: {
                   color: {
                     index: -1,
                     color: '#ff1631',
                   },
                   fontSize: '20px',
                   fontFamily: "Bradley Hand, cursive",
-              },
+                },
+              }
             },
             {
               key: 'bkgColor',
               branch: {
-                  backgroundColor: {
-                    index: 10, 
-                    color: "#f93f17"
-                  },
+                backgroundColor: {
+                  index: 10,
+                  color: "#f93f17"
+                },
               },
             },
             {
               key: 'leaf',
-              label: {
+              leaf: {
+                label: {
                   fontSize: '15px',
                   fontFamily: "Luminari, fantasy",
-              },
+                },
+              }
             },
             {
               key: 'legend',
-              label: {
+              legend: {
+                label: {
                   color: {index: 8, color: "#ffcf02"},
                   fontSize: '15px',
                   fontFamily: "Luminari, fantasy",
-              },
-              title: {
+                },
+                title: {
                   color: {index: 3, color: "#276e27"},
                   fontSize: '20px',
                   fontFamily: "Bradley Hand, cursive",
+                },
               },
             },
           ],
