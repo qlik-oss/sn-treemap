@@ -4,15 +4,13 @@ const dummyCanvas = document.createElement('canvas');
 
 const ctx = dummyCanvas.getContext('2d');
 
-export function getPattern(color, alpha) {
+export function getPattern(color) {
   const stroke = d3Color(color);
-  stroke.opacity = alpha;
-
   const ratio = 1;
   dummyCanvas.width = ratio * 8;
   dummyCanvas.height = ratio * 8;
   ctx.save();
-  ctx.fillStyle = color;
+  ctx.fillStyle = stroke.toString();
   ctx.strokeStyle = stroke.toString();
   ctx.lineWidth = 2;
   ctx.scale(ratio, ratio);
@@ -23,6 +21,9 @@ export function getPattern(color, alpha) {
   ctx.moveTo(9, 3);
   ctx.lineTo(3, 9);
   ctx.stroke();
-  ctx.restore();
-  return ctx.createPattern(dummyCanvas, 'repeat');
+  const pattern = ctx.createPattern(dummyCanvas, 'repeat');
+  ctx.rect(0, 0, dummyCanvas.width, dummyCanvas.height);
+  ctx.fillStyle = pattern;
+  ctx.fill;
+  return pattern;
 }

@@ -81,7 +81,6 @@ exports[`Treemap picassodef render should render ok 1`] = `
           "others": "#a5a5a5",
           "persistent": false,
         },
-        "headerColor": "#F2F2F2",
         "invalidMessage": undefined,
         "labels": {
           "auto": true,
@@ -93,6 +92,7 @@ exports[`Treemap picassodef render should render ok 1`] = `
         "rtl": false,
         "selectLevel": 0,
         "showHeaders": false,
+        "styleService": undefined,
         "theme": {
           "_events": {},
           "_maxListeners": undefined,

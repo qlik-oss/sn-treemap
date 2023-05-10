@@ -7,7 +7,6 @@ import { dockLayout } from './dock-layout';
 import gesturesToInteractions from './gesturesToInteractions';
 import { getBlockingDisclaimer, getInfoDisclaimer } from './disclaimers';
 import { getTreeDataCollection } from './tree-data-collection';
-import { isValidColor } from './components/colorUtils';
 import legendWheelScroll from './legend/wheel-scroll';
 
 export const picassoDef = ({
@@ -26,6 +25,7 @@ export const picassoDef = ({
   properties,
   rtl,
   dataset,
+  styleService,
 }) => {
   const blockingDisclaimer = getBlockingDisclaimer(layout, translator, rtl);
   if (blockingDisclaimer) {
@@ -43,7 +43,7 @@ export const picassoDef = ({
 
   const scales = colorService.getScales();
 
-  const treemapLegend = legend({ colorService, chart, layout, rtl, viewState, actions });
+  const treemapLegend = legend({ colorService, chart, layout, rtl, viewState, actions, styleService });
   const selectables = createSelectables({
     actions,
     colorService,
@@ -82,10 +82,6 @@ export const picassoDef = ({
     ],
   };
 
-  let headerBackgroundColor = theme.getStyle('object.treemap', '', 'branch.backgroundColor') || '#F2F2F2';
-  if (!isValidColor(headerBackgroundColor)) {
-    headerBackgroundColor = '#F2F2F2';
-  }
   const components = [
     {
       type: 'treemap',
@@ -103,12 +99,12 @@ export const picassoDef = ({
           persistent: layout.color.persistent || layout.qHyperCube.qDimensionInfo.length > 1,
         },
         showHeaders: layout.qHyperCube.qDimensionInfo.length > 1,
-        headerColor: headerBackgroundColor,
         selectLevel,
         invalidMessage,
         translator,
         theme,
         rtl: options.direction === 'rtl',
+        styleService,
       },
       brush: brushSettings,
     },

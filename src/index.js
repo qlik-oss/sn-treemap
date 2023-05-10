@@ -15,7 +15,11 @@ import {
   useRect,
   useTranslator,
 } from '@nebula.js/stardust';
-import { colorService as createColorService } from 'qlik-chart-modules';
+import {
+  colorService as createColorService,
+  themeService as createThemeService,
+  layoutService as createLayoutService,
+} from 'qlik-chart-modules';
 import { createPicasso } from './picasso-def/createPicasso';
 import { picassoDef } from './picasso-def';
 import { treemap, tooltip, nativeLegend } from './picasso-def/components';
@@ -23,6 +27,7 @@ import { qae } from './qae';
 import { auto } from './colors/auto';
 import useActions from './hooks/use-actions';
 import useSelectionService from './hooks/use-selections';
+import createStyleService from './hooks/use-style';
 import useViewState from './hooks/use-viewstate';
 import setupSnapshot from './snapshot';
 import ext from './ext/ext';
@@ -77,6 +82,7 @@ const supernova = (env) => {
           key: 'fill',
         },
       });
+      const { flags } = env;
 
       useEffect(
         () => () => {
@@ -105,6 +111,27 @@ const supernova = (env) => {
         if (!chart || !selectionService || layout.qSelectionInfo.qInSelections) {
           return;
         }
+
+        const layoutService = createLayoutService({
+          source: layout,
+        });
+
+        const themeService = createThemeService({
+          theme,
+          config: {
+            id: 'object.treemap',
+            resolve: [
+              ['object.treemap', 'branch.label', 'color'],
+              ['object.treemap', 'branch.label', 'fontFamily'],
+              ['object.treemap', 'branch.label', 'fontSize'],
+              ['object.treemap', '', 'branch.backgroundColor'],
+              ['object.treemap', 'leaf.label', 'fontFamily'],
+              ['object.treemap', 'leaf.label', 'fontSize'],
+            ],
+          },
+        });
+
+        const styleService = createStyleService({ layoutService, themeService, flags });
 
         const createConfig = ({ getUseBaseColors }) => ({
           theme,
@@ -168,6 +195,7 @@ const supernova = (env) => {
           properties,
           rtl: options.direction === 'rtl',
           dataset,
+          styleService,
         });
         chart.update({ data, settings });
       }, [layout, chart, selectionService, theme.name(), selections, options, actions, constraints]);

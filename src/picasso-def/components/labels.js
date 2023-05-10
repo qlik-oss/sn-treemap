@@ -1,12 +1,20 @@
 import { wrapText, truncate } from './text-helper';
 
-const TREEMAP_LABEL_FONTSIZE = 14;
-const TREEMAP_VALUE_FONTSIZE = 12;
-const TREEMAP_MESSAGE_SIZE = 16;
 const MIN_AREA_FOR_LABELS = 4000;
 const ellipsis = '…';
 
-export const createTextLabels = ({ node, width, height, fill, valueLables, labels, renderer, theme, rtl }) => {
+export const createTextLabels = ({
+  node,
+  width,
+  height,
+  fill,
+  valueLables,
+  labels,
+  renderer,
+  theme,
+  rtl,
+  styleService,
+}) => {
   const area = width * height;
 
   if (area < MIN_AREA_FOR_LABELS) {
@@ -24,16 +32,17 @@ export const createTextLabels = ({ node, width, height, fill, valueLables, label
         labels,
         theme,
         rtl,
+        styleService,
       });
       return;
     }
     const labelText = node.data.label;
-    const fontFamily = theme.getStyle('object.treemap', 'leaf.label', 'fontFamily') || 'Source Sans Pro';
-    const fontSize = theme.getStyle('object.treemap', 'leaf.label', 'fontSize') || TREEMAP_LABEL_FONTSIZE + 'px';
     const top = node.y0 + 4;
     const valueText = node.data.size.label;
     let finalTextArray = [];
     let lines = [];
+    const fontFamily = styleService?.leaf?.label?.getStyle().fontFamily;
+    const fontSize = styleService?.leaf?.label?.getStyle().fontSize;
 
     if (labels.values) {
       finalTextArray = processText({
@@ -142,15 +151,14 @@ const processText = ({ text, fontSize, fontFamily, renderer, width, height, labe
   return { lines, textSize, maxheight };
 };
 
-const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl }) => {
+const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl, styleService }) => {
   const verticalPadding = 12;
   let text = node.data.label;
   let truncatedText;
-  const fontFamily = theme.getStyle('object.treemap', 'branch.label', 'fontFamily') || 'Source Sans Pro';
-  const fontSize = theme.getStyle('object.treemap', 'branch.label', 'fontSize') || TREEMAP_VALUE_FONTSIZE + 'px';
+  const fontFamily = styleService?.branch?.label?.getStyle().fontFamily;
+  const fontSize = styleService?.branch?.label?.getStyle().fontSize;
   const headerFillColor =
-    theme.getStyle('object.treemap', 'branch.label', 'color') ||
-    (fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)');
+    styleService?.branch?.label?.getStyle().color || (fill ? theme.getContrastingColorTo(fill) : 'rgb(0, 0, 0)');
   const textSize = renderer.measureText({
     text,
     fontSize,
@@ -180,9 +188,9 @@ const headerText = ({ node, width, fill, valueLables, renderer, theme, rtl }) =>
   });
 };
 
-export const displayInvalidMessage = ({ rect, text, renderer, theme }) => {
-  const fontFamily = theme.getStyle('object.treemap', 'label.value', 'fontFamily') || 'Source Sans Pro';
-  const fontSize = theme.getStyle('object.treemap', 'label.value', 'fontSize') || TREEMAP_MESSAGE_SIZE + 'px';
+export const displayInvalidMessage = ({ rect, text, renderer, styleService }) => {
+  const fontFamily = styleService?.branch?.label.getStyle().fontFamily;
+  const fontSize = styleService?.branch?.label?.getStyle().fontSize;
   const textSize = renderer.measureText({
     text,
     fontSize,
@@ -203,7 +211,7 @@ export const displayInvalidMessage = ({ rect, text, renderer, theme }) => {
       type: 'text',
       text,
       fontFamily,
-      fontSize: TREEMAP_MESSAGE_SIZE + 'px',
+      fontSize,
       fontWeight: 'normal',
       x: (rect.width - textSize.width) / 2,
       y: (rect.height - textSize.height) / 2,
@@ -215,11 +223,11 @@ export const displayInvalidMessage = ({ rect, text, renderer, theme }) => {
   ];
 };
 
-export const createOverlayLabel = ({ node, avgColor, width, height, renderer, theme }) => {
+export const createOverlayLabel = ({ node, avgColor, width, height, renderer, theme, styleService }) => {
   let lines = [];
   const text = node.data.label;
   const maxNumLines = /\s+/.test(text) ? 2 : 1; // allow break if white space in label
-  const fontFamily = theme.getStyle('object.treemap', 'label.value', 'fontFamily') || 'Source Sans Pro';
+  const fontFamily = styleService?.branch?.label?.getStyle().fontFamily;
   const optimal = Math.round(0.1 * Math.sqrt(2 * width * height));
   const fontSize = `${optimal}px`;
 
