@@ -1,14 +1,17 @@
+import { color as d3Color } from 'd3-color';
+
 const dummyCanvas = document.createElement('canvas');
 
 const ctx = dummyCanvas.getContext('2d');
 
 export function getPattern(color) {
+  const stroke = d3Color(color);
   const ratio = 1;
   dummyCanvas.width = ratio * 8;
   dummyCanvas.height = ratio * 8;
   ctx.save();
-  ctx.fillStyle = color;
-  ctx.strokeStyle = color === '#ffffff' ? '#F2F2F2' : '#ffffff';
+  ctx.fillStyle = stroke.toString();
+  ctx.strokeStyle = stroke.toString();
   ctx.lineWidth = 2;
   ctx.scale(ratio, ratio);
   ctx.beginPath();
