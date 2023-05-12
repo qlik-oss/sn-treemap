@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/qlik-oss/sn-treemap/compare/v1.5.1...v1.6.0) (2023-05-12)
+
+
+### Features
+
+* treemap styling release ([2022ab0](https://github.com/qlik-oss/sn-treemap/commit/2022ab0483091f8d73aae882c3c4840259aae212))
+
 ## [1.5.1](https://github.com/qlik-oss/sn-treemap/compare/v1.5.0...v1.5.1) (2023-04-24)
 
 
