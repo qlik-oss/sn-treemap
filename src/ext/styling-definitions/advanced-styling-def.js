@@ -65,38 +65,14 @@ function advancedStylingDef(stylingPanelEnabled, translator, theme) {
             ref: 'components',
             key: 'bkgColor',
             items: {
-              bgColorWrapper: {
-                component: 'inline-wrapper',
-                items: {
-                  bgColorDropdown: {
-                    ref: 'branch.bkgColor',
-                    width: 9,
-                    component: 'dropdown',
-                    options: [
-                      {
-                        value: true,
-                        translation: 'properties.colorMode.primary',
-                      },
-                    ],
-                    defaultValue: true,
-                    placeholder: 'properties.colorMode.primary',
-                  },
-                  bgColorItem: {
-                    component: 'color-picker',
-                    width: false,
-                    ref: 'branch.backgroundColor',
-                    items: {
-                      bgColorPicker: {
-                        component: 'color-picker',
-                        ref: 'branch.backgroundColor',
-                        width: 10,
-                        defaultValue: () => ({
-                          color: theme.getStyle('object.treemap', 'branch', 'backgroundColor'),
-                        }),
-                      },
-                    },
-                  },
-                },
+              bgColorPicker: {
+                component: 'color-picker',
+                ref: 'branch.backgroundColor',
+                width: false,
+                label: translator.get('properties.colorMode.primary'),
+                defaultValue: () => ({
+                  color: theme.getStyle('object.treemap', 'branch', 'backgroundColor'),
+                }),
               },
             },
           },

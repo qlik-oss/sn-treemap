@@ -11,7 +11,7 @@ export function getPattern(color) {
   dummyCanvas.height = ratio * 8;
   ctx.save();
   ctx.fillStyle = stroke.toString();
-  ctx.strokeStyle = stroke.toString();
+  ctx.strokeStyle = color === '#F2F2F2' ? '#F2F2F2' : '#ffffff';
   ctx.lineWidth = 2;
   ctx.scale(ratio, ratio);
   ctx.beginPath();
