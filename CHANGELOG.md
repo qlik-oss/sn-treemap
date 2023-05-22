@@ -1,3 +1,11 @@
+## [1.6.1](https://github.com/qlik-oss/sn-treemap/compare/v1.6.0...v1.6.1) (2023-05-22)
+
+
+### Bug Fixes
+
+* arguements for getPattern ([ccb65ec](https://github.com/qlik-oss/sn-treemap/commit/ccb65ec20a05a046f31a79bc070cb3daed72a38e))
+* styling pattern with stroke style ([#177](https://github.com/qlik-oss/sn-treemap/issues/177)) ([4918b8c](https://github.com/qlik-oss/sn-treemap/commit/4918b8cc430d2dce85f9cf6faefcc9508189d132))
+
 # [1.6.0](https://github.com/qlik-oss/sn-treemap/compare/v1.5.1...v1.6.0) (2023-05-12)
 
 
