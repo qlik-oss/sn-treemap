@@ -1,29 +1,37 @@
-import { color as d3Color } from 'd3-color';
-
 const dummyCanvas = document.createElement('canvas');
 
 const ctx = dummyCanvas.getContext('2d');
 
-export function getPattern(color) {
-  const stroke = d3Color(color);
+export function getPattern() {
+  const stroke = 'rgba(0, 0, 0, 0.05)';
+  const background = 'rgba(255, 255, 255, 0.3)';
+
   const ratio = 1;
   dummyCanvas.width = ratio * 8;
   dummyCanvas.height = ratio * 8;
   ctx.save();
-  ctx.fillStyle = stroke.toString();
-  ctx.strokeStyle = color === '#F2F2F2' ? '#F2F2F2' : '#ffffff';
-  ctx.lineWidth = 2;
   ctx.scale(ratio, ratio);
+
+  ctx.strokeStyle = background;
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(9, -1);
+  ctx.lineTo(-1, 9);
+  ctx.moveTo(1, -1);
+  ctx.lineTo(-1, 1);
+  ctx.moveTo(9, 7);
+  ctx.lineTo(7, 9);
+  ctx.stroke();
+
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = 3;
   ctx.beginPath();
   ctx.moveTo(5, -1);
   ctx.lineTo(-1, 5);
-
   ctx.moveTo(9, 3);
   ctx.lineTo(3, 9);
   ctx.stroke();
-  const pattern = ctx.createPattern(dummyCanvas, 'repeat');
-  ctx.rect(0, 0, dummyCanvas.width, dummyCanvas.height);
-  ctx.fillStyle = pattern;
-  ctx.fill;
-  return pattern;
+
+  ctx.restore();
+  return ctx.createPattern(dummyCanvas, 'repeat');
 }
