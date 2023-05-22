@@ -104,7 +104,7 @@ export const treemap = () => ({
       headerColor = '#F2F2F2';
     }
 
-    const notFetchedPattern = getPattern(headerColor, 0.1);
+    const notFetchedPattern = getPattern();
 
     const visit = (node) => {
       if (node.height === 0 && !node.data.isNotFetchedOthers.value) {
