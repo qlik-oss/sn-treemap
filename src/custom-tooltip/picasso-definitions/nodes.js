@@ -23,9 +23,8 @@ function getLabel(attribute, attrValue) {
 
 function retrieveAttributeExpressions(d, layout, target, lastIndex) {
   const attrExprInfo = layout.qHyperCube?.[target]?.[lastIndex]?.qAttrExprInfo || [];
-  // when the bar-chart is stacked on dimnesions, we retrieve qSubNodes of the last measure from the last dimension's reference
   const nodes = [];
-  const attrExpsValues = d.qSubNodes?.[lastIndex]?.qAttrExps ? d.qSubNodes[lastIndex].qAttrExps : d.qAttrExps;
+  const attrExpsValues = d.qAttrExps;
   if (!attrExpsValues) {
     return nodes;
   }
