@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/qlik-oss/sn-treemap/compare/v1.6.1...v1.6.2) (2023-05-29)
+
+
+### Bug Fixes
+
+* problems with custom tooltip expressions ([#179](https://github.com/qlik-oss/sn-treemap/issues/179)) ([3cea02e](https://github.com/qlik-oss/sn-treemap/commit/3cea02e48ce4a01ffcf2d08ba0ae1434c92e1c22))
+
 ## [1.6.1](https://github.com/qlik-oss/sn-treemap/compare/v1.6.0...v1.6.1) (2023-05-22)
 
 
