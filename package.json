@@ -3,6 +3,7 @@
   "version": "1.6.2",
   "description": "Treemap supernova that is DOM independent",
   "main": "dist/sn-treemap.js",
+  "systemjs": "dist/sn-treemap.systemjs.js",
   "author": "Qlik",
   "license": "MIT",
   "files": [
