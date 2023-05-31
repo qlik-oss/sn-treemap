@@ -70,7 +70,7 @@
     "picasso-plugin-q": "2.2.3",
     "picasso.js": "2.2.3",
     "prettier": "2.8.8",
-    "qlik-chart-modules": "0.54.0",
+    "qlik-chart-modules": "0.55.0",
     "qlik-object-conversion": "0.16.2",
     "semver": "^7.3.8",
     "typescript": "^5.0.0",
