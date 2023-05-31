@@ -7,7 +7,6 @@
   "author": "Qlik",
   "license": "MIT",
   "files": [
-    "src",
     "dist",
     "core",
     "sn-treemap-ext",
