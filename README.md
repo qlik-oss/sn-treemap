@@ -4,7 +4,7 @@ Treemaps display hierarchical data by using nested rectangles, that is, smaller 
 
 ## Requirements
 
-Requires `@nebula.js/stardust` version `1.2.0` or later.
+Requires `@nebula.js/stardust` version `1.7.0` or later.
 
 ## Installing
 
