@@ -116,7 +116,7 @@ export default function propertyDefinition(env) {
         translation: 'properties.presentation',
         grouped: true,
         items: {
-          styleEditor: stylingPanelEnabled && advancedStylingDef(stylingPanelEnabled, translator, theme),
+          styleEditor: stylingPanelEnabled && advancedStylingDef(stylingPanelEnabled, translator, theme, flags),
           labels: {
             type: 'items',
             items: {

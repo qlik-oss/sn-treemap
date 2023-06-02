@@ -1,9 +1,10 @@
 import { fontResolver as createFontResolver } from 'qlik-chart-modules';
 
-function advancedStylingDef(stylingPanelEnabled, translator, theme) {
+function advancedStylingDef(stylingPanelEnabled, translator, theme, flags) {
   const fontResolver = createFontResolver({
     theme,
     translator,
+    flags,
     config: {
       id: 'object.treemap',
       paths: ['branch.label', 'leaf.label', 'legend.title', 'legend.label'],
