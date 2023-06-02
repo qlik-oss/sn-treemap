@@ -25,6 +25,6 @@
   "peerDependencies": {
     "react": "18.2.0",
     "react-native": "0.71.8",
-    "@nebula.js/stardust": "2.x || 3.x"
+    "@nebula.js/stardust": "2.x || 3.x || 4.x"
   }
 }
