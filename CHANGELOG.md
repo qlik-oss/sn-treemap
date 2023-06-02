@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/qlik-oss/sn-treemap/compare/v1.6.2...v1.6.3) (2023-06-02)
+
+
+### Bug Fixes
+
+* read me and remove src folder from npm package ([#181](https://github.com/qlik-oss/sn-treemap/issues/181)) ([0d7c13a](https://github.com/qlik-oss/sn-treemap/commit/0d7c13a3d22866fd3b69713c5ecafb8efe3e1f38))
+
 ## [1.6.2](https://github.com/qlik-oss/sn-treemap/compare/v1.6.1...v1.6.2) (2023-05-29)
 
 
