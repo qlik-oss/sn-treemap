@@ -1,3 +1,10 @@
+## [1.6.4](https://github.com/qlik-oss/sn-treemap/compare/v1.6.3...v1.6.4) (2023-07-10)
+
+
+### Bug Fixes
+
+* providing feature flag to font resolver in qlik-chart-modules ([#184](https://github.com/qlik-oss/sn-treemap/issues/184)) ([121183c](https://github.com/qlik-oss/sn-treemap/commit/121183ca8f793399bc33d4cb8b5d4689f105cf11))
+
 ## [1.6.3](https://github.com/qlik-oss/sn-treemap/compare/v1.6.2...v1.6.3) (2023-06-02)
 
 
