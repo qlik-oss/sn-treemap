@@ -1,3 +1,10 @@
+## [1.6.5](https://github.com/qlik-oss/sn-treemap/compare/v1.6.4...v1.6.5) (2023-09-04)
+
+
+### Bug Fixes
+
+* empty commit ([253fa61](https://github.com/qlik-oss/sn-treemap/commit/253fa61112d69cee577a151ad7b747a78aaabda4))
+
 ## [1.6.4](https://github.com/qlik-oss/sn-treemap/compare/v1.6.3...v1.6.4) (2023-07-10)
 
 
