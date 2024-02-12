@@ -95,6 +95,7 @@
     "prepare-mobile": "yarn && node ./tools/react-native-dev.js && cd example/NativeTreemap && yarn && cd ios && bundle install && pod install",
     "spec": "sy from-jsdoc -c ./api-spec/props.conf.js",
     "start": "nebula serve --build false --type treemap",
+    "start:mfe": "nebula serve --mfe --type sn-treemap",
     "test": "jest",
     "test:rendering": "playwright test --config=./test/rendering/playwright.config.rendering.js --quiet",
     "test:rendering:debug": "cross-env DEBUG=true playwright test --config=./test/rendering/playwright.config.rendering.js --headed",

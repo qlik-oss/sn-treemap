@@ -13,5 +13,17 @@ const replacementStrings = {
 module.exports = {
   build: {
     replacementStrings,
+    systemjs: {
+      external: [
+        'react',
+        'react-dom',
+        'hammerjs',
+        '@nebula.js/stardust',
+        'picasso.js',
+        'picasso-plugin-q',
+        'qlik-chart-modules',
+        'qlik-object-conversion',
+      ],
+    },
   },
 };
