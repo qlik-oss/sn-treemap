@@ -45,7 +45,7 @@
     "color-rgba": "^2.2.3",
     "color-scales": "3.0.2",
     "commitlint": "^17.0.0",
-    "conventional-recommended-bump": "^6.1.0",
+    "conventional-recommended-bump": "^9.0.0",
     "d3": "6.7.0",
     "d3-color": "^3.1.0",
     "d3-hierarchy": "3.1.2",
