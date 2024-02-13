@@ -1,3 +1,11 @@
+## [1.6.6](https://github.com/qlik-oss/sn-treemap/compare/v1.6.5...v1.6.6) (2024-02-13)
+
+
+### Bug Fixes
+
+* add fallback if scheme doesn't exist ([#220](https://github.com/qlik-oss/sn-treemap/issues/220)) ([3426117](https://github.com/qlik-oss/sn-treemap/commit/342611772ea361aac54fa3bae42f44f0718d646c))
+* update release.yml ([a2c8ce8](https://github.com/qlik-oss/sn-treemap/commit/a2c8ce850330c74fb4a790c5ceac3a2c9725321e))
+
 ## [1.6.5](https://github.com/qlik-oss/sn-treemap/compare/v1.6.4...v1.6.5) (2023-09-04)
 
 
