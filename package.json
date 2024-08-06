@@ -34,7 +34,7 @@
     "@nebula.js/cli": "^3.0.0-rc.2",
     "@nebula.js/cli-build": "^3.0.0-rc.2",
     "@nebula.js/cli-sense": "^3.0.0-rc.2",
-    "@nebula.js/cli-serve": "^3.0.0-rc.2",
+    "@nebula.js/cli-serve": "^5.0.0",
     "@playwright/test": "1.33.0",
     "@scriptappy/cli": "0.6.0",
     "@semantic-release/changelog": "^6.0.1",
