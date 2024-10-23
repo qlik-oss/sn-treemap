@@ -23,8 +23,8 @@
   ],
   "main": "dist/sn-treemap.js",
   "peerDependencies": {
-    "react": "18.2.0",
-    "react-native": "0.71.8",
+    "react": "18.3.1",
+    "react-native": "0.76.0",
     "@nebula.js/stardust": "2.x || 3.x || 4.x"
   }
 }
