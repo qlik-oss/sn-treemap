@@ -1,3 +1,7 @@
+> **Warning** This repository is now archived and will not be updated
+
+> This repository was originally published to foster collaboration and engagement with developers as they customized or developed visualizations, but due to customer feedback and usage data, it is now moved back to closed source. Moving this and other projects back to closed source will support better integration with internal build and test tooling, and free up resources for investment in these and other visualizations.
+
 # @nebula.js/sn-treemap
 
 Treemaps display hierarchical data by using nested rectangles, that is, smaller rectangles within a larger rectangle. Use a treemap when space is constrained and you have a large amount of hierarchical data that you need to get an overview of. Treemaps should primarily be used with values that can be aggregated.
